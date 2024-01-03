@@ -1,14 +1,12 @@
 import React from 'react'
 import { StyleSheet, Pressable } from 'react-native'
 
-export const PointsButtons = () => {
+export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
   const pointsList = Array.from({ length: 13 })
     .fill(0)
     .map((_, idx) => idx)
     .reverse()
-  const [selectedIndex, setIndex] = React.useState(0)
 
-  console.log('Selected', selectedIndex)
 
   const getButtonStyle = (index) => {
     if (index === selectedIndex) {
@@ -20,20 +18,26 @@ export const PointsButtons = () => {
     }
   };
 
+  const handlePress = (el) => {
+    onScoreChange(el);
+  }
+
+
+
   const isButtonDisable = (index) => {
+    console.log(index);
     return index < selectedIndex;
   }
 
   return pointsList.map((el) => (
     <Pressable
       style={[styles.button, getButtonStyle(el)]}
-      onPress={() => setIndex(el)}
+      onPress={() => handlePress(el)}
       disabled={isButtonDisable(el)}
+      key={`${team}-${el}`}
     />
-    )
   )
-
-
+  )
 }
 
 const styles = StyleSheet.create({
