@@ -6,97 +6,123 @@ import { EndGameModal } from '../components/EndGameModal'
 import { PointsHistory } from '../components/PointsHistory'
 
 export const ScoreBoard = () => {
-  let teamA = 'Team Bla'
+  let teamA = 'Team A'
   let teamB = 'Team B'
+  const maxPoints = 12
 
-  const [roundNumber, setRoundNumber] = useState(0)
-  const [pointsA, setPointsA] = useState(0)
-  const [pointsB, setPointsB] = useState(0)
-  const [selectedIndexA, setIndexA] = useState(0)
-  const [selectedIndexB, setIndexB] = useState(0)
-  const [modalVisible, setModalVisible] = useState(false)
-  const [historyModalVisible, setHistoryModalVisible] = useState(false)
-  const [winnerTeam, setWinnerTeam] = useState('')
-  const [pointsHistory, setPointsHistory] = useState([
-    { round: roundNumber, teamA: 0, teamB: 0 },
-  ])
+  const [scoreData, setScoreData] = useState({
+    roundNumber: 0,
+    pointsA: 0,
+    pointsB: 0,
+    selectedIndexA: 0,
+    selectedIndexB: 0,
+    pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
+    winnerTeam: '',
+    modalVisible: false,
+    historyModalVisible: false,
+  })
 
   const toggleModal = () => {
-    setModalVisible(!modalVisible)
+    setScoreData((prevScoreData) => ({
+      ...prevScoreData,
+      modalVisible: !prevScoreData.modalVisible,
+    }))
   }
 
   const toggleHistoryModal = () => {
-    setHistoryModalVisible(!historyModalVisible)
+    setScoreData((prevScoreData) => ({
+      ...prevScoreData,
+      historyModalVisible: !prevScoreData.historyModalVisible,
+    }))
   }
 
   const undoLastPoint = () => {
-    if (pointsHistory[0].round === 0) return;
+    if (scoreData.pointsHistory[0].round === 0) return
 
-    let pointsHistoryArr = pointsHistory;
-    pointsHistoryArr.shift();
+    let pointsHistoryArr = scoreData.pointsHistory
+    pointsHistoryArr.shift()
 
-    const ptsA = pointsHistoryArr[0].teamA;
-    const ptsB = pointsHistoryArr[0].teamB;
-    const round = pointsHistoryArr[0].round;
+    const ptsA = pointsHistoryArr[0].teamA
+    const ptsB = pointsHistoryArr[0].teamB
+    const round = pointsHistoryArr[0].round
 
-    setPointsHistory([...pointsHistoryArr]);
-    setRoundNumber(round);
-    setPointsA(ptsA);
-    setPointsB(ptsB);
-    setIndexA(ptsA);
-    setIndexB(ptsB);
+    setScoreData(() => ({
+      roundNumber: round,
+      pointsA: ptsA,
+      pointsB: ptsB,
+      selectedIndexA: ptsA,
+      selectedIndexB: ptsB,
+      pointsHistory: [...pointsHistoryArr],
+    }))
   }
 
   const addToHistory = (ptsA, ptsB) => {
-    setPointsHistory((prevPointsHistory) => {
-      const updatedRoundNumber = roundNumber + 1
-      const currentPoints = {
-        round: updatedRoundNumber,
-        teamA: ptsA,
-        teamB: ptsB,
-      }
+    const updatedRoundNumber = scoreData.roundNumber + 1
 
-      setRoundNumber(updatedRoundNumber)
-      return [currentPoints, ...prevPointsHistory]
-    })
-  }
-
-  const handleScoreChangeA = (pointsA) => {
-    setIndexA(pointsA)
-    setPointsA(pointsA)
-    addToHistory(pointsA, pointsB)
-
-    if (pointsA === 12) {
-      setWinnerTeam(teamA)
-      toggleModal()
+    const currentPoints = {
+      round: updatedRoundNumber,
+      teamA: ptsA,
+      teamB: ptsB,
     }
+
+    setScoreData((prevScoreData) => ({
+      ...prevScoreData,
+      roundNumber: updatedRoundNumber,
+      pointsHistory: [currentPoints, ...prevScoreData.pointsHistory],
+    }))
   }
 
-  const handleScoreChangeB = (pointsB) => {
-    setIndexB(pointsB)
-    setPointsB(pointsB)
-    addToHistory(pointsA, pointsB)
+  const handleScoreChange = (team, points) => {
+    console.log(points);
+    if (team === teamA) {
+      setScoreData((prevScoreData) => ({
+        ...prevScoreData,
+        pointsA: points,
+        selectedIndexA: points,
+      }))
 
-    if (pointsB === 12) {
-      setWinnerTeam(teamB)
+      addToHistory(points, scoreData.pointsB);
+    }
+
+    if (team === teamB) {
+      setScoreData((prevScoreData) => ({
+        ...prevScoreData,
+        pointsB: points,
+        selectedIndexB: points,
+      }))
+
+      addToHistory(scoreData.pointsA, points);
+    }
+
+
+    if (points === maxPoints || scoreData.pointsB === maxPoints) {
+      setScoreData((prevScoreData) => ({
+        ...prevScoreData,
+        winnerTeam: team,
+      }))
       toggleModal()
     }
   }
 
   const restartGame = () => {
-    setPointsA(0)
-    setPointsB(0)
-    setIndexA(0)
-    setIndexB(0)
-    setPointsHistory([{ round: 0, teamA: 0, teamB: 0 }])
-    setRoundNumber(0)
+    setScoreData(() => ({
+      roundNumber: 0,
+      pointsA: 0,
+      pointsB: 0,
+      selectedIndexA: 0,
+      selectedIndexB: 0,
+      pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
+      winnerTeam: '',
+      modalVisible: false,
+      historyModalVisible: false,
+    }))
   }
 
   return (
     <>
       <View style={styles.scoreContainer}>
-        <Text style={styles.scoreText}>{pointsA}</Text>
-        <Text style={styles.scoreText}>{pointsB}</Text>
+        <Text style={styles.scoreText}>{scoreData.pointsA}</Text>
+        <Text style={styles.scoreText}>{scoreData.pointsB}</Text>
       </View>
       <View style={styles.teamsContainer}>
         <Text style={styles.teamsText}>{teamA}</Text>
@@ -106,8 +132,8 @@ export const ScoreBoard = () => {
         <View style={styles.board}>
           <PointsButtons
             team={teamA}
-            selectedIndex={selectedIndexA}
-            onScoreChange={handleScoreChangeA}
+            selectedIndex={scoreData.selectedIndexA}
+            onScoreChange={handleScoreChange}
           />
         </View>
         <View style={styles.board}>
@@ -116,8 +142,8 @@ export const ScoreBoard = () => {
         <View style={styles.board}>
           <PointsButtons
             team={teamB}
-            selectedIndex={selectedIndexB}
-            onScoreChange={handleScoreChangeB}
+            selectedIndex={scoreData.selectedIndexB}
+            onScoreChange={handleScoreChange}
           />
         </View>
       </View>
@@ -134,22 +160,22 @@ export const ScoreBoard = () => {
         <Text>Logs</Text>
       </Pressable>
       <View>
-        {modalVisible && (
+        {scoreData.modalVisible && (
           <EndGameModal
-            modalIsVisible={modalVisible}
+            modalIsVisible={scoreData.modalVisible}
             dismissModal={toggleModal}
             restart={restartGame}
-            team={winnerTeam}
+            team={scoreData.winnerTeam}
           />
         )}
       </View>
       <View>
-        {historyModalVisible && (
+        {scoreData.historyModalVisible && (
           <PointsHistory
-            modalIsVisible={historyModalVisible}
+            modalIsVisible={scoreData.historyModalVisible}
             dismissModal={toggleHistoryModal}
             undo={undoLastPoint}
-            data={pointsHistory}
+            data={scoreData.pointsHistory}
             teamNames={[teamA, teamB]}
           />
         )}

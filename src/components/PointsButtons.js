@@ -19,7 +19,7 @@ export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
   };
 
   const handlePress = (el) => {
-    onScoreChange(el);
+    onScoreChange(team, el);
   }
 
 
