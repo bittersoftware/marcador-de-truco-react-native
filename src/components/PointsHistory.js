@@ -38,12 +38,14 @@ export const PointsHistory = (props) => {
             renderItem={renderItem}
             keyExtractor={(_, index) => index.toString()}
           />
-          <Pressable
+          { props.data.length > 1 &&
+          <Pressable 
             style={[styles.button, styles.buttonClose]}
             onPress={() => props.undo()}
+            disabled={ props.data.length > 1 ? false : true}
           >
             <Text style={styles.textStyle}>Desfazer Ultima</Text>
-          </Pressable>
+          </Pressable>}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => dismissHistoryModal()}
