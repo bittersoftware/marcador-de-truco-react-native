@@ -8,7 +8,7 @@ export const PointsLabels = () => {
     .reverse()
 
   return pointsList.map((el) => (
-    <Text style={styles.button}> --------- {el} -------- </Text>
+    <Text key={el} style={styles.button}> --------- {el} -------- </Text>
   ))
 }
 
