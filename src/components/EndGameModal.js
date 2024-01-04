@@ -1,35 +1,28 @@
-import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
+import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native'
 
 export const EndGameModal = (props) => {
-
   const dismissAndRestart = () => {
-    props.dismissModal();
-    props.restart();
+    props.dismissModal()
+    props.restart()
   }
 
   return (
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={props.modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(props.dismissModal);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>End of the Game</Text>
-            <Text style={styles.modalText}>Winner: {props.team}</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => dismissAndRestart()}>
-              <Text style={styles.textStyle}>OK</Text>
-            </Pressable>
-          </View>
+    <Modal animationType="slide" transparent={true}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>End of the Game</Text>
+          <Text style={styles.modalText}>Winner: {props.team}</Text>
+          <Pressable
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => dismissAndRestart()}
+          >
+            <Text style={styles.textStyle}>OK</Text>
+          </Pressable>
         </View>
-      </Modal>
-  );
-};
+      </View>
+    </Modal>
+  )
+}
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -70,5 +63,4 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
-});
-
+})

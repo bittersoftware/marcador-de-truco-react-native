@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 
 export const PointsHistory = (props) => {
-  console.log(props.data)
   const dismissHistoryModal = () => {
     props.dismissModal()
   }
@@ -24,11 +23,6 @@ export const PointsHistory = (props) => {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={props.modalVisible}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.')
-        setModalVisible(props.dismissModal)
-      }}
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
@@ -38,14 +32,15 @@ export const PointsHistory = (props) => {
             renderItem={renderItem}
             keyExtractor={(_, index) => index.toString()}
           />
-          { props.data.length > 1 &&
-          <Pressable 
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => props.undo()}
-            disabled={ props.data.length > 1 ? false : true}
-          >
-            <Text style={styles.textStyle}>Desfazer Ultima</Text>
-          </Pressable>}
+          {props.data.length > 1 && (
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => props.undo()}
+              disabled={props.data.length > 1 ? false : true}
+            >
+              <Text style={styles.textStyle}>Desfazer Ultima</Text>
+            </Pressable>
+          )}
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => dismissHistoryModal()}
@@ -80,7 +75,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   list: {
-    backgroundColor: "pink",
+    backgroundColor: 'pink',
     flexGrow: 0,
     paddingBottom: 8,
   },
