@@ -227,5 +227,6 @@ const styles = StyleSheet.create({
   },
   board: {
     display: 'flex',
+    alignItems: 'center'
   },
 })
