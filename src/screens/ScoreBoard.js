@@ -6,8 +6,8 @@ import { EndGameModal } from '../components/EndGameModal'
 import { PointsHistory } from '../components/PointsHistory'
 
 export const ScoreBoard = () => {
-  let teamA = 'Team A'
-  let teamB = 'Team B'
+  let teamA = 'Time A'
+  let teamB = 'Time B'
   const MAX_POINTS = 12
   const MODALS = {
     ENDGAME: 'endgame',
@@ -19,8 +19,6 @@ export const ScoreBoard = () => {
     roundNumber: 0,
     pointsA: 0,
     pointsB: 0,
-    selectedIndexA: 0,
-    selectedIndexB: 0,
     pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
     winnerTeam: '',
     modalState: { state: '' },
@@ -64,10 +62,8 @@ export const ScoreBoard = () => {
       roundNumber: round,
       pointsA: ptsA,
       pointsB: ptsB,
-      selectedIndexA: ptsA,
-      selectedIndexB: ptsB,
       pointsHistory: [...pointsHistoryArr],
-      modalState: {state: ''}
+      modalState: { state: '' },
     }))
   }
 
@@ -92,7 +88,6 @@ export const ScoreBoard = () => {
       setScoreData((prevScoreData) => ({
         ...prevScoreData,
         pointsA: points,
-        selectedIndexA: points,
       }))
 
       addToHistory(points, scoreData.pointsB)
@@ -102,7 +97,6 @@ export const ScoreBoard = () => {
       setScoreData((prevScoreData) => ({
         ...prevScoreData,
         pointsB: points,
-        selectedIndexB: points,
       }))
 
       addToHistory(scoreData.pointsA, points)
@@ -122,13 +116,11 @@ export const ScoreBoard = () => {
       roundNumber: 0,
       pointsA: 0,
       pointsB: 0,
-      selectedIndexA: 0,
-      selectedIndexB: 0,
       pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
       winnerTeam: '',
       modalVisible: false,
       historyModalVisible: false,
-      modalState: {state: ''},
+      modalState: { state: '' },
     }))
   }
 
@@ -146,7 +138,7 @@ export const ScoreBoard = () => {
         <View style={styles.board}>
           <PointsButtons
             team={teamA}
-            selectedIndex={scoreData.selectedIndexA}
+            selectedIndex={scoreData.pointsA}
             onScoreChange={handleScoreChange}
           />
         </View>
@@ -156,23 +148,39 @@ export const ScoreBoard = () => {
         <View style={styles.board}>
           <PointsButtons
             team={teamB}
-            selectedIndex={scoreData.selectedIndexB}
+            selectedIndex={scoreData.pointsB}
             onScoreChange={handleScoreChange}
           />
         </View>
       </View>
-      <Pressable
-        style={{
-          alignItems: 'center',
-          height: 32,
-          width: 50,
-          backgroundColor: 'pink',
-          padding: 4,
-        }}
-        onPress={() => togglePointsHistoryModal()}
-      >
-        <Text>Logs</Text>
-      </Pressable>
+      <View style={{ flexDirection: 'row', gap: 30, justifyContent: 'center' }}>
+        <Pressable
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 50,
+            width: 100,
+            backgroundColor: 'pink',
+            padding: 4,
+          }}
+          onPress={() => togglePointsHistoryModal()}
+        >
+          <Text>History</Text>
+        </Pressable>
+        <Pressable
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 50,
+            width: 100,
+            backgroundColor: 'pink',
+            padding: 4,
+          }}
+          onPress={() => console.log("New Game")}
+        >
+          <Text>New Game</Text>
+        </Pressable>
+      </View>
       <View>
         {scoreData.modalState.state === MODALS.ENDGAME && (
           <EndGameModal
