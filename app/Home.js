@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Pressable } from 'react-native'
+import { Image, Text, View, StyleSheet, Pressable } from 'react-native'
 import { useRouter } from 'expo-router'
 
 export const Home = () => {
@@ -6,17 +6,27 @@ export const Home = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../assets/images/home-img.png')}
+          style={styles.image}
+        />
+      </View>
       <View style={styles.mainTextContainer}>
-        <Text style={styles.mainText}>
-          Marcador{'\n'}de{'\n'}Truco
+        <Text style={styles.mainText}>Marcador de Truco</Text>
+        <Text style={styles.subText}>
+          Marque seus pontos e tenha um registro das partidas para tirar uma
+          onda e compartilhar nas redes sociais.
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
         <Pressable
-          style={styles.button}
+          style={[styles.button, styles.mainButton]}
           onPress={() => navigation.push('/NewGame')}
         >
-          <Text style={styles.buttonText}>Novo Jogo</Text>
+          <Text style={[styles.buttonText, styles.mainButtonText]}>
+            Novo Jogo
+          </Text>
         </Pressable>
         <Pressable
           style={styles.button}
@@ -38,38 +48,59 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
+    padding: 32,
+  },
+  imageContainer: {
+    alignItems: 'center',
     padding: 24,
   },
+  image: {
+    width: 200,
+    height: 180,
+  },
   mainTextContainer: {
-    flex: 1,
-    justifyContent: "center",
     maxWidth: 960,
-    marginHorizontal: "auto",
+    marginHorizontal: 'auto',
   },
   mainText: {
     display: 'flex',
-    fontSize: 64,
+    fontSize: 28,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontFamily: 'Font-SemiBold',
+  },
+  subText: {
+    display: 'flex',
+    textAlign: 'center',
+    fontFamily: 'Font-Regular',
+    marginHorizontal: 30,
+    color: 'gray',
+    padding: 8,
   },
   buttonsContainer: {
     flex: 1,
-    alignItems: 'center',
+    paddingTop: 36,
   },
   button: {
-    backgroundColor: 'gray',
+    borderColor: 'gray',
+    borderWidth: 4,
     padding: 12,
     marginBottom: 18,
     flexDirection: 'row',
     width: 200,
     justifyContent: 'center',
-    borderRadius: 12,
+    borderRadius: 36,
+  },
+  mainButton: {
+    backgroundColor: 'gray',
   },
   buttonText: {
-    fontWeight: 'bold',
     fontSize: 18,
+    color: 'gray',
+    fontFamily: 'Font-SemiBold',
+  },
+  mainButtonText: {
     color: 'white',
+    fontFamily: 'Font-SemiBold',
   },
 })
-
