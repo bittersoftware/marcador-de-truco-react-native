@@ -1,5 +1,6 @@
-import { Image, Text, View, StyleSheet, Pressable } from 'react-native'
+import { Image, Text, View, Pressable } from 'react-native'
 import { useRouter } from 'expo-router'
+import styles from '../styles/homeStyle'
 
 export const Home = () => {
   const navigation = useRouter()
@@ -44,63 +45,3 @@ export const Home = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 32,
-  },
-  imageContainer: {
-    alignItems: 'center',
-    padding: 24,
-  },
-  image: {
-    width: 200,
-    height: 180,
-  },
-  mainTextContainer: {
-    maxWidth: 960,
-    marginHorizontal: 'auto',
-  },
-  mainText: {
-    display: 'flex',
-    fontSize: 28,
-    textAlign: 'center',
-    fontFamily: 'Font-SemiBold',
-  },
-  subText: {
-    display: 'flex',
-    textAlign: 'center',
-    fontFamily: 'Font-Regular',
-    marginHorizontal: 30,
-    color: 'gray',
-    padding: 8,
-  },
-  buttonsContainer: {
-    flex: 1,
-    paddingTop: 36,
-  },
-  button: {
-    borderColor: 'gray',
-    borderWidth: 4,
-    padding: 12,
-    marginBottom: 18,
-    flexDirection: 'row',
-    width: 200,
-    justifyContent: 'center',
-    borderRadius: 36,
-  },
-  mainButton: {
-    backgroundColor: 'gray',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'gray',
-    fontFamily: 'Font-SemiBold',
-  },
-  mainButtonText: {
-    color: 'white',
-    fontFamily: 'Font-SemiBold',
-  },
-})
