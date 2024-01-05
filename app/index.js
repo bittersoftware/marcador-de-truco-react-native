@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { ScoreBoard } from './app/ScoreBoard'
-import { Home } from './app/Home'
-import { NewGame } from './app/NewGame'
+import { Home } from './Home'
 
 export default function App() {
   return (

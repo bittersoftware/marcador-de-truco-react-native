@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
-import { PointsButtons } from '../components/PointsButtons'
-import { PointsLabels } from '../components/PointsLabels'
-import { EndGameModal } from '../components/EndGameModal'
-import { PointsHistory } from '../components/PointsHistory'
+import { PointsButtons } from '../src/components/PointsButtons'
+import { PointsLabels } from '../src/components/PointsLabels'
+import { EndGameModal } from '../src/components/EndGameModal'
+import { PointsHistory } from '../src/components/PointsHistory'
 
 export const ScoreBoard = () => {
   let teamA = 'Time A'
