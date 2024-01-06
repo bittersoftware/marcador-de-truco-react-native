@@ -1,4 +1,4 @@
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native'
+import { Modal, StyleSheet, Text, Pressable, View } from 'react-native'
 
 export const EndGameModal = (props) => {
   const dismissAndRestart = () => {
