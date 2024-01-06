@@ -5,7 +5,7 @@ import { PointsLabels } from '../src/components/PointsLabels'
 import { EndGameModal } from '../src/components/EndGameModal'
 import { PointsHistory } from '../src/components/PointsHistory'
 
-export const ScoreBoard = () => {
+export default ScoreBoard = () => {
   let teamA = 'Time A'
   let teamB = 'Time B'
   const MAX_POINTS = 12
