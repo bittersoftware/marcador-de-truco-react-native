@@ -1,15 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
-import { COLORS, FONT, SIZES } from "../constants";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { COLORS, FONT, SIZES } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.lightWhite,
   },
+  backButtonContainer: {
+    marginLeft: 16,
+    marginTop: 16,
+  },
+  backButton: {
+    backgroundColor: COLORS.primary,
+  },
   mainTextContainer: {
-    marginTop: 60,
+    marginTop: 36,
     marginBottom: 36,
     marginHorizontal: 'auto',
   },
@@ -43,18 +49,19 @@ const styles = StyleSheet.create({
   },
   teamInputText: {
     flexGrow: 1,
+    fontFamily: FONT.regular,
   },
   picker: {
-    marginHorizontal: 20,
-    fontWeight: FONT.bold,
-    color: COLORS.primary,
-    fontSize: 30,
+    flexGrow: 1,
   },
   pickerContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
     borderColor: COLORS.primary,
     borderRadius: 30,
     borderWidth: 2,
     marginHorizontal: 20,
+    paddingHorizontal: 10,
   },
   buttonContainer: {
     flex: 1,
@@ -80,6 +87,6 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite,
     fontFamily: FONT.semiBold,
   },
-});
+})
 
-export default styles;
+export default styles
