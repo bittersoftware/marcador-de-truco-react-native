@@ -23,7 +23,7 @@ export const Home = () => {
       <View style={styles.buttonsContainer}>
         <Pressable
           style={[styles.button, styles.mainButton]}
-          onPress={() => navigation.push('/NewGame')}
+          onPress={() => navigation.replace('/NewGame')}
         >
           <Text style={[styles.buttonText, styles.mainButtonText]}>
             Novo Jogo
@@ -31,13 +31,13 @@ export const Home = () => {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.push('/History')}
+          onPress={() => navigation.replace('/History')}
         >
           <Text style={styles.buttonText}>Histórico</Text>
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.push('/Settings')}
+          onPress={() => navigation.replace('/Settings')}
         >
           <Text style={styles.buttonText}>Configurações</Text>
         </Pressable>
