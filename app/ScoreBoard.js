@@ -4,11 +4,20 @@ import { PointsButtons } from '../src/components/PointsButtons'
 import { PointsLabels } from '../src/components/PointsLabels'
 import { EndGameModal } from '../src/components/EndGameModal'
 import { PointsHistory } from '../src/components/PointsHistory'
+import { useSettingsContext } from '../context/SettingsContext'
+import { useRouter } from 'expo-router'
 
 export default ScoreBoard = () => {
-  let teamA = 'Time A'
-  let teamB = 'Time B'
+  const navigation = useRouter()
+  const {
+    currentTeamAName,
+    currentTeamBName,
+    setCurrentTeamAName,
+    setCurrentTeamBName,
+  } = useSettingsContext()
+
   const MAX_POINTS = 12
+
   const MODALS = {
     ENDGAME: 'endgame',
     POINTS_HISTORY: 'pointsHistory',
@@ -84,7 +93,7 @@ export default ScoreBoard = () => {
   }
 
   const handleScoreChange = (team, points) => {
-    if (team === teamA) {
+    if (team === currentTeamAName) {
       setScoreData((prevScoreData) => ({
         ...prevScoreData,
         pointsA: points,
@@ -93,7 +102,7 @@ export default ScoreBoard = () => {
       addToHistory(points, scoreData.pointsB)
     }
 
-    if (team === teamB) {
+    if (team === currentTeamBName) {
       setScoreData((prevScoreData) => ({
         ...prevScoreData,
         pointsB: points,
@@ -124,6 +133,12 @@ export default ScoreBoard = () => {
     }))
   }
 
+  const navNewGameScreen = () => {
+    setCurrentTeamAName('')
+    setCurrentTeamBName('')
+    navigation.replace('/NewGame')
+  }
+
   return (
     <>
       <View style={styles.scoreContainer}>
@@ -131,13 +146,13 @@ export default ScoreBoard = () => {
         <Text style={styles.scoreText}>{scoreData.pointsB}</Text>
       </View>
       <View style={styles.teamsContainer}>
-        <Text style={styles.teamsText}>{teamA}</Text>
-        <Text style={styles.teamsText}>{teamB}</Text>
+        <Text style={styles.teamsText}>{currentTeamAName}</Text>
+        <Text style={styles.teamsText}>{currentTeamBName}</Text>
       </View>
       <View style={styles.container}>
         <View style={styles.board}>
           <PointsButtons
-            team={teamA}
+            team={currentTeamAName}
             selectedIndex={scoreData.pointsA}
             onScoreChange={handleScoreChange}
           />
@@ -147,7 +162,7 @@ export default ScoreBoard = () => {
         </View>
         <View style={styles.board}>
           <PointsButtons
-            team={teamB}
+            team={currentTeamBName}
             selectedIndex={scoreData.pointsB}
             onScoreChange={handleScoreChange}
           />
@@ -176,7 +191,7 @@ export default ScoreBoard = () => {
             backgroundColor: 'pink',
             padding: 4,
           }}
-          onPress={() => console.log("New Game")}
+          onPress={navNewGameScreen}
         >
           <Text>New Game</Text>
         </Pressable>
@@ -196,7 +211,7 @@ export default ScoreBoard = () => {
             dismissModal={togglePointsHistoryModal}
             undo={undoLastPoint}
             data={scoreData.pointsHistory}
-            teamNames={[teamA, teamB]}
+            teamNames={[currentTeamAName, currentTeamBName]}
           />
         )}
       </View>
@@ -235,6 +250,6 @@ const styles = StyleSheet.create({
   },
   board: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 })

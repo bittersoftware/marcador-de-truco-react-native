@@ -1,11 +1,11 @@
-import { useCallback } from 'react';
+import { useCallback } from 'react'
 import { useFonts } from 'expo-font'
-import { StatusBar } from 'expo-status-bar'
+//import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Home } from './Home'
-import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen'
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -29,8 +29,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <Home />
+        <Home />
     </SafeAreaProvider>
   )
 }

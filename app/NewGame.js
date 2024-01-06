@@ -6,16 +6,35 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import styles from '../styles/newGameStyle'
 import { Picker } from '@react-native-picker/picker'
 import { useRouter } from 'expo-router'
+import { useSettingsContext } from '../context/SettingsContext'
 
 export default NewGame = () => {
   const navigation = useRouter()
+  const {
+    currentTeamAName,
+    setCurrentTeamAName,
+    currentTeamBName,
+    setCurrentTeamBName,
+    defaultTeamAName,
+    defaultTeamBName,
+    setCurrentGameMode,
+  } = useSettingsContext()
+
   const MIN_CHARS = 1
   const MAX_CHARS = 30
 
-  const teamA = 'Equipe Verde'
-  const teamB = 'Equipe Azul'
+  const [selectedGameMode, setSelectedGameMode] = useState()
 
-  const [selectedLanguage, setSelectedLanguage] = useState()
+  const gameModePicker = (itemValue, _) => {
+    setSelectedGameMode(itemValue)
+    setCurrentGameMode(itemValue)
+  }
+
+  const startGame = () => {
+    if (!currentTeamAName) { setCurrentTeamAName(defaultTeamAName)}
+    if (!currentTeamBName) { setCurrentTeamBName(defaultTeamBName)}
+    navigation.replace('/ScoreBoard')
+  }
 
   return (
     <View style={styles.container}>
@@ -38,7 +57,8 @@ export default NewGame = () => {
           style={styles.teamInputText}
           maxLength={MAX_CHARS}
           minLength={MIN_CHARS}
-          defaultValue={teamA}
+          defaultValue={defaultTeamAName}
+          onChangeText={(text) => setCurrentTeamAName(text)}
         />
       </View>
       <View style={styles.teamInputContainer}>
@@ -47,7 +67,8 @@ export default NewGame = () => {
           style={styles.teamInputText}
           maxLength={MAX_CHARS}
           minLength={MIN_CHARS}
-          defaultValue={teamB}
+          defaultValue={defaultTeamBName}
+          onChangeText={(text) => setCurrentTeamBName(text)}
         />
       </View>
       <Text style={styles.sectionTextTitle}>Número de Rodadas</Text>
@@ -55,9 +76,10 @@ export default NewGame = () => {
         <MaterialCommunityIcons name="cards" size={28} color="black" />
         <View style={styles.picker}>
           <Picker
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue, _) => setSelectedLanguage(itemValue)}
+            selectedValue={selectedGameMode}
+            onValueChange={gameModePicker}
             style={styles.picker}
+            
           >
             <Picker.Item label="Uma queda" value="1" />
             <Picker.Item label="Melhor de 3 (Quem faz 2)" value="2" />
@@ -67,10 +89,7 @@ export default NewGame = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.replace('/ScoreBoard')}
-        >
+        <Pressable style={styles.button} onPress={startGame}>
           <Text style={styles.buttonText}>Iniciar</Text>
         </Pressable>
       </View>
