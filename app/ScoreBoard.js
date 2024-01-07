@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { PointsBoard } from '../src/components/PointsBoard'
+import { ScoreDisplay } from '../src/components/ScoreDisplay'
 import { useSettingsContext } from '../context/SettingsContext'
 import { useRouter } from 'expo-router'
 
@@ -24,19 +25,6 @@ export default ScoreBoard = () => {
     setShowPointsHistory(true)
   }
 
-  //const restartGame = () => {
-  //setScoreData((prevScoreData) => ({
-  //...prevScoreData,
-  //roundNumber: 0,
-  //pointsA: 0,
-  //pointsB: 0,
-  //pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
-  //winnerTeam: '',
-  //modalVisible: false,
-  //historyModalVisible: false,
-  //modalState: { state: '' },
-  //}))
-  //}
 
   const navNewGameScreen = () => {
     setCurrentTeamAName('')
@@ -46,10 +34,7 @@ export default ScoreBoard = () => {
 
   return (
     <>
-      <View style={styles.scoreContainer}>
-        <Text style={styles.scoreText}>{scoreData.pointsA}</Text>
-        <Text style={styles.scoreText}>{scoreData.pointsB}</Text>
-      </View>
+      <ScoreDisplay scoreData={scoreData}/>
       <View style={styles.teamsContainer}>
         <Text style={styles.teamsText}>{currentTeamAName}</Text>
         <Text style={styles.teamsText}>{currentTeamBName}</Text>
