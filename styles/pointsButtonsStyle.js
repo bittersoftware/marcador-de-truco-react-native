@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     height: 40,
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   button: {
     borderRadius: 30,
@@ -31,12 +32,12 @@ export const styles = StyleSheet.create({
   },
   buttonPastPoint: {
     backgroundColor: COLORS.gray,
-    width: 25,
-    height: 25,
+    width: 15,
+    height: 15,
   },
   buttonInvalidPoint: {
     backgroundColor: COLORS.gray,
-    width: 25,
-    height: 25,
+    width: 15,
+    height: 15,
   },
 })
