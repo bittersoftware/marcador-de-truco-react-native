@@ -9,9 +9,9 @@ export const PointsLabels = () => {
     .reverse()
 
   return pointsList.map((el) => (
-    <View style={styles.container}>
+    <View key={el} style={styles.container}>
       <View style={styles.line} />
-      <Text key={el} style={styles.button}>
+      <Text style={styles.label}>
         {el}
       </Text>
       <View style={styles.line} />

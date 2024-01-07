@@ -8,16 +8,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 150,
+    height: 40,
   },
   line: {
     backgroundColor: COLORS.gray,
     height: 2,
     width: 50,
   },
-  button: {
-    padding: 4,
-    margin: 4,
-    height: 30,
+  label: {
+    paddingHorizontal: 6,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
     color: COLORS.gray,
