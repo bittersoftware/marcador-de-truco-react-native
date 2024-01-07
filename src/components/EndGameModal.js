@@ -1,26 +1,67 @@
 import { Modal, StyleSheet, Text, Pressable, View } from 'react-native'
+import { useSettingsContext } from '../../context/SettingsContext'
+import { useEffect } from 'react'
 
-export const EndGameModal = (props) => {
+export const EndGameModal = ({ visible, score, setScore, setMatches }) => {
+  const { currentTeamAName, currentTeamBName } = useSettingsContext()
+  const MAX_POINTS = 12
+
+  const getWinnerTeamName = () => {
+    const hasAWon = score.pointsA === MAX_POINTS
+    const hasBWon = score.pointsA === MAX_POINTS
+
+    if (hasAWon || hasBWon) {
+      return hasAWon ? currentTeamAName : currentTeamBName
+    }
+  }
+
+  useEffect(() => {
+    const winnerTeam = getWinnerTeamName()
+    if (winnerTeam) {
+      setMatches((prevSetMatches) => ({
+        winnerTeam: winnerTeam,
+        matchesWonByA:
+          winnerTeam === currentTeamAName
+            ? prevSetMatches.matchesWonByA + 1
+            : prevSetMatches.matchesWonByA,
+        matchesWonByB:
+          winnerTeam === currentTeamBName
+            ? prevSetMatches.matchesWonByB + 1
+            : prevSetMatches.matchesWonByB,
+      }))
+
+      visible.setModals((prevModals) => ({
+        ...prevModals,
+        endOfMatch: true,
+      }))
+    }
+  }, [score.pointsA, score.pointsB])
+
   const dismissAndRestart = () => {
-    props.dismissModal()
-    props.restart()
+    setScore(() => ({ pointsA: 0, pointsB: 0 }))
+    visible.setModals((prevModals) => ({
+      ...prevModals,
+      endOfMatch: false,
+    }))
   }
 
   return (
-    <Modal animationType="slide" transparent={true}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>End of the Game</Text>
-          <Text style={styles.modalText}>Winner: {props.team}</Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => dismissAndRestart()}
-          >
-            <Text style={styles.textStyle}>OK</Text>
-          </Pressable>
+    visible.modals.endOfMatch && (
+      <Modal animationType="slide" transparent={true}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>End of the Game</Text>
+            <Text style={styles.modalText}>Winner: {getWinnerTeamName()}</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => dismissAndRestart()}
+            >
+              <Text style={styles.textStyle}>OK</Text>
+            </Pressable>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    )
   )
 }
 

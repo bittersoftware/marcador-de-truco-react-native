@@ -1,5 +1,4 @@
 import {
-  Alert,
   Modal,
   StyleSheet,
   Text,
@@ -8,11 +7,7 @@ import {
   FlatList,
 } from 'react-native'
 
-export const PointsHistory = (props) => {
-  const dismissHistoryModal = () => {
-    props.dismissModal()
-  }
-
+export const PointsHistoryModal = (visible, setScore) => {
   const renderItem = ({ item }) => (
     <View>
       <Text>{`${item.round} ${props.teamNames[0]}: ${item.teamA} vs ${props.teamNames[1]}: ${item.teamB}`}</Text>
@@ -20,36 +15,35 @@ export const PointsHistory = (props) => {
   )
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-    >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <FlatList
-            style={styles.list}
-            data={props.data}
-            renderItem={renderItem}
-            keyExtractor={(_, index) => index.toString()}
-          />
-          {props.data.length > 1 && (
+    visible.pointsHistory && (
+      <Modal animationType="slide" transparent={true}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <FlatList
+              style={styles.list}
+              data={props.data}
+              renderItem={renderItem}
+              keyExtractor={(_, index) => index.toString()}
+            />
+            {props.data.length > 1 && (
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => props.undo()}
+                disabled={props.data.length > 1 ? false : true}
+              >
+                <Text style={styles.textStyle}>Desfazer Ultima</Text>
+              </Pressable>
+            )}
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => props.undo()}
-              disabled={props.data.length > 1 ? false : true}
+              onPress={() => dismissHistoryModal()}
             >
-              <Text style={styles.textStyle}>Desfazer Ultima</Text>
+              <Text style={styles.textStyle}>Fechar</Text>
             </Pressable>
-          )}
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => dismissHistoryModal()}
-          >
-            <Text style={styles.textStyle}>Fechar</Text>
-          </Pressable>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+    )
   )
 }
 
