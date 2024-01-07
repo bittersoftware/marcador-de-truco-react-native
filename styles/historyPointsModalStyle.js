@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
   },
   flatListContainer: {
-    marginVertical: 18,
+    paddingHorizontal: 24,
   },
   listItem: {
     alignSelf: 'center',
@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
   },
   teamsContainer: {
     flexDirection: 'row',
+    marginBottom: 12,
   },
   teamsText: {
     marginHorizontal: 4,
