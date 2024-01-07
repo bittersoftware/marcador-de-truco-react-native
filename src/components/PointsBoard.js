@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
 import { useSettingsContext } from '../../context/SettingsContext'
@@ -48,7 +48,6 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
     }
 
     const winnerTeam = getWinnerTeamName()
-    console.log('winner', winnerTeam)
 
     if (winnerTeam) {
       setMatchesData((prevSetMatches) => ({
@@ -66,7 +65,6 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
   }
 
   useEffect(() => {
-    console.log('modal', showHistory)
     setModals((prevModals) => ({
       ...prevModals,
       pointsHistory: showHistory.showPointsHistory,
