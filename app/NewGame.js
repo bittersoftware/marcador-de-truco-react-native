@@ -21,7 +21,7 @@ export default NewGame = () => {
   } = useSettingsContext()
 
   const MIN_CHARS = 1
-  const MAX_CHARS = 30
+  const MAX_CHARS = 15
 
   const [selectedGameMode, setSelectedGameMode] = useState()
 
