@@ -2,13 +2,15 @@ import { Modal, StyleSheet, Text, Pressable, View } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
 
-export const EndGameModal = ({ visible, score, setScore, setMatches }) => {
-  const { currentTeamAName, currentTeamBName } = useSettingsContext()
+export const EndGameModal = ({ visible, score, setScore, matches }) => {
+  const { currentTeamAName, currentTeamBName, currentGameMode } =
+    useSettingsContext()
+
   const MAX_POINTS = 12
 
   const getWinnerTeamName = () => {
     const hasAWon = score.pointsA === MAX_POINTS
-    const hasBWon = score.pointsA === MAX_POINTS
+    const hasBWon = score.pointsB === MAX_POINTS
 
     if (hasAWon || hasBWon) {
       return hasAWon ? currentTeamAName : currentTeamBName
@@ -16,20 +18,7 @@ export const EndGameModal = ({ visible, score, setScore, setMatches }) => {
   }
 
   useEffect(() => {
-    const winnerTeam = getWinnerTeamName()
-    if (winnerTeam) {
-      setMatches((prevSetMatches) => ({
-        winnerTeam: winnerTeam,
-        matchesWonByA:
-          winnerTeam === currentTeamAName
-            ? prevSetMatches.matchesWonByA + 1
-            : prevSetMatches.matchesWonByA,
-        matchesWonByB:
-          winnerTeam === currentTeamBName
-            ? prevSetMatches.matchesWonByB + 1
-            : prevSetMatches.matchesWonByB,
-      }))
-
+    if (getWinnerTeamName()) {
       visible.setModals((prevModals) => ({
         ...prevModals,
         endOfMatch: true,

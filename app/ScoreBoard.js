@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
-import { PointsButtons } from '../src/components/PointsButtons'
-import { PointsLabels } from '../src/components/PointsLabels'
 import { PointsBoard } from '../src/components/PointsBoard'
 import { useSettingsContext } from '../context/SettingsContext'
 import { useRouter } from 'expo-router'
@@ -20,64 +18,11 @@ export default ScoreBoard = () => {
     pointsB: 0,
   })
 
-  //const toggleEngGameModal = () => {
-  //const newModalState =
-  //scoreData.modalState.state === MODALS.ENDGAME
-  //? { state: '' }
-  //: { state: MODALS.ENDGAME }
+  const [showPointsHistory, setShowPointsHistory] = useState(false)
 
-  //setScoreData((prevScoreData) => ({
-  //...prevScoreData,
-  //modalState: newModalState,
-  //}))
-  //}
-
-  //const togglePointsHistoryModal = () => {
-  //const newModalState =
-  //scoreData.modalState.state === MODALS.POINTS_HISTORY
-  //? { state: '' }
-  //: { state: MODALS.POINTS_HISTORY }
-
-  //setScoreData((prevScoreData) => ({
-  //...prevScoreData,
-  //modalState: newModalState,
-  //}))
-  //}
-
-  //const undoLastPoint = () => {
-  //if (scoreData.pointsHistory[0].round === 0) return
-
-  //let pointsHistoryArr = scoreData.pointsHistory
-  //pointsHistoryArr.shift()
-
-  //const ptsA = pointsHistoryArr[0].teamA
-  //const ptsB = pointsHistoryArr[0].teamB
-  //const round = pointsHistoryArr[0].round
-
-  //setScoreData(() => ({
-  //roundNumber: round,
-  //pointsA: ptsA,
-  //pointsB: ptsB,
-  //pointsHistory: [...pointsHistoryArr],
-  //modalState: { state: '' },
-  //}))
-  //}
-
-  //const addToHistory = (ptsA, ptsB) => {
-  //const updatedRoundNumber = scoreData.roundNumber + 1
-
-  //const currentPoints = {
-  //round: updatedRoundNumber,
-  //teamA: ptsA,
-  //teamB: ptsB,
-  //}
-
-  //setScoreData((prevScoreData) => ({
-  //...prevScoreData,
-  //roundNumber: updatedRoundNumber,
-  //pointsHistory: [currentPoints, ...prevScoreData.pointsHistory],
-  //}))
-  //}
+  const handleClickHistory = () => {
+    setShowPointsHistory(true)
+  }
 
   //const restartGame = () => {
   //setScoreData((prevScoreData) => ({
@@ -93,47 +38,10 @@ export default ScoreBoard = () => {
   //}))
   //}
 
-  //useEffect(() => {
-  //if (
-  //scoreData.matchesWonByA == currentGameMode ||
-  //scoreData.matchesWonByB == currentGameMode
-  //) {
-  //setScoreData((prevScoreData) => ({
-  //...prevScoreData,
-  //matchesWonByA: 0,
-  //matchesWonByB: 0,
-  //allRoundsFnished: true,
-  //}))
-
-  //console.log('Show match result card')
-  //}
-  //}, [scoreData.matchesWonByA, scoreData.matchesWonByB])
-
   const navNewGameScreen = () => {
     setCurrentTeamAName('')
     setCurrentTeamBName('')
     navigation.replace('/NewGame')
-  }
-
-  const renderEndGameModal = () => {
-    return (
-      <EndGameModal
-        dismissModal={toggleEngGameModal}
-        restart={restartGame}
-        team={scoreData.winnerTeam}
-      />
-    )
-  }
-
-  const renderPointsHistoryModal = () => {
-    return (
-      <PointsHistory
-        dismissModal={togglePointsHistoryModal}
-        undo={undoLastPoint}
-        data={scoreData.pointsHistory}
-        teamNames={[currentTeamAName, currentTeamBName]}
-      />
-    )
   }
 
   return (
@@ -146,7 +54,11 @@ export default ScoreBoard = () => {
         <Text style={styles.teamsText}>{currentTeamAName}</Text>
         <Text style={styles.teamsText}>{currentTeamBName}</Text>
       </View>
-      <PointsBoard updateScore={setScoreData} score={scoreData} />
+      <PointsBoard
+        updateScore={setScoreData}
+        score={scoreData}
+        showHistory={{showPointsHistory, setShowPointsHistory}}
+      />
       <View style={{ flexDirection: 'row', gap: 30, justifyContent: 'center' }}>
         <Pressable
           style={{
@@ -157,7 +69,7 @@ export default ScoreBoard = () => {
             backgroundColor: 'pink',
             padding: 4,
           }}
-          onPress={() => togglePointsHistoryModal()}
+          onPress={handleClickHistory}
         >
           <Text>History</Text>
         </Pressable>
@@ -175,17 +87,6 @@ export default ScoreBoard = () => {
           <Text>New Game</Text>
         </Pressable>
       </View>
-      {/*
-      <View>
-        {scoreData.modalState.state === MODALS.ENDGAME &&
-          !scoreData.allRoundsFnished &&
-          renderEndGameModal()}
-      </View>
-      <View>
-        {scoreData.modalState.state === MODALS.POINTS_HISTORY &&
-          renderPointsHistoryModal()}
-      </View>
-      */}
     </>
   )
 }

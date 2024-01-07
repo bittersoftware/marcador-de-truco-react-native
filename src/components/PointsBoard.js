@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
@@ -6,21 +6,31 @@ import { useSettingsContext } from '../../context/SettingsContext'
 import { EndGameModal } from './EndGameModal'
 import { PointsHistoryModal } from './PointsHistoryModal'
 
-export const PointsBoard = ({ updateScore, score }) => {
+export const PointsBoard = ({ updateScore, score, showHistory }) => {
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
 
   const [matchesData, setMatchesData] = useState({
     winnerTeam: '',
     matchesWonByA: 0,
     matchesWonByB: 0,
-    allRoundsFnished: false,
   })
-  
+
   const [modals, setModals] = useState({
     pointsHistory: false,
     endOfMatch: false,
     enfOfAllRounds: false,
   })
+
+  const MAX_POINTS = 12
+
+  const getWinnerTeamName = () => {
+    const hasAWon = score.pointsA === MAX_POINTS
+    const hasBWon = score.pointsB === MAX_POINTS
+
+    if (hasAWon || hasBWon) {
+      return hasAWon ? currentTeamAName : currentTeamBName
+    }
+  }
 
   const handleScoreChange = (team, points) => {
     if (team === currentTeamAName) {
@@ -37,42 +47,61 @@ export const PointsBoard = ({ updateScore, score }) => {
       }))
     }
 
-    //if (points === MAX_POINTS || scoreData.pointsB === MAX_POINTS) {
-      //scoreData.matchesWonByB
+    const winnerTeam = getWinnerTeamName()
+    console.log('winner', winnerTeam)
 
-      //setScoreData((prevScoreData) => ({
-        //...prevScoreData,
-        //winnerTeam: team,
-        //matchesWonByA:
-          //team === currentTeamAName
-            //? prevScoreData.matchesWonByA + 1
-            //: prevScoreData.matchesWonByA,
-        //matchesWonByB:
-          //team === currentTeamBName
-            //? prevScoreData.matchesWonByB + 1
-            //: prevScoreData.matchesWonByB,
-      //}))
-      //toggleEngGameModal()
-    //}
+    if (winnerTeam) {
+      setMatchesData((prevSetMatches) => ({
+        winnerTeam: winnerTeam,
+        matchesWonByA:
+          winnerTeam === currentTeamAName
+            ? prevSetMatches.matchesWonByA + 1
+            : prevSetMatches.matchesWonByA,
+        matchesWonByB:
+          winnerTeam === currentTeamBName
+            ? prevSetMatches.matchesWonByB + 1
+            : prevSetMatches.matchesWonByB,
+      }))
+    }
   }
 
-
-  const renderEndGameModal = () => {
-    return (
-      <EndGameModal
-        visible={{modals, setModals}}
-        score={score}
-        setScore={updateScore}
-        setMatches={setMatchesData}
-      />
-    )
-  }
+  useEffect(() => {
+    console.log('modal', showHistory)
+    setModals((prevModals) => ({
+      ...prevModals,
+      pointsHistory: showHistory.showPointsHistory,
+    }))
+  }, [showHistory.showPointsHistory])
 
   const renderPointsHistoryModal = () => {
     return (
       <PointsHistoryModal
-        visible={setModals}
+        visible={{ modals, setModals }}
+        score={score}
+        updateScore={updateScore}
+        historyButton={showHistory}
+      />
+    )
+  }
+
+  const renderEndGameModal = () => {
+    return (
+      <EndGameModal
+        visible={{ modals, setModals }}
+        score={score}
         setScore={updateScore}
+        matches={{ matchesData, setMatchesData }}
+      />
+    )
+  }
+
+  const renderEndOfAllRoundsModal = () => {
+    return (
+      <EndGameModal
+        visible={{ modals, setModals }}
+        score={score}
+        setScore={updateScore}
+        matches={{ matchesData, setMatchesData }}
       />
     )
   }
@@ -96,12 +125,8 @@ export const PointsBoard = ({ updateScore, score }) => {
           onScoreChange={handleScoreChange}
         />
       </View>
-      <View>
-        {renderEndGameModal()}
-      </View>
-      <View>
-        {renderPointsHistoryModal()}
-      </View>
+      <View>{renderPointsHistoryModal()}</View>
+      <View>{renderEndGameModal()}</View>
     </View>
   )
 }
