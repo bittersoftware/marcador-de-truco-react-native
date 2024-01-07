@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Pressable } from 'react-native'
+import { View, Pressable, ToastAndroid } from 'react-native'
 import { styles } from '../../styles/pointsButtonsStyle'
 
 export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
@@ -20,8 +20,18 @@ export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
     }
   }
 
+  const showToast = (message) => {
+    ToastAndroid.show(message, ToastAndroid.SHORT)
+  }
+
   const handlePress = (el) => {
-    onScoreChange(team, el)
+    if (!isInNextPoints(el)) {
+      showToast('Use o histórico para voltar jogadas')
+    } else if (!isValidPoint(el)) {
+      showToast('Pega ladrão! Esse valor não vale.')
+    } else {
+      onScoreChange(team, el)
+    }
   }
 
   const isValidPoint = (index) => {
@@ -36,16 +46,11 @@ export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
     return index > selectedIndex
   }
 
-  const isButtonDisabled = (index) => {
-    return !isInNextPoints(index) || !isValidPoint(index)
-  }
-
   return pointsList.map((el) => (
     <View key={`${team}-${el}`} style={styles.buttonContainer}>
       <Pressable
         style={[styles.button, getButtonStyle(el)]}
         onPress={() => handlePress(el)}
-        disabled={isButtonDisabled(el)}
       />
     </View>
   ))
