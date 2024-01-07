@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { Text, View } from 'react-native'
+import { styles } from '../../styles/pointsLabelStyle'
 
 export const PointsLabels = () => {
   const pointsList = Array.from({ length: 13 })
@@ -8,18 +9,13 @@ export const PointsLabels = () => {
     .reverse()
 
   return pointsList.map((el) => (
-    <Text key={el} style={styles.button}> --------- {el} -------- </Text>
+    <View style={styles.container}>
+      <View style={styles.line} />
+      <Text key={el} style={styles.button}>
+        {el}
+      </Text>
+      <View style={styles.line} />
+    </View>
   ))
 }
 
-const styles = StyleSheet.create({
-  button: {
-    padding: 4,
-    margin: 4,
-    height: 30,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'gray',
-    fontSize: 18,
-  },
-})
