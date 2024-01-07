@@ -1,13 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import {
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  FlatList,
-} from 'react-native'
+import { Modal, Text, Pressable, View, FlatList } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
+import { styles } from '../../styles/historyPointsModalStyle'
 
 export const PointsHistoryModal = ({
   visible,
@@ -69,8 +63,15 @@ export const PointsHistoryModal = ({
   }
 
   const renderItem = ({ item }) => (
-    <View>
-      <Text>{`${item.round} ${currentTeamAName}: ${item.teamA} vs ${currentTeamBName}: ${item.teamB}`}</Text>
+    <View style={styles.listItem}>
+      <View style={styles.roundTextContainer}>
+        <Text style={styles.roundText}>{`${item.round}`}</Text>
+      </View>
+      <View style={styles.pointsTextContainer}>
+        <Text style={styles.pointsText}>{`${item.teamA}`}</Text>
+        <Text style={styles.pointsText}>x</Text>
+        <Text style={styles.pointsText}>{`${item.teamB}`}</Text>
+      </View>
     </View>
   )
 
@@ -79,76 +80,39 @@ export const PointsHistoryModal = ({
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <FlatList
-              style={styles.list}
-              data={pointsHistory}
-              renderItem={renderItem}
-              keyExtractor={(_, index) => index.toString()}
-            />
-            {pointsHistory.length > 1 && (
+            <View style={styles.teamsContainer}>
+              <Text style={styles.teamsText}>{currentTeamAName}</Text>
+              <Text style={styles.teamsText}>x</Text>
+              <Text style={styles.teamsText}>{currentTeamBName}</Text>
+            </View>
+            <View style={styles.listContainer}>
+              <FlatList
+                data={pointsHistory}
+                contentContainerStyle={styles.flatListContainer}
+                renderItem={renderItem}
+                keyExtractor={(_, index) => index.toString()}
+              />
+            </View>
+            <View style={styles.buttonsContainer}>
+              {pointsHistory.length > 1 && (
+                <Pressable
+                  style={[styles.button, styles.buttonUndo]}
+                  onPress={() => undoLastPoint()}
+                  disabled={pointsHistory.length > 1 ? false : true}
+                >
+                  <Text style={styles.buttonUndoText}>Desfazer Ultima</Text>
+                </Pressable>
+              )}
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => undoLastPoint()}
-                disabled={pointsHistory.length > 1 ? false : true}
+                onPress={() => dismissHistoryModal()}
               >
-                <Text style={styles.textStyle}>Desfazer Ultima</Text>
+                <Text style={styles.buttonCloseText}>Fechar</Text>
               </Pressable>
-            )}
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => dismissHistoryModal()}
-            >
-              <Text style={styles.textStyle}>Fechar</Text>
-            </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
     )
   )
 }
-
-const styles = StyleSheet.create({
-  centeredView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  list: {
-    backgroundColor: 'pink',
-    flexGrow: 0,
-    paddingBottom: 8,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    marginBottom: 6,
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-})
