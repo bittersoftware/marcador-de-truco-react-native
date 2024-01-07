@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { PointsButtons } from '../src/components/PointsButtons'
 import { PointsLabels } from '../src/components/PointsLabels'
@@ -14,6 +14,7 @@ export default ScoreBoard = () => {
     currentTeamBName,
     setCurrentTeamAName,
     setCurrentTeamBName,
+    currentGameMode,
   } = useSettingsContext()
 
   const MAX_POINTS = 12
@@ -31,6 +32,9 @@ export default ScoreBoard = () => {
     pointsHistory: [{ round: 0, teamA: 0, teamB: 0 }],
     winnerTeam: '',
     modalState: { state: '' },
+    matchesWonByA: 0,
+    matchesWonByB: 0,
+    allRoundsFnished: false,
   })
 
   const toggleEngGameModal = () => {
@@ -112,16 +116,27 @@ export default ScoreBoard = () => {
     }
 
     if (points === MAX_POINTS || scoreData.pointsB === MAX_POINTS) {
+      scoreData.matchesWonByB
+
       setScoreData((prevScoreData) => ({
         ...prevScoreData,
         winnerTeam: team,
+        matchesWonByA:
+          team === currentTeamAName
+            ? prevScoreData.matchesWonByA + 1
+            : prevScoreData.matchesWonByA,
+        matchesWonByB:
+          team === currentTeamBName
+            ? prevScoreData.matchesWonByB + 1
+            : prevScoreData.matchesWonByB,
       }))
       toggleEngGameModal()
     }
   }
 
   const restartGame = () => {
-    setScoreData(() => ({
+    setScoreData((prevScoreData) => ({
+      ...prevScoreData,
       roundNumber: 0,
       pointsA: 0,
       pointsB: 0,
@@ -132,6 +147,22 @@ export default ScoreBoard = () => {
       modalState: { state: '' },
     }))
   }
+
+  useEffect(() => {
+    if (
+      scoreData.matchesWonByA == currentGameMode ||
+      scoreData.matchesWonByB == currentGameMode
+    ) {
+      setScoreData((prevScoreData) => ({
+        ...prevScoreData,
+        matchesWonByA: 0,
+        matchesWonByB: 0,
+        allRoundsFnished: true,
+      }))
+
+      console.log('Show match result card')
+    }
+  }, [scoreData.matchesWonByA, scoreData.matchesWonByB])
 
   const navNewGameScreen = () => {
     setCurrentTeamAName('')
@@ -197,13 +228,14 @@ export default ScoreBoard = () => {
         </Pressable>
       </View>
       <View>
-        {scoreData.modalState.state === MODALS.ENDGAME && (
-          <EndGameModal
-            dismissModal={toggleEngGameModal}
-            restart={restartGame}
-            team={scoreData.winnerTeam}
-          />
-        )}
+        {scoreData.modalState.state === MODALS.ENDGAME &&
+          !scoreData.allRoundsFnished && (
+            <EndGameModal
+              dismissModal={toggleEngGameModal}
+              restart={restartGame}
+              team={scoreData.winnerTeam}
+            />
+          )}
       </View>
       <View>
         {scoreData.modalState.state === MODALS.POINTS_HISTORY && (
