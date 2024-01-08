@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
 import { EndMatchModal } from './EndMatchModal'
+import { EndGameModal } from './EndGameModal'
 import { PointsHistoryModal } from './PointsHistoryModal'
 import { styles } from '../../styles/pointsBoardStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
@@ -19,7 +20,7 @@ export const PointsBoard = ({
   const [modals, setModals] = useState({
     pointsHistory: false,
     endOfMatch: false,
-    enfOfAllRounds: false,
+    endOfGame: false,
   })
 
   const [pointsHistory, setPointsHistory] = useState([])
@@ -91,13 +92,13 @@ export const PointsBoard = ({
     )
   }
 
-  const renderEndGameModal = () => {
+  const renderEndMatchModal = () => {
     return (
       <EndMatchModal
         visible={{ modals, setModals }}
         score={score}
         setScore={updateScore}
-        setMatchesData={setMatchesData}
+        matchesData={matchesData}
         winsA={matchesData.matchesWonByA}
         winsB={matchesData.matchesWonByB}
         setPointsHistory={setPointsHistory}
@@ -106,13 +107,13 @@ export const PointsBoard = ({
     )
   }
 
-  const renderEndOfAllRoundsModal = () => {
+  const renderEndGameModal = () => {
     return (
-      <EndMatchModal
+      <EndGameModal
         visible={{ modals, setModals }}
         score={score}
-        setScore={updateScore}
-        matches={{ matchesData, setMatchesData }}
+        winsA={matchesData.matchesWonByA}
+        winsB={matchesData.matchesWonByB}
       />
     )
   }
@@ -137,6 +138,7 @@ export const PointsBoard = ({
         />
       </View>
       <View>{renderPointsHistoryModal()}</View>
+      <View>{renderEndMatchModal()}</View>
       <View>{renderEndGameModal()}</View>
     </View>
   )

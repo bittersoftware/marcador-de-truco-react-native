@@ -7,11 +7,11 @@ export const EndMatchModal = ({
   visible,
   score,
   setScore,
-  setMatchesData,
+  matchesData,
   winsA,
   winsB,
   setPointsHistory,
-  currentRoundRef
+  currentRoundRef,
 }) => {
   const { currentTeamAName, currentTeamBName, currentGameMode } =
     useSettingsContext()
@@ -27,26 +27,30 @@ export const EndMatchModal = ({
     }
   }
 
+  const isEndOfGame = () => {
+    return winsA >= currentGameMode.maxWins || winsB >= currentGameMode.maxWins
+  }
+
   useEffect(() => {
     if (getWinnerTeamName()) {
-      visible.setModals((prevModals) => ({
-        ...prevModals,
-        endOfMatch: true,
-      }))
+      if (isEndOfGame()) {
+        visible.setModals((prevModals) => ({
+          ...prevModals,
+          endOfMatch: false,
+          endOfGame: true,
+        }))
+      } else {
+        visible.setModals((prevModals) => ({
+          ...prevModals,
+          endOfMatch: true,
+        }))
+      }
     }
-  }, [score.pointsA, score.pointsB])
+  }, [score.pointsA, score.pointsB, matchesData])
 
   const dismissAndRestart = () => {
     setPointsHistory(() => [])
     currentRoundRef.current = -1
-
-    if (winsA >= currentGameMode.maxWins || winsB >= currentGameMode.maxWins) {
-      setMatchesData(() => ({
-        winnerTeam: '',
-        matchesWonByA: 0,
-        matchesWonByB: 0,
-      }))
-    }
 
     setScore(() => ({ pointsA: 0, pointsB: 0 }))
 
