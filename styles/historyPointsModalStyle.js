@@ -39,11 +39,8 @@ export const styles = StyleSheet.create({
     flexGrow: 0,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingHorizontal: 4,
-    marginVertical: 4,
-    borderRadius: 30,
-    borderColor: COLORS.secondary,
-    borderWidth: 2,
+    alignItems:'center',
+    gap: 8,
   },
   teamsContainer: {
     flexDirection: 'row',
@@ -55,7 +52,6 @@ export const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
   },
   roundTextContainer: {
-    margin: 4,
     borderRadius: 15,
     width: 26,
     height: 26,
@@ -70,6 +66,10 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.medium,
   },
   pointsTextContainer: {
+    padding: 2,
+    borderRadius: 30,
+    borderColor: COLORS.primary,
+    borderWidth: 2,
     margin: 4,
     flexDirection: 'row',
     flexGrow: 1,
@@ -80,6 +80,7 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: SIZES.medium,
     marginHorizontal: 6,
+    color: COLORS.secondary,
   },
   buttonsContainer: {
     display: 'flex',
@@ -98,6 +99,7 @@ export const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: COLORS.primary,
+    width: 150,
   },
   buttonCloseText: {
     color: COLORS.lightWhite,

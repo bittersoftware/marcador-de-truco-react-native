@@ -100,7 +100,7 @@ export const PointsHistoryModal = ({
                   onPress={() => undoLastPoint()}
                   disabled={pointsHistory.length > 1 ? false : true}
                 >
-                  <Text style={styles.buttonUndoText}>Desfazer Ultima</Text>
+                  <Text style={styles.buttonUndoText}>Voltar jogada</Text>
                 </Pressable>
               )}
               <Pressable
