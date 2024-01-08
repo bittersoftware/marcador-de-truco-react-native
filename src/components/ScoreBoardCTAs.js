@@ -2,19 +2,21 @@ import { Text, View, Pressable } from 'react-native'
 import { styles } from '../../styles/scoreBoardCTAsStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useRouter } from 'expo-router'
+import { useEffect, useState } from 'react'
 
 export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
   const navigation = useRouter()
   const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext()
 
-  const navNewGameScreen = () => {
-    setCurrentTeamAName('')
-    setCurrentTeamBName('')
-    setModal(() => false)
-    navigation.replace('/NewGame')
-  }
+  const [confirm, setConfirm] = useState(false)
+  const [btnText, setBtnText] = useState('Encerrar partida')
 
   const navHomeScreen = () => {
+    if (!confirm) {
+      setConfirm(() => true)
+      setBtnText(() => 'Confirma?')
+      return
+    }
     setCurrentTeamAName('')
     setCurrentTeamBName('')
     navigation.replace('/')
@@ -22,6 +24,7 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
 
   const dismissModal = () => {
     setModal(() => false)
+    setConfirm(() => false)
   }
 
   return (
@@ -34,15 +37,9 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
       </Pressable>
       <Pressable
         style={[styles.buttonBase, styles.button]}
-        onPress={navNewGameScreen}
-      >
-        <Text style={styles.buttonText}>Novo Jogo</Text>
-      </Pressable>
-      <Pressable
-        style={[styles.buttonBase, styles.button]}
         onPress={navHomeScreen}
       >
-        <Text style={styles.buttonText}>Início</Text>
+        <Text style={styles.buttonText}>{btnText}</Text>
       </Pressable>
 
       <Pressable

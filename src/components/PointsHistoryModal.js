@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Modal, Text, Pressable, View, FlatList } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { styles } from '../../styles/historyPointsModalStyle'
@@ -12,11 +12,23 @@ export const PointsHistoryModal = ({
   setPointsHistory,
   currentRoundRef
 }) => {
+  const btnTextUndo = 'Desfazer última'
+  const btnTextConfirm = 'Confirma?'
+
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
   const isUndoRef = useRef(false)
+  const [confirm, setConfirm] = useState(false)
+  const [btnText, setBtnText] = useState(btnTextUndo)
+
 
   const undoLastPoint = () => {
     if (pointsHistory[0].round === 0) return
+
+    if (!confirm) {
+      setConfirm(() => true)
+      setBtnText(() => btnTextConfirm)
+      return
+    }
 
     let pointsHistoryArr = pointsHistory
     pointsHistoryArr.shift()
@@ -32,6 +44,9 @@ export const PointsHistoryModal = ({
       pointsA: ptsA,
       pointsB: ptsB,
     }))
+
+      setConfirm(() => false)
+      setBtnText(() => btnTextUndo)
   }
 
   useEffect(() => {
@@ -101,7 +116,7 @@ export const PointsHistoryModal = ({
                   onPress={() => undoLastPoint()}
                   disabled={pointsHistory.length > 1 ? false : true}
                 >
-                  <Text style={styles.buttonUndoText}>Voltar jogada</Text>
+                  <Text style={styles.buttonUndoText}>{btnText}</Text>
                 </Pressable>
               )}
               <Pressable

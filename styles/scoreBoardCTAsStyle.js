@@ -31,5 +31,6 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: COLORS.primary,
     fontFamily: FONT.semiBold,
+    textAlign: 'center'
   },
 })
