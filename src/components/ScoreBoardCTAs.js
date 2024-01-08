@@ -3,13 +3,14 @@ import { styles } from '../../styles/scoreBoardCTAsStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useRouter } from 'expo-router'
 
-export const ScoreBoardCTAs = ({ pointsHistory }) => {
+export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
   const navigation = useRouter()
   const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext()
 
   const navNewGameScreen = () => {
     setCurrentTeamAName('')
     setCurrentTeamBName('')
+    setModal(() => false)
     navigation.replace('/NewGame')
   }
 
@@ -17,6 +18,10 @@ export const ScoreBoardCTAs = ({ pointsHistory }) => {
     setCurrentTeamAName('')
     setCurrentTeamBName('')
     navigation.replace('/')
+  }
+
+  const dismissModal = () => {
+    setModal(() => false)
   }
 
   return (
@@ -38,6 +43,13 @@ export const ScoreBoardCTAs = ({ pointsHistory }) => {
         onPress={navHomeScreen}
       >
         <Text style={styles.buttonText}>Início</Text>
+      </Pressable>
+
+      <Pressable
+        style={[styles.buttonBase, styles.button]}
+        onPress={dismissModal}
+      >
+        <Text style={styles.buttonText}>Voltar</Text>
       </Pressable>
     </View>
   )

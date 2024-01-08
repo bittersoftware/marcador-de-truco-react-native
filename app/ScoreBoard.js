@@ -4,6 +4,8 @@ import { ScoreDisplay } from '../src/components/ScoreDisplay'
 import { TeamNamesDisplay } from '../src/components/TeamNamesDisplay'
 import { PointsBoard } from '../src/components/PointsBoard'
 import { ScoreBoardCTAs } from '../src/components/ScoreBoardCTAs'
+import { BoardOptionsModal } from '../src/components/BoardOptionsModal'
+import { FloatingActionButton } from '../src/components/FloatingActionButton'
 import { useSettingsContext } from '../context/SettingsContext'
 import { useRouter } from 'expo-router'
 
@@ -21,24 +23,36 @@ export default ScoreBoard = () => {
     pointsB: 0,
   })
 
+  const [modal, setModal] = useState(false)
+
   const [showPointsHistory, setShowPointsHistory] = useState(false)
 
+  const handleClickFloatingAction = () => {
+    setModal(() => true)
+  }
+
   const handleClickHistory = () => {
+    setModal(() => false)
     setShowPointsHistory(true)
   }
 
-
   return (
     <>
-      <ScoreDisplay scoreData={scoreData}/>
-      <TeamNamesDisplay teamA={currentTeamAName} teamB={currentTeamBName}/>
+      <ScoreDisplay scoreData={scoreData} />
+      <TeamNamesDisplay teamA={currentTeamAName} teamB={currentTeamBName} />
       <PointsBoard
         updateScore={setScoreData}
         score={scoreData}
-        showHistory={{showPointsHistory, setShowPointsHistory}}
+        showHistory={{ showPointsHistory, setShowPointsHistory }}
       />
-      <ScoreBoardCTAs pointsHistory={handleClickHistory}/>
+      <FloatingActionButton
+        handleClickFloatingAction={handleClickFloatingAction}
+      />
+      <BoardOptionsModal
+        visible={modal}
+        setModal={setModal}
+        handleClickHistory={handleClickHistory}
+      />
     </>
   )
 }
-
