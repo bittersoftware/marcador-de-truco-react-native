@@ -26,7 +26,7 @@ export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
 
   const handlePress = (el) => {
     if (!isInNextPoints(el)) {
-      showToast('Use o histórico para voltar jogadas')
+      showToast('Use Rodadas para desfazer jogadas')
     } else if (!isValidPoint(el)) {
       showToast('Pega ladrão! Esse valor não vale.')
     } else {
