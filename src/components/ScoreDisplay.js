@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native'
-import { styles } from '../../styles/scoreDiaplayStyle'
+import { styles } from '../../styles/scoreDisplayStyle'
 
 export const ScoreDisplay = ({ scoreData }) => {
   return (
