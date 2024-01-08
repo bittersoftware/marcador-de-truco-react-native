@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native'
+import { Modal, Text, Pressable, View } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
 import { styles } from '../../styles/endGameModalStyle'

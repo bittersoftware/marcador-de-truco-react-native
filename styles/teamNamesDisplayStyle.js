@@ -1,25 +1,41 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
-import { COLORS, FONT, SIZES } from "../constants";
+import { COLORS, FONT, SIZES } from '../constants'
 
 export const styles = StyleSheet.create({
-  teamsContainer: {
-    marginVertical: 12,
+  container: {
+    margin: 12,
     backgroundColor: COLORS.lightWhite,
     flexDirection: 'row',
     justifyContent: 'center',
+    gap: 12,
   },
   textContainer: {
-    flex: 1,
+    borderRadius: 5,
     alignItems: 'center',
+    backgroundColor: COLORS.secondary,
+    flexGrow: 1,
+    paddingVertical: 4,
   },
   teamsText: {
-    paddingVertical: 4,
-    width: '92%',
-    backgroundColor: COLORS.gray2,
-    borderRadius: 5,
-    fontSize: SIZES.medium,
     textAlign: 'center',
+    color: COLORS.lightWhite,
+    fontSize: SIZES.medium,
     fontFamily: FONT.medium,
+  },
+  markerContainer: {
+    flexDirection: 'row',
+  },
+  marker: {
+    width: 10,
+    height: 10,
+    margin: 2,
+    borderRadius: 5,
+  },
+  winMarker: {
+    backgroundColor: COLORS.tertiary,
+  },
+  clearMarker: {
+    backgroundColor: COLORS.lightWhite,
   },
 })

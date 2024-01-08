@@ -7,14 +7,14 @@ import { PointsHistoryModal } from './PointsHistoryModal'
 import { styles } from '../../styles/pointsBoardStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
 
-export const PointsBoard = ({ updateScore, score, showHistory }) => {
+export const PointsBoard = ({
+  updateScore,
+  score,
+  showHistory,
+  matchesData,
+  setMatchesData,
+}) => {
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
-
-  const [matchesData, setMatchesData] = useState({
-    winnerTeam: '',
-    matchesWonByA: 0,
-    matchesWonByB: 0,
-  })
 
   const [modals, setModals] = useState({
     pointsHistory: false,
@@ -47,7 +47,7 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
         pointsB: points,
       }))
     }
-    }
+  }
 
   useEffect(() => {
     const winnerTeam = getWinnerTeamName()
@@ -65,10 +65,7 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
             : prevSetMatches.matchesWonByB,
       }))
     }
-  },[score])
-
-
-
+  }, [score])
 
   useEffect(() => {
     setModals((prevModals) => ({
@@ -114,25 +111,25 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
 
   return (
     <View style={styles.container}>
-        <View>
-          <PointsButtons
-            team={currentTeamAName}
-            selectedIndex={score.pointsA}
-            onScoreChange={handleScoreChange}
-          />
-        </View>
-        <View>
-          <PointsLabels />
-        </View>
-        <View>
-          <PointsButtons
-            team={currentTeamBName}
-            selectedIndex={score.pointsB}
-            onScoreChange={handleScoreChange}
-          />
-        </View>
-        <View>{renderPointsHistoryModal()}</View>
-        <View>{renderEndGameModal()}</View>
+      <View>
+        <PointsButtons
+          team={currentTeamAName}
+          selectedIndex={score.pointsA}
+          onScoreChange={handleScoreChange}
+        />
+      </View>
+      <View>
+        <PointsLabels />
+      </View>
+      <View>
+        <PointsButtons
+          team={currentTeamBName}
+          selectedIndex={score.pointsB}
+          onScoreChange={handleScoreChange}
+        />
+      </View>
+      <View>{renderPointsHistoryModal()}</View>
+      <View>{renderEndGameModal()}</View>
     </View>
   )
 }
