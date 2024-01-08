@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
-import { useSettingsContext } from '../../context/SettingsContext'
 import { EndGameModal } from './EndGameModal'
 import { PointsHistoryModal } from './PointsHistoryModal'
+import { styles } from '../../styles/pointsBoardStyle'
+import { useSettingsContext } from '../../context/SettingsContext'
 
 export const PointsBoard = ({ updateScore, score, showHistory }) => {
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
@@ -106,39 +107,25 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.board}>
-        <PointsButtons
-          team={currentTeamAName}
-          selectedIndex={score.pointsA}
-          onScoreChange={handleScoreChange}
-        />
-      </View>
-      <View style={styles.board}>
-        <PointsLabels />
-      </View>
-      <View style={styles.board}>
-        <PointsButtons
-          team={currentTeamBName}
-          selectedIndex={score.pointsB}
-          onScoreChange={handleScoreChange}
-        />
-      </View>
-      <View>{renderPointsHistoryModal()}</View>
-      <View>{renderEndGameModal()}</View>
+        <View>
+          <PointsButtons
+            team={currentTeamAName}
+            selectedIndex={score.pointsA}
+            onScoreChange={handleScoreChange}
+          />
+        </View>
+        <View>
+          <PointsLabels />
+        </View>
+        <View>
+          <PointsButtons
+            team={currentTeamBName}
+            selectedIndex={score.pointsB}
+            onScoreChange={handleScoreChange}
+          />
+        </View>
+        <View>{renderPointsHistoryModal()}</View>
+        <View>{renderEndGameModal()}</View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 24,
-    backgroundColor: 'aliceblue',
-    alignItems: 'top',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  board: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-})
