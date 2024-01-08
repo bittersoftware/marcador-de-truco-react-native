@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { View } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
-import { EndGameModal } from './EndGameModal'
+import { EndMatchModal } from './EndMatchModal'
 import { PointsHistoryModal } from './PointsHistoryModal'
 import { styles } from '../../styles/pointsBoardStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
@@ -93,7 +93,7 @@ export const PointsBoard = ({
 
   const renderEndGameModal = () => {
     return (
-      <EndGameModal
+      <EndMatchModal
         visible={{ modals, setModals }}
         score={score}
         setScore={updateScore}
@@ -108,7 +108,7 @@ export const PointsBoard = ({
 
   const renderEndOfAllRoundsModal = () => {
     return (
-      <EndGameModal
+      <EndMatchModal
         visible={{ modals, setModals }}
         score={score}
         setScore={updateScore}

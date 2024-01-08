@@ -1,9 +1,9 @@
 import { Modal, Text, Pressable, View } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
-import { styles } from '../../styles/endGameModalStyle'
+import { styles } from '../../styles/endMatchModalStyle'
 
-export const EndGameModal = ({
+export const EndMatchModal = ({
   visible,
   score,
   setScore,
