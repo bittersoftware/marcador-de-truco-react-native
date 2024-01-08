@@ -69,7 +69,7 @@ export const EndGameModal = ({
               <Text style={styles.winnerText}>Vencedor</Text>
             </View>
             <Text style={styles.roundText}>
-              Jogo {winsA + winsB} de {currentGameMode.maxMatches}
+              Jogo {winsA + winsB} de melhor de {currentGameMode.maxMatches}
             </Text>
             <Pressable
               style={styles.button}
