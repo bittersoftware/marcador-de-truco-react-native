@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'black',
+    borderColor: COLORS.secondary,
     borderWidth: 2,
   },
   buttonSelected: {
