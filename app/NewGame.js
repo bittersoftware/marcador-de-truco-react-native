@@ -4,7 +4,6 @@ import { Picker } from '@react-native-picker/picker'
 import { TextInput, Text, View, Pressable } from 'react-native'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import Ionicons from '@expo/vector-icons/Ionicons'
 import styles from '../styles/newGameStyle'
 import { useSettingsContext } from '../context/SettingsContext'
 
@@ -25,14 +24,25 @@ export default NewGame = () => {
 
   const [selectedGameMode, setSelectedGameMode] = useState()
 
+  const gameModes = {
+    1: {maxWins: 1, maxMatches: 1},
+    2: {maxWins: 2, maxMatches: 3},
+    3: {maxWins: 3, maxMatches: 5},
+    4: {maxWins: 4, maxMatches: 7},
+  }
+
   const gameModePicker = (itemValue, _) => {
     setSelectedGameMode(itemValue)
-    setCurrentGameMode(itemValue)
+    setCurrentGameMode(gameModes[itemValue])
   }
 
   const startGame = () => {
-    if (!currentTeamAName) { setCurrentTeamAName(defaultTeamAName)}
-    if (!currentTeamBName) { setCurrentTeamBName(defaultTeamBName)}
+    if (!currentTeamAName) {
+      setCurrentTeamAName(defaultTeamAName)
+    }
+    if (!currentTeamBName) {
+      setCurrentTeamBName(defaultTeamBName)
+    }
     navigation.replace('/ScoreBoard')
   }
 
@@ -70,12 +80,23 @@ export default NewGame = () => {
             selectedValue={selectedGameMode}
             onValueChange={gameModePicker}
             style={styles.picker}
-            
           >
-            <Picker.Item label="Uma queda" value="1" />
-            <Picker.Item label="Melhor de 3 (Quem faz 2)" value="2" />
-            <Picker.Item label="Melhor de 5 (Quem faz 3)" value="3" />
-            <Picker.Item label="Melhor de 7 (Quem faz 4)" value="4" />
+            <Picker.Item
+              label="Uma queda"
+              value={1}
+            />
+            <Picker.Item
+              label="Melhor de 3 (Quem faz 2)"
+              value={2}
+            />
+            <Picker.Item
+              label="Melhor de 5 (Quem faz 3)"
+              value={3}
+            />
+            <Picker.Item
+              label="Melhor de 7 (Quem faz 4)"
+              value={4}
+            />
           </Picker>
         </View>
       </View>

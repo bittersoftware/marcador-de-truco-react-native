@@ -1,8 +1,16 @@
 import { Modal, StyleSheet, Text, Pressable, View } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
+import { styles } from '../../styles/endGameModalStyle'
 
-export const EndGameModal = ({ visible, score, setScore, matches }) => {
+export const EndGameModal = ({
+  visible,
+  score,
+  setScore,
+  setMatchesData,
+  winsA,
+  winsB,
+}) => {
   const { currentTeamAName, currentTeamBName, currentGameMode } =
     useSettingsContext()
 
@@ -27,7 +35,16 @@ export const EndGameModal = ({ visible, score, setScore, matches }) => {
   }, [score.pointsA, score.pointsB])
 
   const dismissAndRestart = () => {
+    if (winsA >= currentGameMode.maxWins || winsB >= currentGameMode.maxWins) {
+      setMatchesData(() => ({
+        winnerTeam: '',
+        matchesWonByA: 0,
+        matchesWonByB: 0,
+      }))
+    }
+
     setScore(() => ({ pointsA: 0, pointsB: 0 }))
+
     visible.setModals((prevModals) => ({
       ...prevModals,
       endOfMatch: false,
@@ -39,13 +56,21 @@ export const EndGameModal = ({ visible, score, setScore, matches }) => {
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>End of the Game</Text>
-            <Text style={styles.modalText}>Winner: {getWinnerTeamName()}</Text>
+            <Text style={styles.mainText}>Fim da partida</Text>
+            <View style={styles.winnerContainer}>
+              <View style={styles.winnerTeamTextContainer}>
+                <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
+              </View>
+              <Text style={styles.winnerText}>Vencedor</Text>
+            </View>
+            <Text style={styles.roundText}>
+              Jogo {winsA + winsB} de {currentGameMode.maxMatches}
+            </Text>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={styles.button}
               onPress={() => dismissAndRestart()}
             >
-              <Text style={styles.textStyle}>OK</Text>
+              <Text style={styles.buttonText}>OK</Text>
             </Pressable>
           </View>
         </View>
@@ -53,44 +78,3 @@ export const EndGameModal = ({ visible, score, setScore, matches }) => {
     )
   )
 }
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-})

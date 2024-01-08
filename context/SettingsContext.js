@@ -7,7 +7,10 @@ export const SettingsProvider = ({ children }) => {
   const [currentTeamBName, setCurrentTeamBName] = useState('')
   const [defaultTeamAName, setDefaultTeamAName] = useState('Equipe Azul')
   const [defaultTeamBName, setDefaultTeamBName] = useState('Equipe Verde')
-  const [currentGameMode, setCurrentGameMode] = useState(1)
+  const [currentGameMode, setCurrentGameMode] = useState({
+    maxWins: 1,
+    maxMatches: 1,
+  })
   const [defaultGameMode, setDefaultGameMode] = useState('')
 
   const values = {

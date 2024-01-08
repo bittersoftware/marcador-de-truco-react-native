@@ -47,7 +47,9 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
         pointsB: points,
       }))
     }
+    }
 
+  useEffect(() => {
     const winnerTeam = getWinnerTeamName()
 
     if (winnerTeam) {
@@ -63,7 +65,10 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
             : prevSetMatches.matchesWonByB,
       }))
     }
-  }
+  },[score])
+
+
+
 
   useEffect(() => {
     setModals((prevModals) => ({
@@ -89,7 +94,9 @@ export const PointsBoard = ({ updateScore, score, showHistory }) => {
         visible={{ modals, setModals }}
         score={score}
         setScore={updateScore}
-        matches={{ matchesData, setMatchesData }}
+        setMatchesData={setMatchesData}
+        winsA={matchesData.matchesWonByA}
+        winsB={matchesData.matchesWonByB}
       />
     )
   }
