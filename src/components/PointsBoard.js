@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { View } from 'react-native'
 import { PointsButtons } from './PointsButtons'
 import { PointsLabels } from './PointsLabels'
@@ -21,6 +21,9 @@ export const PointsBoard = ({
     endOfMatch: false,
     enfOfAllRounds: false,
   })
+
+  const [pointsHistory, setPointsHistory] = useState([])
+  const currentRoundRef = useRef(-1)
 
   const MAX_POINTS = 12
 
@@ -81,6 +84,9 @@ export const PointsBoard = ({
         score={score}
         updateScore={updateScore}
         historyButton={showHistory}
+        pointsHistory={pointsHistory}
+        setPointsHistory={setPointsHistory}
+        currentRoundRef={currentRoundRef}
       />
     )
   }
@@ -94,6 +100,8 @@ export const PointsBoard = ({
         setMatchesData={setMatchesData}
         winsA={matchesData.matchesWonByA}
         winsB={matchesData.matchesWonByB}
+        setPointsHistory={setPointsHistory}
+        currentRoundRef={currentRoundRef}
       />
     )
   }

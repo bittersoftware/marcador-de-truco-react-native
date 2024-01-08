@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Modal, Text, Pressable, View, FlatList } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { styles } from '../../styles/historyPointsModalStyle'
@@ -8,10 +8,11 @@ export const PointsHistoryModal = ({
   score,
   updateScore,
   historyButton,
+  pointsHistory,
+  setPointsHistory,
+  currentRoundRef
 }) => {
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
-  const [pointsHistory, setPointsHistory] = useState([])
-  const currentRoundRef = useRef(-1)
   const isUndoRef = useRef(false)
 
   const undoLastPoint = () => {

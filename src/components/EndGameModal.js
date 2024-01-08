@@ -10,6 +10,8 @@ export const EndGameModal = ({
   setMatchesData,
   winsA,
   winsB,
+  setPointsHistory,
+  currentRoundRef
 }) => {
   const { currentTeamAName, currentTeamBName, currentGameMode } =
     useSettingsContext()
@@ -35,6 +37,9 @@ export const EndGameModal = ({
   }, [score.pointsA, score.pointsB])
 
   const dismissAndRestart = () => {
+    setPointsHistory(() => [])
+    currentRoundRef.current = -1
+
     if (winsA >= currentGameMode.maxWins || winsB >= currentGameMode.maxWins) {
       setMatchesData(() => ({
         winnerTeam: '',
