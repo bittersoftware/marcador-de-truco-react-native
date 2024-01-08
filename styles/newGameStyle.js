@@ -7,13 +7,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.lightWhite,
   },
-  backButtonContainer: {
-    marginLeft: 16,
-    marginTop: 16,
-  },
-  backButton: {
-    backgroundColor: COLORS.primary,
-  },
   mainTextContainer: {
     marginTop: 36,
     marginBottom: 36,
@@ -69,6 +62,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     paddingBottom: 54,
+    gap: 12,
   },
   button: {
     borderColor: COLORS.primary,
@@ -87,6 +81,11 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite,
     fontFamily: FONT.semiBold,
   },
+  backButtonText: {
+    fontSize: SIZES.medium,
+    fontFamily: FONT.semiBold,
+    fontFamily: FONT.semiBold,
+  }
 })
 
 export default styles

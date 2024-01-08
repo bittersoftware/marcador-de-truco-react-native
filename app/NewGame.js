@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { useRouter } from 'expo-router'
+import { Picker } from '@react-native-picker/picker'
 import { TextInput, Text, View, Pressable } from 'react-native'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import styles from '../styles/newGameStyle'
-import { Picker } from '@react-native-picker/picker'
-import { useRouter } from 'expo-router'
 import { useSettingsContext } from '../context/SettingsContext'
 
 export default NewGame = () => {
@@ -38,15 +38,6 @@ export default NewGame = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.backButtonContainer}>
-        <Pressable onPress={() => navigation.replace('/')}>
-          <Ionicons
-            name="arrow-back-circle"
-            size={42}
-            color={styles.backButton.backgroundColor}
-          />
-        </Pressable>
-      </View>
       <View style={styles.mainTextContainer}>
         <Text style={styles.mainText}>Novo Jogo</Text>
       </View>
@@ -91,6 +82,9 @@ export default NewGame = () => {
       <View style={styles.buttonContainer}>
         <Pressable style={styles.button} onPress={startGame}>
           <Text style={styles.buttonText}>Iniciar</Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.replace('/')}>
+          <Text style={styles.backButtonText}>Voltar</Text>
         </Pressable>
       </View>
     </View>
