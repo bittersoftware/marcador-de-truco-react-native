@@ -1,4 +1,4 @@
-import { Modal, Text, Pressable, View } from 'react-native'
+import { Modal, Text, Pressable, View, Image } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
 import { styles } from '../../styles/endMatchModalStyle'
@@ -70,16 +70,18 @@ export const EndMatchModal = ({
               <View style={styles.winnerTeamTextContainer}>
                 <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
               </View>
-              <Text style={styles.winnerText}>Vencedor</Text>
+              <Image source={require('../../assets/images/medal.png')} style={styles.image} />
             </View>
             <Text style={styles.roundText}>
-              Jogo {winsA + winsB} de melhor de {currentGameMode.maxMatches}
+              Jogo {winsA + winsB}</Text>
+            <Text style={styles.roundText}>
+              Melhor de {currentGameMode.maxMatches}
             </Text>
             <Pressable
               style={styles.button}
               onPress={() => dismissAndRestart()}
             >
-              <Text style={styles.buttonText}>OK</Text>
+              <Text style={styles.buttonText}>Próxima partida</Text>
             </Pressable>
           </View>
         </View>

@@ -7,12 +7,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
     backgroundColor: COLORS.tertiary,
+    borderColor: COLORS.secondary,
+    borderWidth: 6,
     borderRadius: 20,
-    paddingVertical: 35,
+    paddingTop: 35,
+    paddingBottom: 18,
     paddingHorizontal: 20,
     alignItems: 'center',
     shadowColor: '#000',
@@ -25,32 +27,41 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   mainText: {
-    fontFamily: FONT.regular,
+    fontFamily: FONT.semiBold,
     fontSize: SIZES.medium,
+    color: COLORS.primary,
   },
   winnerContainer: {
-    position: 'relative',
-  },
-  winnerText: {
-    fontFamily: FONT.regular,
-    position: 'absolute',
-    top: 12,
-    alignSelf: 'center',
-    backgroundColor: COLORS.tertiary,
-    paddingHorizontal: 4,
+    margin: 20,
   },
   winnerTeamTextContainer: {
-    margin: 20,
-    borderWidth: 2,
+    color: COLORS.primary,
+    borderWidth: 6,
     borderRadius: 12,
-    borderColor: 'black',
+    borderColor: COLORS.lightWhite,
+    backgroundColor: COLORS.secondary,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   teamText: {
+    color: COLORS.lightWhite,
     padding: 12,
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
   },
+  image: {
+    width: 50,
+    height: 50,
+    alignSelf: 'center'
+  },
   roundText: {
+    color: COLORS.primary,
     fontFamily: FONT.medium,
   },
   buttonText: {
@@ -59,13 +70,10 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    marginTop: 12,
+    marginTop: 24,
     borderRadius: 20,
     backgroundColor: COLORS.primary,
     padding: 10,
     elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
   },
 })
