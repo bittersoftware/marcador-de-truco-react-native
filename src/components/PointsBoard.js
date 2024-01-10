@@ -23,6 +23,8 @@ export const PointsBoard = ({
     endOfGame: false,
   })
 
+  const [endScoreData, setEndScoreData] = useState([])
+
   const [pointsHistory, setPointsHistory] = useState([])
   const currentRoundRef = useRef(-1)
 
@@ -53,6 +55,22 @@ export const PointsBoard = ({
     }
   }
 
+  const updateScoreData = (winnerTeam) => {
+    const winnerScore =
+      score.pointsA > score.pointsB ? score.pointsA : score.pointsB
+
+    const loserScore =
+      score.pointsA < score.pointsB ? score.pointsA : score.pointsB
+
+    const loserTeam =
+      winnerTeam == currentTeamAName ? currentTeamBName : currentTeamAName
+
+    setEndScoreData((prevEndScoreData) => ([
+      ...prevEndScoreData,
+      { [winnerTeam]: winnerScore, [loserTeam]: loserScore },
+    ]))
+  }
+
   useEffect(() => {
     const winnerTeam = getWinnerTeamName()
 
@@ -68,6 +86,8 @@ export const PointsBoard = ({
             ? prevSetMatches.matchesWonByB + 1
             : prevSetMatches.matchesWonByB,
       }))
+
+      updateScoreData(winnerTeam)
     }
   }, [score])
 
@@ -111,6 +131,7 @@ export const PointsBoard = ({
     return (
       <EndGameModal
         visible={{ modals, setModals }}
+        endScoreData={endScoreData}
         score={score}
         winsA={matchesData.matchesWonByA}
         winsB={matchesData.matchesWonByB}
