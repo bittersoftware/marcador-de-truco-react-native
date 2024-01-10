@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.large,
   },
   image: {
-    width: 50,
+    width: 40,
     height: 50,
     alignSelf: 'center'
   },

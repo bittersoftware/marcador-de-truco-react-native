@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { PlatformColor, StyleSheet } from 'react-native'
 
 import { COLORS, FONT, SIZES } from '../constants'
 
@@ -7,13 +7,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   modalView: {
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.primary,
     borderRadius: 20,
     paddingVertical: 35,
-    paddingHorizontal: 20,
+    paddingHorizontal: 35,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -24,48 +23,94 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 24,
+  },
   mainText: {
-    fontFamily: FONT.regular,
-    fontSize: SIZES.medium,
-  },
-  winnerContainer: {
-    position: 'relative',
-  },
-  winnerText: {
-    fontFamily: FONT.regular,
-    position: 'absolute',
-    top: 12,
-    alignSelf: 'center',
-    backgroundColor: COLORS.tertiary,
-    paddingHorizontal: 4,
-  },
-  winnerTeamTextContainer: {
-    margin: 20,
-    borderWidth: 2,
-    borderRadius: 12,
-    borderColor: 'black',
-  },
-  teamText: {
-    padding: 12,
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
+    color: COLORS.lightWhite,
   },
-  roundText: {
-    fontFamily: FONT.medium,
+  logo: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
+  },
+  avatarContainer:{
+    alignItems: 'center'
+  },
+  crown: {
+    height: 70,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  avatarBackground:{
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    backgroundColor: COLORS.lightWhite,
+    justifyContent: 'space-around'
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+  },
+  winnerTeamText: {
+    fontFamily: FONT.bold,
+    fontSize: SIZES.xxLarge,
+    color: COLORS.tertiary,
+  },
+  loserTeamText: {
+    fontFamily: FONT.bold,
+    fontSize: SIZES.medium,
+    color: COLORS.tertiary,
+  },
+  scoreText: {
+    fontFamily: FONT.semiBold,
+    color: COLORS.lightWhite,
+    fontSize: SIZES.large,
   },
   buttonText: {
-    color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
+    color: COLORS.primary,
+    fontFamily: FONT.bold,
     textAlign: 'center',
   },
   button: {
     marginTop: 12,
     borderRadius: 20,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.tertiary,
     padding: 10,
     elevation: 2,
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
+  roundsContainer:{
+    margin: 12,
+    flexDirection: 'row',
+    gap: 12, 
+    padding: 12
+  },
+  singleRoundContainer: {
+    alignItems: 'center'
+  },
+  roundsScoreContainer: {
+    borderRadius: 12,
+    borderColor: COLORS.lightWhite,
+    borderWidth: 2,
+    alignItems: 'center',
+    padding: 4,
+  },
+  roundScoreText: {
+    color: COLORS.lightWhite,
+    fontFamily: FONT.medium,
+  },
+  roundMark: { 
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: COLORS.tertiary,
+    margin: 6,
   },
 })

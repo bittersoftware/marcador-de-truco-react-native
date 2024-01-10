@@ -1,14 +1,9 @@
-import { Modal, Text, Pressable, View } from 'react-native'
+import { Modal, Text, Pressable, View, Image } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { styles } from '../../styles/endGameModalStyle'
 import { useRouter } from 'expo-router'
 
-export const EndGameModal = ({
-  visible,
-  score,
-  winsA,
-  winsB,
-}) => {
+export const EndGameModal = ({ visible, score, winsA, winsB }) => {
   const navigation = useRouter()
 
   const { currentTeamAName, currentTeamBName, currentGameMode } =
@@ -34,20 +29,57 @@ export const EndGameModal = ({
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.mainText}>Fim de Jogo</Text>
+            <View style={styles.titleContainer}>
+              <Image
+                source={require('../../assets/images/icon.png')}
+                style={styles.logo}
+              />
+              <Text style={styles.mainText}>FIM DE JOGO</Text>
+              <Image
+                source={require('../../assets/images/icon.png')}
+                style={styles.logo}
+              />
+            </View>
+            <View style={styles.avatarContainer}>
+              <Image
+                source={require('../../assets/images/crown.png')}
+                style={styles.crown}
+              />
+              <View style={styles.avatarBackground}>
+                <Image
+                  source={require('../../assets/images/cat.png')}
+                  style={styles.avatar}
+                />
+              </View>
+            </View>
             <View style={styles.winnerContainer}>
               <View style={styles.winnerTeamTextContainer}>
-                <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
+                <Text style={styles.winnerTeamText}>{getWinnerTeamName()}</Text>
               </View>
-              <Text style={styles.winnerText}>Ganhou</Text>
             </View>
-            <Text style={styles.roundText}>
-              Jogo {winsA + winsB} de melhor de {currentGameMode.maxMatches}
-            </Text>
-            <Pressable
-              style={styles.button}
-              onPress={() => dismissAndGoHome()}
-            >
+            <Text style={styles.scoreText}>3 x 1</Text>
+            <View style={styles.loserTeamTextContainer}>
+              <Text style={styles.loserTeamText}>Outro Time</Text>
+            </View>
+            <View style={styles.roundsContainer}>
+              <View style={styles.singleRoundContainer}>
+                <View style={styles.roundsScoreContainer}>
+                  <Text style={styles.roundScoreText}>12</Text>
+                  <Text style={styles.roundScoreText}>x</Text>
+                  <Text style={styles.roundScoreText}>9</Text>
+                </View>
+                <View style={styles.roundMark}></View>
+              </View>
+              <View style={styles.singleRoundContainer}>
+                <View style={styles.roundsScoreContainer}>
+                  <Text style={styles.roundScoreText}>12</Text>
+                  <Text style={styles.roundScoreText}>x</Text>
+                  <Text style={styles.roundScoreText}>9</Text>
+                </View>
+                <View style={styles.roundMark}></View>
+              </View>
+            </View>
+            <Pressable style={styles.button} onPress={() => dismissAndGoHome()}>
               <Text style={styles.buttonText}>Finalizar</Text>
             </Pressable>
           </View>
