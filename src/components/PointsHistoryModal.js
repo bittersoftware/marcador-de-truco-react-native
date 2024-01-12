@@ -10,7 +10,7 @@ export const PointsHistoryModal = ({
   historyButton,
   pointsHistory,
   setPointsHistory,
-  currentRoundRef
+  currentRoundRef,
 }) => {
   const btnTextUndo = 'Desfazer última'
   const btnTextConfirm = 'Confirma?'
@@ -19,7 +19,6 @@ export const PointsHistoryModal = ({
   const isUndoRef = useRef(false)
   const [confirm, setConfirm] = useState(false)
   const [btnText, setBtnText] = useState(btnTextUndo)
-
 
   const undoLastPoint = () => {
     if (pointsHistory[0].round === 0) return
@@ -45,8 +44,8 @@ export const PointsHistoryModal = ({
       pointsB: ptsB,
     }))
 
-      setConfirm(() => false)
-      setBtnText(() => btnTextUndo)
+    setConfirm(() => false)
+    setBtnText(() => btnTextUndo)
   }
 
   useEffect(() => {
@@ -75,6 +74,8 @@ export const PointsHistoryModal = ({
       pointsHistory: false,
     }))
 
+    setConfirm(() => false)
+    setBtnText(() => btnTextUndo)
     historyButton.setShowPointsHistory(() => false)
   }
 
