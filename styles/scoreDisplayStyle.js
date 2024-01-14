@@ -5,7 +5,6 @@ import { COLORS, FONT, SIZES } from "../constants";
 export const styles = StyleSheet.create({
   scoreContainer: {
     paddingTop: 20,
-    backgroundColor: COLORS.lightWhite,
     flexDirection: 'row',
     justifyContent: 'center',
   },

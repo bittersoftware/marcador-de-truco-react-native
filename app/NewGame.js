@@ -11,12 +11,12 @@ import {
   TouchableWithoutFeedback,
   ToastAndroid,
 } from 'react-native'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import styles from '../styles/newGameStyle'
 import { useSettingsContext } from '../context/SettingsContext'
 import { TeamDefinition } from '../src/components/TeamDefinition'
 import { PageTitle } from '../src/components/PageTitle'
+import { GameModes } from '../src/components/GameModes'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -31,20 +31,6 @@ export default NewGame = () => {
     defaultTeamBName,
     setCurrentGameMode,
   } = useSettingsContext()
-
-  const [selectedGameMode, setSelectedGameMode] = useState()
-
-  const gameModes = {
-    1: { maxWins: 1, maxMatches: 1 },
-    2: { maxWins: 2, maxMatches: 3 },
-    3: { maxWins: 3, maxMatches: 5 },
-    4: { maxWins: 4, maxMatches: 7 },
-  }
-
-  const gameModePicker = (itemValue, _) => {
-    setSelectedGameMode(itemValue)
-    setCurrentGameMode(gameModes[itemValue])
-  }
 
   const startGame = () => {
     if (!currentTeamAName || !currentTeamBName) {
@@ -65,21 +51,9 @@ export default NewGame = () => {
           <Text style={styles.sectionTextTitle}>Equipes</Text>
           <TeamDefinition />
         </View>
-        <Text style={styles.sectionTextTitle}>Rodadas</Text>
-        <View style={styles.pickerContainer}>
-          <MaterialCommunityIcons name="cards" size={28} color="black" />
-          <View style={styles.picker}>
-            <Picker
-              selectedValue={selectedGameMode}
-              onValueChange={gameModePicker}
-              style={styles.picker}
-            >
-              <Picker.Item label="Uma rodada" value={1} />
-              <Picker.Item label="Melhor de 3 (Quem faz 2)" value={2} />
-              <Picker.Item label="Melhor de 5 (Quem faz 3)" value={3} />
-              <Picker.Item label="Melhor de 7 (Quem faz 4)" value={4} />
-            </Picker>
-          </View>
+        <View style={styles.card}>
+          <Text style={styles.sectionTextTitle}>Rodadas</Text>
+          <GameModes />
         </View>
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={() => startGame()}>

@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.secondary,
     flexGrow: 1,
+    flex: 1,
     paddingVertical: 4,
   },
   teamsText: {

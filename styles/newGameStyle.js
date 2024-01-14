@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 36,
     paddingVertical: 8,
     borderRadius: 16,
-    marginVertical: 32,
+    marginTop: 24,
     ...SHADOWS.medium,
   },
   sectionTextTitle: {
