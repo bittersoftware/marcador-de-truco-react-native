@@ -1,15 +1,18 @@
 import { Slot } from 'expo-router'
 import { SettingsProvider } from '../context/SettingsContext'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
+import statusBarArea from '../src/components/CustomSafeAreaView'
+import {
+  SafeAreaView,
+} from "react-native";
 
 export default function Layout() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaView style={statusBarArea().container}>
       <StatusBar style='auto' />
       <SettingsProvider>
         <Slot />
       </SettingsProvider>
-    </SafeAreaProvider>
+    </SafeAreaView>
   )
 }
