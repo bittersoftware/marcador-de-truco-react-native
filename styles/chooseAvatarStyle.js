@@ -44,13 +44,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   defaultAvatarStatus: {
-    backgroundColor: COLORS.primary,
+    borderColor: COLORS.primary,
+    borderWidth: 2,
   },
   selectedAvatar: {
     backgroundColor: COLORS.tertiary,
   },
   adversaryAvatar: {
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.gray2,
   },
   image: {
     height: 90,
