@@ -1,9 +1,26 @@
 import { Modal, Text, Pressable, View, Image } from 'react-native'
 import { styles } from '../../styles/endGameModalStyle'
 import { useRouter } from 'expo-router'
+import { useSettingsContext } from '../../context/SettingsContext'
+import images from '../../constants/images'
 
 export const EndGameModal = ({ visible, endScoreData }) => {
   const navigation = useRouter()
+
+  const { currentTeamAName, currentTeamAAvatar, currentTeamBAvatar } =
+    useSettingsContext()
+
+  const avatars = [
+    images.avatar1,
+    images.avatar2,
+    images.avatar3,
+    images.avatar4,
+    images.avatar5,
+    images.avatar6,
+    images.avatar7,
+    images.avatar8,
+    images.avatar9,
+  ]
 
   const getEndGameData = () => {
     let winnerPerRound = []
@@ -13,6 +30,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
     let winsLoser = 0
     let teamA = ''
     let teamB = ''
+    let avatar = ''
 
     const gameScoreData = endScoreData.map((round) => {
       ;[teamA, teamB] = Object.keys(round).sort()
@@ -31,18 +49,21 @@ export const EndGameModal = ({ visible, endScoreData }) => {
 
     winnerTeam = teamAVictories > teamBVictories ? teamA : teamB
     loserTeam = teamAVictories > teamBVictories ? teamB : teamA
+    avatar =
+      winnerTeam === currentTeamAName ? currentTeamAAvatar : currentTeamBAvatar
 
     return {
       winnerTeam: winnerTeam,
       loserTeam: loserTeam,
       winsWinner: frequencyCount[winnerTeam],
       winsLoser: frequencyCount[loserTeam] ? frequencyCount[loserTeam] : 0,
+      avatar: avatar
     }
   }
 
   const parseScoreData = () => {
     const gameData = getEndGameData()
-    const { winnerTeam, loserTeam, winsWinner, winsLoser } = gameData
+    const { winnerTeam, loserTeam, winsWinner, winsLoser, avatar } = gameData
 
     const scoreListWithInfo = endScoreData.map((round) => {
       const isWinnerRound = round[winnerTeam] > round[loserTeam]
@@ -57,6 +78,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
       loserTeam,
       winsWinner,
       winsLoser,
+      avatar,
       scoreList: scoreListWithInfo,
     }
   }
@@ -109,7 +131,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
               />
               <View style={styles.avatarBackground}>
                 <Image
-                  source={require('../../assets/images/cat.png')}
+                  source={result.avatar}
                   style={styles.avatar}
                 />
               </View>

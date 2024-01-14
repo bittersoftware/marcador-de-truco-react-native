@@ -60,21 +60,21 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
     borderRadius: 45,
   },
-  backButtonContainer: {
+  confirmButtonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     justifyContent: 'flex-end',
     marginBottom: 64,
   },
-  backButton: {
+  confirmButton: {
     backgroundColor: COLORS.primary,
-    width: 100,
+    width: 130,
     height: 50,
     borderRadius: 25,
     justifyContent: 'center',
   },
-  backButtonText: {
+  confirmButtonText: {
     color: COLORS.lightWhite,
     fontFamily: FONT.semiBold,
     fontSize: SIZES.medium,

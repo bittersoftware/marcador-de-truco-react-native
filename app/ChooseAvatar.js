@@ -81,9 +81,9 @@ export default NewGame = () => {
           </Pressable>
         ))}
       </View>
-      <View style={styles.backButtonContainer}>
-        <Pressable onPress={() => navigation.back()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Voltar</Text>
+      <View style={styles.confirmButtonContainer}>
+        <Pressable onPress={() => navigation.back()} style={styles.confirmButton}>
+          <Text style={styles.confirmButtonText}>Confirmar</Text>
         </Pressable>
       </View>
     </View>
