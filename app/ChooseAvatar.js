@@ -4,6 +4,7 @@ import images from '../constants/images'
 import styles from '../styles/chooseAvatarStyle'
 import { useLocalSearchParams } from 'expo-router'
 import { useSettingsContext } from '../context/SettingsContext'
+import { PageTitle } from '../src/components/PageTitle'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -66,10 +67,7 @@ export default NewGame = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.mainTextContainer}>
-        <Text style={styles.mainText}>Selecione avatar</Text>
-        <Text style={styles.teamText}>{params.teamName}</Text>
-      </View>
+      <PageTitle text={'Selecione Avatar'}/>
       <View style={styles.gridContainer}>
         {avatars.map((item, idx) => (
           <Pressable
@@ -77,12 +75,18 @@ export default NewGame = () => {
             onPress={() => selectAvatar(item)}
             style={() => getCurrentAvatar(item)}
           >
-            <Image source={item} style={styles.image} />
+            <Image
+              source={item}
+              style={[styles.image, () => getCurrentAvatar(item)]}
+            />
           </Pressable>
         ))}
       </View>
       <View style={styles.confirmButtonContainer}>
-        <Pressable onPress={() => navigation.back()} style={styles.confirmButton}>
+        <Pressable
+          onPress={() => navigation.back()}
+          style={styles.confirmButton}
+        >
           <Text style={styles.confirmButtonText}>Confirmar</Text>
         </Pressable>
       </View>

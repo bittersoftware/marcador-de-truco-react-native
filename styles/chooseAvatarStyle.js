@@ -5,16 +5,7 @@ import { COLORS, FONT, SIZES } from '../constants'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  mainTextContainer: {
-    justifyContent: 'center',
-    marginTop: 42,
-  },
-  mainText: {
-    fontSize: SIZES.xLarge,
-    textAlign: 'center',
-    fontFamily: FONT.semiBold,
-    color: COLORS.primary,
+    backgroundColor: COLORS.lightWhite,
   },
   teamText: {
     marginTop: 32,
@@ -37,28 +28,26 @@ const styles = StyleSheet.create({
   },
   item: {
     marginVertical: 6,
-    height: 100,
-    width: 100,
+    height: 90,
+    width: 90,
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center'
   },
   defaultAvatarStatus: {
-    borderColor: COLORS.primary,
-    borderWidth: 2,
+    backgroundColor: COLORS.gray2,
   },
   selectedAvatar: {
     backgroundColor: COLORS.tertiary,
   },
   adversaryAvatar: {
-    backgroundColor: COLORS.gray2,
+    backgroundColor: COLORS.secondary,
   },
   image: {
     height: 90,
     width: 90,
     alignItems: 'center',
     resizeMode: 'contain',
-    backgroundColor: COLORS.lightWhite,
     borderRadius: 45,
   },
   confirmButtonContainer: {

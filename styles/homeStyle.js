@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 32,
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.tertiary,
   },
   imageContainer: {
     alignItems: 'center',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: FONT.regular,
     marginHorizontal: 15,
-    color: COLORS.gray,
+    color: COLORS.lightWhite,
     padding: 8,
     fontSize: SIZES.medium,
   },

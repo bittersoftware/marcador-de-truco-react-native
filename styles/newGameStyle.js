@@ -1,66 +1,40 @@
 import { StyleSheet } from 'react-native'
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.lightWhite
   },
   mainTextContainer: {
-    marginTop: 36,
-    marginBottom: 36,
     marginHorizontal: 'auto',
+    backgroundColor: COLORS.tertiary,
+    height: 56,
+    justifyContent: 'center',
   },
   mainText: {
     display: 'flex',
     fontSize: SIZES.xLarge,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
-    color: COLORS.primary,
+    color: COLORS.lightWhite,
+  },
+  card: {
+    backgroundColor: COLORS.lightWhite,
+    marginHorizontal: 36,
+    paddingVertical: 8,
+    borderRadius: 16,
+    marginVertical: 32,
+    ...SHADOWS.medium,
   },
   sectionTextTitle: {
     fontSize: SIZES.medium,
     textAlign: 'left',
     fontFamily: FONT.semiBold,
-    color: COLORS.secondary,
+    color: COLORS.primary,
     marginHorizontal: 24,
-    marginBottom: 8,
-    marginTop: 24,
-  },
-  teamSettingsContainer: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
-    gap: 12,
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  avatarContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderWidth: 2,
-    borderColor: COLORS.primary,
-    borderRadius: 25,
-    resizeMode: 'contain',
-  },
-  teamInputContainer: {
-    gap: 12,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    flexDirection: 'row',
-    borderWidth: 2,
-    borderColor: COLORS.primary,
-    borderRadius: 23,
-  },
-  teamInputText: {
-    fontFamily: FONT.regular,
-    color: COLORS.gray,
-    width: 180,
+    marginVertical: 16,
   },
   pickerContainer: {
     alignItems: 'center',

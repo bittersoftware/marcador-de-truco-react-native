@@ -16,6 +16,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import styles from '../styles/newGameStyle'
 import { useSettingsContext } from '../context/SettingsContext'
 import { TeamDefinition } from '../src/components/TeamDefinition'
+import { PageTitle } from '../src/components/PageTitle'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -59,23 +60,12 @@ export default NewGame = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <View style={styles.mainTextContainer}>
-          <Text style={styles.mainText}>Novo Jogo</Text>
+        <PageTitle text={'Novo Jogo'} />
+        <View style={styles.card}>
+          <Text style={styles.sectionTextTitle}>Equipes</Text>
+          <TeamDefinition />
         </View>
-        <Text style={styles.sectionTextTitle}>Definição das Equipes</Text>
-        <View>
-          <TeamDefinition
-            teamName={currentTeamAName}
-            setCurrentTeamName={setCurrentTeamAName}
-            avatar={currentTeamAAvatar}
-          />
-          <TeamDefinition
-            teamName={currentTeamBName}
-            setCurrentTeamName={setCurrentTeamBName}
-            avatar={currentTeamBAvatar}
-          />
-        </View>
-        <Text style={styles.sectionTextTitle}>Número de Rodadas</Text>
+        <Text style={styles.sectionTextTitle}>Rodadas</Text>
         <View style={styles.pickerContainer}>
           <MaterialCommunityIcons name="cards" size={28} color="black" />
           <View style={styles.picker}>

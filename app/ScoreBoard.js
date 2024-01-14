@@ -5,6 +5,7 @@ import { PointsBoard } from '../src/components/PointsBoard'
 import { BoardOptionsModal } from '../src/components/BoardOptionsModal'
 import { FloatingActionButton } from '../src/components/FloatingActionButton'
 import { useSettingsContext } from '../context/SettingsContext'
+import { View } from 'react-native'
 
 export default ScoreBoard = () => {
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
@@ -34,7 +35,7 @@ export default ScoreBoard = () => {
   }
 
   return (
-    <>
+    <View style={{backgroundColor: 'white', flex: 1,}}>
       <ScoreDisplay scoreData={scoreData} />
       <TeamNamesDisplay
         teamA={currentTeamAName}
@@ -57,6 +58,6 @@ export default ScoreBoard = () => {
         setModal={setModal}
         handleClickHistory={handleClickHistory}
       />
-    </>
+    </View>
   )
 }
