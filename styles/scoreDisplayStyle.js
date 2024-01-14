@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SIZES } from "../constants";
+import { COLORS, FONT, SIZES, SHADOWS } from "../constants";
 
 export const styles = StyleSheet.create({
   scoreContainer: {
@@ -17,11 +17,11 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.xxLarge,
     fontFamily: FONT.bold,
     textAlign: 'center',
+    backgroundColor: COLORS.gray3,
     textAlignVertical: 'center',
-    borderColor: COLORS.primary,
-    borderWidth: 3,
     borderRadius: 50,
     width: 50,
     height: 50,
+    ...SHADOWS.medium
   },
 })

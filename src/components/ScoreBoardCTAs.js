@@ -9,7 +9,7 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
   const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext()
 
   const [confirm, setConfirm] = useState(false)
-  const [btnText, setBtnText] = useState('Encerrar partida')
+  const [btnText, setBtnText] = useState('Encerrar jogo')
 
   const navHomeScreen = () => {
     if (!confirm) {

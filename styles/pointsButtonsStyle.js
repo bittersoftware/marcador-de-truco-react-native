@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS } from "../constants";
+import { COLORS, SHADOWS } from "../constants";
 
 export const styles = StyleSheet.create({
   buttonContainer: {
@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: COLORS.secondary,
-    borderWidth: 2,
+    borderWidth: 0,
+    ...SHADOWS.small,
   },
   buttonSelected: {
     backgroundColor: COLORS.tertiary,
