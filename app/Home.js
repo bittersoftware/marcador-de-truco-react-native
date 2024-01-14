@@ -1,9 +1,30 @@
 import { Image, Text, View, Pressable } from 'react-native'
 import { useRouter } from 'expo-router'
 import styles from '../styles/homeStyle'
+import { useSettingsContext } from '../context/SettingsContext'
 
 export const Home = () => {
   const navigation = useRouter()
+
+  const {
+    currentTeamAName,
+    setCurrentTeamAName,
+    currentTeamBName,
+    setCurrentTeamBName,
+    defaultTeamAName,
+    defaultTeamBName,
+  } = useSettingsContext()
+
+
+  const newGame = () => {
+    if (!currentTeamAName) {
+      setCurrentTeamAName(defaultTeamAName)
+    }
+    if (!currentTeamBName) {
+      setCurrentTeamBName(defaultTeamBName)
+    }
+    navigation.push('/NewGame')
+  }
 
   return (
     <View style={styles.container}>
@@ -23,7 +44,7 @@ export const Home = () => {
       <View style={styles.buttonsContainer}>
         <Pressable
           style={[styles.button, styles.mainButton]}
-          onPress={() => navigation.replace('/NewGame')}
+          onPress={() => newGame()}
         >
           <Text style={[styles.buttonText, styles.mainButtonText]}>
             Novo Jogo

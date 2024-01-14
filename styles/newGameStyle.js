@@ -28,24 +28,39 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: 24,
   },
+  teamSettingsContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    gap: 12,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  avatarContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderWidth: 2,
+    borderColor: COLORS.primary,
+    borderRadius: 25,
+    resizeMode: 'contain',
+  },
   teamInputContainer: {
     gap: 12,
     paddingVertical: 6,
     paddingHorizontal: 10,
-    marginHorizontal: 20,
     flexDirection: 'row',
-    marginBottom: 16,
-    alignItems: 'center',
     borderWidth: 2,
     borderColor: COLORS.primary,
     borderRadius: 23,
   },
   teamInputText: {
-    flexGrow: 1,
     fontFamily: FONT.regular,
-  },
-  picker: {
-    flexGrow: 1,
+    color: COLORS.gray,
+    width: 180,
   },
   pickerContainer: {
     alignItems: 'center',
@@ -55,6 +70,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginHorizontal: 20,
     paddingHorizontal: 10,
+  },
+  picker: {
+    flexGrow: 1,
+    color: COLORS.gray,
   },
   buttonContainer: {
     flex: 1,
@@ -85,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
     fontFamily: FONT.semiBold,
-  }
+  },
 })
 
 export default styles
