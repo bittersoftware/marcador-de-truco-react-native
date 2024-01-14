@@ -9,12 +9,13 @@ import {
   Image,
   Keyboard,
   TouchableWithoutFeedback,
-  ToastAndroid
+  ToastAndroid,
 } from 'react-native'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import styles from '../styles/newGameStyle'
 import { useSettingsContext } from '../context/SettingsContext'
+import { TeamDefinition } from '../src/components/TeamDefinition'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -29,9 +30,6 @@ export default NewGame = () => {
     defaultTeamBName,
     setCurrentGameMode,
   } = useSettingsContext()
-
-  const MIN_CHARS = 1
-  const MAX_CHARS = 15
 
   const [selectedGameMode, setSelectedGameMode] = useState()
 
@@ -49,38 +47,14 @@ export default NewGame = () => {
 
   const startGame = () => {
     if (!currentTeamAName || !currentTeamBName) {
-      ToastAndroid.show('O nome das equipes não pode estar vazio!', ToastAndroid.SHORT)
+      ToastAndroid.show(
+        'O nome das equipes não pode estar vazio!',
+        ToastAndroid.SHORT
+      )
       return
     }
-  navigation.replace('/ScoreBoard')
-
+    navigation.replace('/ScoreBoard')
   }
-
-  const renderTeamSetting = (teamName, setCurrentTeamName, avatar) => (
-    <View style={styles.teamSettingsContainer}>
-      <Pressable
-        onPress={() =>
-          navigation.push({
-            pathname: '/ChooseAvatar',
-            params: { teamName: teamName },
-          })
-        }
-        style={styles.avatarContainer}
-      >
-        <Image source={avatar} style={styles.avatar} />
-      </Pressable>
-      <View style={styles.teamInputContainer}>
-        <FontAwesome5 name="user-friends" size={24} color="black" />
-        <TextInput
-          style={styles.teamInputText}
-          maxLength={MAX_CHARS}
-          minLength={MIN_CHARS}
-          defaultValue={teamName}
-          onChangeText={(text) => setCurrentTeamName(text)}
-        />
-      </View>
-    </View>
-  )
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -89,20 +63,18 @@ export default NewGame = () => {
           <Text style={styles.mainText}>Novo Jogo</Text>
         </View>
         <Text style={styles.sectionTextTitle}>Definição das Equipes</Text>
-        <>
-          {renderTeamSetting(
-            currentTeamAName,
-            setCurrentTeamAName,
-            currentTeamAAvatar
-          )}
-        </>
-        <>
-          {renderTeamSetting(
-            currentTeamBName,
-            setCurrentTeamBName,
-            currentTeamBAvatar
-          )}
-        </>
+        <View>
+          <TeamDefinition
+            teamName={currentTeamAName}
+            setCurrentTeamName={setCurrentTeamAName}
+            avatar={currentTeamAAvatar}
+          />
+          <TeamDefinition
+            teamName={currentTeamBName}
+            setCurrentTeamName={setCurrentTeamBName}
+            avatar={currentTeamBAvatar}
+          />
+        </View>
         <Text style={styles.sectionTextTitle}>Número de Rodadas</Text>
         <View style={styles.pickerContainer}>
           <MaterialCommunityIcons name="cards" size={28} color="black" />
@@ -120,10 +92,7 @@ export default NewGame = () => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable
-            style={styles.button}
-            onPress={() => startGame()}
-          >
+          <Pressable style={styles.button} onPress={() => startGame()}>
             <Text style={styles.buttonText}>Iniciar</Text>
           </Pressable>
           <Pressable onPress={() => navigation.replace('/')}>
