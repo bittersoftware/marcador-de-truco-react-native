@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
     width: 90,
     borderRadius: 50,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    ...SHADOWS.small
   },
   defaultAvatarStatus: {
-    backgroundColor: COLORS.gray2,
+    backgroundColor: COLORS.gray3,
   },
   selectedAvatar: {
     backgroundColor: COLORS.tertiary,
