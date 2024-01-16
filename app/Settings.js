@@ -4,7 +4,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Switch,
-  Pressable
+  Pressable,
+  ToastAndroid
 } from 'react-native';
 import styles from '../styles/settingsStyle';
 import { useSettingsContext } from '../context/SettingsContext';
@@ -20,12 +21,24 @@ import { useRouter } from 'expo-router';
 export default Settings = () => {
   const navigation = useRouter();
 
-  const { preventSleep, setPreventSleep } = useSettingsContext();
+  const { preventSleep, setPreventSleep, defaultTeamAName, defaultTeamBName } =
+    useSettingsContext();
 
   const toggleSwitch = () => {
     setPreventSleep((previousState) => !previousState);
     saveConfig(storageKeys.preventSleep, !preventSleep);
-  }
+  };
+
+  const goHome = () => {
+    if (!defaultTeamAName || !defaultTeamBName) {
+      ToastAndroid.show(
+        'O nome das equipes não pode estar vazio!',
+        ToastAndroid.SHORT
+      );
+      return;
+    }
+    navigation.replace(pages.HOME);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -51,11 +64,11 @@ export default Settings = () => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable onPress={() => navigation.replace(pages.HOME)}>
+          <Pressable onPress={goHome}>
             <Text style={styles.backButtonText}>Voltar</Text>
           </Pressable>
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
-}
+};

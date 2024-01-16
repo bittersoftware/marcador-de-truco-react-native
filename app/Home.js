@@ -17,19 +17,12 @@ export const Home = () => {
     currentTeamBName,
     setCurrentTeamBName,
     defaultTeamAAvatar,
-    setDefaultTeamAAvatar,
     defaultTeamAName,
-    setDefaultTeamAName,
     defaultTeamBName,
     defaultTeamBAvatar,
-    setDefaultTeamBAvatar,
-    setDefaultTeamBName,
     currentGameMode,
     setCurrentGameMode,
     defaultGameMode,
-    setDefaultGameMode,
-    preventSleep,
-    setPreventSleep
   } = useSettingsContext();
 
   const newGame = () => {
@@ -78,7 +71,7 @@ export const Home = () => {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.replace(pages.HISTORY)}
+          onPress={() => navigation.push(pages.HISTORY)}
         >
           <Text style={styles.buttonText}>Histórico</Text>
         </Pressable>
