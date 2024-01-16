@@ -19,6 +19,7 @@ export const EndMatchModal = ({
 
   const MAX_POINTS = 12;
   const MAX_WINS = gameModes[currentGameMode].maxWins;
+  const MAX_MATCHES = gameModes[currentGameMode].maxMatches;
 
   const getWinnerTeamName = () => {
     const hasAWon = score.pointsA === MAX_POINTS;
@@ -79,7 +80,7 @@ export const EndMatchModal = ({
             </View>
             <Text style={styles.roundText}>Jogo {winsA + winsB}</Text>
             <Text style={styles.roundText}>
-              Melhor de {currentGameMode.maxMatches}
+              Melhor de {MAX_MATCHES}
             </Text>
             <Pressable
               style={styles.button}
