@@ -23,7 +23,6 @@ export const applyDefaults = async () => {
     );
 
     if (keyValues.includes(undefined || null)) {
-      console.log('Apply defaults', keyValues);
       for (const [key, value] of Object.entries(defaults)) {
         if (
           [
@@ -37,10 +36,6 @@ export const applyDefaults = async () => {
         } else {
           await AsyncStorage.setItem(key, value.toString());
         }
-      }
-
-      for (const [key, value] of Object.entries(defaults)) {
-        console.log(await AsyncStorage.getItem(key));
       }
     }
   } catch (e) {
