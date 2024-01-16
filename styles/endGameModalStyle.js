@@ -1,12 +1,12 @@
-import { PlatformColor, StyleSheet } from 'react-native'
+import { PlatformColor, StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   modalView: {
     backgroundColor: COLORS.primary,
@@ -17,37 +17,37 @@ export const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 2
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    marginBottom: 24,
+    marginBottom: 24
   },
   mainText: {
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
-    color: COLORS.lightWhite,
+    color: COLORS.lightWhite
   },
   logo: {
     width: 30,
     height: 30,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
-  avatarContainer:{
+  avatarContainer: {
     alignItems: 'center'
   },
   crown: {
     height: 70,
     resizeMode: 'contain',
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
-  avatarBackground:{
+  avatarBackground: {
     width: 110,
     height: 110,
     borderRadius: 55,
@@ -58,39 +58,39 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   winnerTeamText: {
     fontFamily: FONT.bold,
     fontSize: SIZES.xxLarge,
-    color: COLORS.tertiary,
+    color: COLORS.tertiary
   },
   loserTeamText: {
     fontFamily: FONT.bold,
     fontSize: SIZES.medium,
-    color: COLORS.tertiary,
+    color: COLORS.tertiary
   },
   scoreText: {
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite,
-    fontSize: SIZES.large,
+    fontSize: SIZES.large
   },
   buttonText: {
     color: COLORS.primary,
     fontFamily: FONT.bold,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   button: {
     marginTop: 12,
     borderRadius: 20,
     backgroundColor: COLORS.tertiary,
     padding: 10,
-    elevation: 2,
+    elevation: 2
   },
-  roundsContainer:{
+  roundsContainer: {
     margin: 12,
     flexDirection: 'row',
-    gap: 12, 
+    gap: 12,
     padding: 12
   },
   singleRoundContainer: {
@@ -101,22 +101,22 @@ export const styles = StyleSheet.create({
     borderColor: COLORS.lightWhite,
     borderWidth: 2,
     alignItems: 'center',
-    padding: 4,
+    padding: 4
   },
   roundScoreText: {
     color: COLORS.lightWhite,
-    fontFamily: FONT.medium,
+    fontFamily: FONT.medium
   },
-  roundMark: { 
+  roundMark: {
     width: 12,
     height: 12,
     borderRadius: 6,
-    margin: 6,
+    margin: 6
   },
   winnerMark: {
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.tertiary
   },
   loserMark: {
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.lightWhite
   }
-})
+});

@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.lightWhite
   },
   teamText: {
     marginTop: 32,
@@ -36,41 +36,41 @@ const styles = StyleSheet.create({
     ...SHADOWS.small
   },
   defaultAvatarStatus: {
-    backgroundColor: COLORS.gray3,
+    backgroundColor: COLORS.gray3
   },
   selectedAvatar: {
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.tertiary
   },
   adversaryAvatar: {
-    backgroundColor: COLORS.secondary,
+    backgroundColor: COLORS.secondary
   },
   image: {
     height: 90,
     width: 90,
     alignItems: 'center',
     resizeMode: 'contain',
-    borderRadius: 45,
+    borderRadius: 45
   },
   confirmButtonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginBottom: 64,
+    marginBottom: 64
   },
   confirmButton: {
     backgroundColor: COLORS.primary,
     width: 130,
     height: 50,
     borderRadius: 25,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   confirmButtonText: {
     color: COLORS.lightWhite,
     fontFamily: FONT.semiBold,
     fontSize: SIZES.medium,
-    textAlign: 'center',
-  },
-})
+    textAlign: 'center'
+  }
+});
 
-export default styles
+export default styles;

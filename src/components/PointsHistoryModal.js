@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import { Modal, Text, Pressable, View, FlatList } from 'react-native'
-import { useSettingsContext } from '../../context/SettingsContext'
-import { styles } from '../../styles/historyPointsModalStyle'
+import { useEffect, useRef, useState } from 'react';
+import { Modal, Text, Pressable, View, FlatList } from 'react-native';
+import { useSettingsContext } from '../../context/SettingsContext';
+import { styles } from '../../styles/historyPointsModalStyle';
 
 export const PointsHistoryModal = ({
   visible,
@@ -10,74 +10,76 @@ export const PointsHistoryModal = ({
   historyButton,
   pointsHistory,
   setPointsHistory,
-  currentRoundRef,
+  currentRoundRef
 }) => {
-  const btnTextUndo = 'Desfazer última'
-  const btnTextConfirm = 'Confirma?'
+  const btnTextUndo = 'Desfazer última';
+  const btnTextConfirm = 'Confirma?';
 
-  const { currentTeamAName, currentTeamBName } = useSettingsContext()
-  const isUndoRef = useRef(false)
-  const [confirm, setConfirm] = useState(false)
-  const [btnText, setBtnText] = useState(btnTextUndo)
+  const { currentTeamAName, currentTeamBName } = useSettingsContext();
+  const isUndoRef = useRef(false);
+  const [confirm, setConfirm] = useState(false);
+  const [btnText, setBtnText] = useState(btnTextUndo);
 
   const undoLastPoint = () => {
-    if (pointsHistory[0].round === 0) return
-
-    if (!confirm) {
-      setConfirm(() => true)
-      setBtnText(() => btnTextConfirm)
-      return
+    if (pointsHistory[0].round === 0) {
+      return;
     }
 
-    let pointsHistoryArr = pointsHistory
-    pointsHistoryArr.shift()
+    if (!confirm) {
+      setConfirm(() => true);
+      setBtnText(() => btnTextConfirm);
+      return;
+    }
 
-    const ptsA = pointsHistoryArr[0].teamA
-    const ptsB = pointsHistoryArr[0].teamB
+    let pointsHistoryArr = pointsHistory;
+    pointsHistoryArr.shift();
 
-    setPointsHistory(() => pointsHistoryArr)
-    currentRoundRef.current -= 1
-    isUndoRef.current = true
+    const ptsA = pointsHistoryArr[0].teamA;
+    const ptsB = pointsHistoryArr[0].teamB;
+
+    setPointsHistory(() => pointsHistoryArr);
+    currentRoundRef.current -= 1;
+    isUndoRef.current = true;
 
     updateScore(() => ({
       pointsA: ptsA,
-      pointsB: ptsB,
-    }))
+      pointsB: ptsB
+    }));
 
-    setConfirm(() => false)
-    setBtnText(() => btnTextUndo)
-  }
+    setConfirm(() => false);
+    setBtnText(() => btnTextUndo);
+  };
 
   useEffect(() => {
     if (isUndoRef.current) {
-      isUndoRef.current = false
-      return
+      isUndoRef.current = false;
+      return;
     }
 
-    currentRoundRef.current += 1
+    currentRoundRef.current += 1;
 
     const currentPoints = {
       round: currentRoundRef.current,
       teamA: score.pointsA,
-      teamB: score.pointsB,
-    }
+      teamB: score.pointsB
+    };
 
     setPointsHistory((prevHistoryPoints) => [
       currentPoints,
-      ...prevHistoryPoints,
-    ])
-  }, [score.pointsA, score.pointsB])
+      ...prevHistoryPoints
+    ]);
+  }, [score.pointsA, score.pointsB]);
 
   const dismissHistoryModal = () => {
     visible.setModals((prevModals) => ({
       ...prevModals,
-      pointsHistory: false,
-    }))
+      pointsHistory: false
+    }));
 
-    setConfirm(() => false)
-    setBtnText(() => btnTextUndo)
-    historyButton.setShowPointsHistory(() => false)
-  }
+    setConfirm(() => false);
+    setBtnText(() => btnTextUndo);
+    historyButton.setShowPointsHistory(() => false);
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.listItem}>
@@ -90,7 +92,7 @@ export const PointsHistoryModal = ({
         <Text style={styles.pointsText}>{`${item.teamB}`}</Text>
       </View>
     </View>
-  )
+  );
 
   return (
     visible.modals.pointsHistory && (
@@ -131,5 +133,5 @@ export const PointsHistoryModal = ({
         </View>
       </Modal>
     )
-  )
-}
+  );
+};

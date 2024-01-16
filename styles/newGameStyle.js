@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
     backgroundColor: COLORS.tertiary,
     height: 56,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   mainText: {
     display: 'flex',
     fontSize: SIZES.xLarge,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
-    color: COLORS.lightWhite,
+    color: COLORS.lightWhite
   },
   card: {
     backgroundColor: COLORS.lightWhite,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 16,
     marginTop: 24,
-    ...SHADOWS.medium,
+    ...SHADOWS.medium
   },
   sectionTextTitle: {
     fontSize: SIZES.medium,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     color: COLORS.primary,
     marginHorizontal: 24,
-    marginVertical: 16,
+    marginVertical: 16
   },
   pickerContainer: {
     alignItems: 'center',
@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 2,
     marginHorizontal: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   picker: {
     flexGrow: 1,
-    color: COLORS.gray,
+    color: COLORS.gray
   },
   buttonContainer: {
     flex: 1,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     paddingBottom: 54,
-    gap: 12,
+    gap: 12
   },
   button: {
     borderColor: COLORS.primary,
@@ -66,19 +66,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 120,
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: 30
   },
   buttonText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
+    fontFamily: FONT.semiBold
   },
   backButtonText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
-    fontFamily: FONT.semiBold,
-  },
-})
+    fontFamily: FONT.semiBold
+  }
+});
 
-export default styles
+export default styles;

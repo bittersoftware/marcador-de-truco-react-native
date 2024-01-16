@@ -1,6 +1,6 @@
-import { Pressable, View } from 'react-native'
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons'
-import { styles } from '../../styles/floatingActionButtonStyle'
+import { Pressable, View } from 'react-native';
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import { styles } from '../../styles/floatingActionButtonStyle';
 
 export const FloatingActionButton = ({ handleClickFloatingAction }) => {
   return (
@@ -13,5 +13,5 @@ export const FloatingActionButton = ({ handleClickFloatingAction }) => {
         />
       </Pressable>
     </View>
-  )
-}
+  );
+};

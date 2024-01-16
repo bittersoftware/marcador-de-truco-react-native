@@ -1,27 +1,26 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants';
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   separator: {
     height: 1,
     backgroundColor: COLORS.gray3,
     marginHorizontal: 30,
-    marginVertical: 8,
+    marginVertical: 8
   },
   teamSettingsContainer: {
     flexDirection: 'row',
     marginHorizontal: 20,
     gap: 12,
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 12
   },
   avatarContainer: {
     width: 50,
     height: 50,
-    borderRadius: 25,
+    borderRadius: 25
   },
   avatar: {
     width: 48,
@@ -38,16 +37,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: COLORS.gray3,
     borderRadius: 23,
-    flex: 1,
+    flex: 1
   },
   teamInputText: {
     fontFamily: FONT.semiBold,
     color: COLORS.gray,
-    flexGrow: 1,
+    flexGrow: 1
   },
   placeHolderText: {
-    color: COLORS.gray2,
+    color: COLORS.gray2
   }
-})
+});
 
-export default styles
+export default styles;

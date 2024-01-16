@@ -1,29 +1,29 @@
-import { Text, View } from 'react-native'
-import { styles } from '../../styles/teamNamesDisplayStyle'
-import { useSettingsContext } from '../../context/SettingsContext'
-import { gameModes } from '../misc/gameModes'
+import { Text, View } from 'react-native';
+import { styles } from '../../styles/teamNamesDisplayStyle';
+import { useSettingsContext } from '../../context/SettingsContext';
+import { gameModes } from '../misc/gameModes';
 
 export const TeamNamesDisplay = ({ teamA, teamB, aWins, bWins }) => {
-  const { currentGameMode } = useSettingsContext()
+  const { currentGameMode } = useSettingsContext();
   const aWinMarker = Array.from(
     { length: aWins },
     (_, index) => `$aWin-${index}`
-  )
+  );
   const bWinMarker = Array.from(
     { length: bWins },
     (_, index) => `$bWin-${index}`
-  )
+  );
 
-  const aClearNum = gameModes[currentGameMode].maxWins - aWins
-  const bClearNum = gameModes[currentGameMode].maxWins - bWins
+  const aClearNum = gameModes[currentGameMode].maxWins - aWins;
+  const bClearNum = gameModes[currentGameMode].maxWins - bWins;
   const aClearMarker = Array.from(
     { length: aClearNum },
     (_, index) => `$aClear-${index}`
-  )
+  );
   const bClearMarker = Array.from(
     { length: bClearNum },
     (_, index) => `$bClear-${index}`
-  )
+  );
 
   return (
     <View style={styles.container}>
@@ -50,5 +50,5 @@ export const TeamNamesDisplay = ({ teamA, teamB, aWins, bWins }) => {
         </View>
       </View>
     </View>
-  )
-}
+  );
+};

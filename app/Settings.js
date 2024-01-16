@@ -4,27 +4,27 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Switch,
-  Pressable,
-} from 'react-native'
-import styles from '../styles/settingsStyle'
-import { useSettingsContext } from '../context/SettingsContext'
-import { TeamDefinition } from '../src/components/TeamDefinition'
-import { PageTitle } from '../src/components/PageTitle'
-import { GameModes } from '../src/components/GameModes'
-import { COLORS } from '../constants'
-import pages from '../constants/pages'
-import storageKeys from '../constants/storageKeys'
-import { saveConfig } from '../src/misc/saveConfig'
-import { useRouter } from 'expo-router'
+  Pressable
+} from 'react-native';
+import styles from '../styles/settingsStyle';
+import { useSettingsContext } from '../context/SettingsContext';
+import { TeamDefinition } from '../src/components/TeamDefinition';
+import { PageTitle } from '../src/components/PageTitle';
+import { GameModes } from '../src/components/GameModes';
+import { COLORS } from '../constants';
+import pages from '../constants/pages';
+import storageKeys from '../constants/storageKeys';
+import { saveConfig } from '../src/misc/saveConfig';
+import { useRouter } from 'expo-router';
 
 export default Settings = () => {
-  const navigation = useRouter()
+  const navigation = useRouter();
 
-  const { preventSleep, setPreventSleep } = useSettingsContext()
+  const { preventSleep, setPreventSleep } = useSettingsContext();
 
   const toggleSwitch = () => {
-    setPreventSleep((previousState) => !previousState)
-    saveConfig(storageKeys.preventSleep, !preventSleep)
+    setPreventSleep((previousState) => !previousState);
+    saveConfig(storageKeys.preventSleep, !preventSleep);
   }
 
   return (
@@ -57,5 +57,5 @@ export default Settings = () => {
         </View>
       </View>
     </TouchableWithoutFeedback>
-  )
+  );
 }

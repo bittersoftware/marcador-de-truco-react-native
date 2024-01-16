@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
     backgroundColor: COLORS.tertiary,
     height: 56,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   mainText: {
     display: 'flex',
     fontSize: SIZES.xLarge,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
-    color: COLORS.lightWhite,
+    color: COLORS.lightWhite
   },
   card: {
     backgroundColor: COLORS.lightWhite,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 16,
     marginTop: 24,
-    ...SHADOWS.medium,
+    ...SHADOWS.medium
   },
   sectionTextTitle: {
     fontSize: SIZES.medium,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     color: COLORS.primary,
     marginHorizontal: 24,
-    marginVertical: 16,
+    marginVertical: 16
   },
   pickerContainer: {
     alignItems: 'center',
@@ -43,29 +43,29 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 2,
     marginHorizontal: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   picker: {
     flexGrow: 1,
-    color: COLORS.gray,
+    color: COLORS.gray
   },
   awakeSwitch: {
     display: 'flex',
     alignSelf: 'flex-start',
-    marginHorizontal: 12,
+    marginHorizontal: 12
   },
   buttonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: 24,
+    paddingBottom: 24
   },
   backButtonText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
-    fontFamily: FONT.semiBold,
-  },
-})
+    fontFamily: FONT.semiBold
+  }
+});
 
-export default styles
+export default styles;

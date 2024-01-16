@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS, SHADOWS } from "../constants";
+import { COLORS, SHADOWS } from '../constants';
 
 export const styles = StyleSheet.create({
   buttonContainer: {
@@ -19,26 +19,26 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: COLORS.secondary,
     borderWidth: 0,
-    ...SHADOWS.small,
+    ...SHADOWS.small
   },
   buttonSelected: {
     backgroundColor: COLORS.tertiary,
     width: 35,
-    height: 35,
+    height: 35
   },
   buttonValidPoint: {
     backgroundColor: COLORS.lightWhite,
     width: 30,
-    height: 30,
+    height: 30
   },
   buttonPastPoint: {
     backgroundColor: COLORS.gray,
     width: 15,
-    height: 15,
+    height: 15
   },
   buttonInvalidPoint: {
     backgroundColor: COLORS.gray,
     width: 15,
-    height: 15,
-  },
-})
+    height: 15
+  }
+});

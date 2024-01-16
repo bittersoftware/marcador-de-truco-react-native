@@ -1,14 +1,14 @@
-import { Modal, Text, Pressable, View, Image } from 'react-native'
-import { styles } from '../../styles/endGameModalStyle'
-import { useRouter } from 'expo-router'
-import { useSettingsContext } from '../../context/SettingsContext'
-import images from '../../constants/images'
+import { Modal, Text, Pressable, View, Image } from 'react-native';
+import { styles } from '../../styles/endGameModalStyle';
+import { useRouter } from 'expo-router';
+import { useSettingsContext } from '../../context/SettingsContext';
+import images from '../../constants/images';
 
 export const EndGameModal = ({ visible, endScoreData }) => {
-  const navigation = useRouter()
+  const navigation = useRouter();
 
   const { currentTeamAName, currentTeamAAvatar, currentTeamBAvatar } =
-    useSettingsContext()
+    useSettingsContext();
 
   const avatars = [
     images.avatar1,
@@ -19,38 +19,38 @@ export const EndGameModal = ({ visible, endScoreData }) => {
     images.avatar6,
     images.avatar7,
     images.avatar8,
-    images.avatar9,
-  ]
+    images.avatar9
+  ];
 
   const getEndGameData = () => {
-    let winnerPerRound = []
-    let winnerTeam = ''
-    let loserTeam = ''
-    let winsWinner = 0
-    let winsLoser = 0
-    let teamA = ''
-    let teamB = ''
-    let avatar = ''
+    let winnerPerRound = [];
+    let winnerTeam = '';
+    let loserTeam = '';
+    let winsWinner = 0;
+    let winsLoser = 0;
+    let teamA = '';
+    let teamB = '';
+    let avatar = '';
 
     const gameScoreData = endScoreData.map((round) => {
-      ;[teamA, teamB] = Object.keys(round).sort()
-      const winnerTeam = round[teamA] > round[teamB] ? teamA : teamB
-      winnerPerRound.push(winnerTeam)
+      [teamA, teamB] = Object.keys(round).sort();
+      const winnerTeam = round[teamA] > round[teamB] ? teamA : teamB;
+      winnerPerRound.push(winnerTeam);
     })
 
-    const frequencyCount = {}
+    const frequencyCount = {};
 
     winnerPerRound.forEach((element) => {
-      frequencyCount[element] = (frequencyCount[element] || 0) + 1
+      frequencyCount[element] = (frequencyCount[element] || 0) + 1;
     })
 
-    const teamAVictories = frequencyCount[teamA] ? frequencyCount[teamA] : 0
-    const teamBVictories = frequencyCount[teamB] ? frequencyCount[teamB] : 0
+    const teamAVictories = frequencyCount[teamA] ? frequencyCount[teamA] : 0;
+    const teamBVictories = frequencyCount[teamB] ? frequencyCount[teamB] : 0;
 
-    winnerTeam = teamAVictories > teamBVictories ? teamA : teamB
-    loserTeam = teamAVictories > teamBVictories ? teamB : teamA
+    winnerTeam = teamAVictories > teamBVictories ? teamA : teamB;
+    loserTeam = teamAVictories > teamBVictories ? teamB : teamA;
     avatar =
-      winnerTeam === currentTeamAName ? currentTeamAAvatar : currentTeamBAvatar
+      winnerTeam === currentTeamAName ? currentTeamAAvatar : currentTeamBAvatar;
 
     return {
       winnerTeam: winnerTeam,
@@ -58,19 +58,19 @@ export const EndGameModal = ({ visible, endScoreData }) => {
       winsWinner: frequencyCount[winnerTeam],
       winsLoser: frequencyCount[loserTeam] ? frequencyCount[loserTeam] : 0,
       avatar: avatar
-    }
-  }
+    };
+  };
 
   const parseScoreData = () => {
-    const gameData = getEndGameData()
-    const { winnerTeam, loserTeam, winsWinner, winsLoser, avatar } = gameData
+    const gameData = getEndGameData();
+    const { winnerTeam, loserTeam, winsWinner, winsLoser, avatar } = gameData;
 
     const scoreListWithInfo = endScoreData.map((round) => {
-      const isWinnerRound = round[winnerTeam] > round[loserTeam]
-      const winnerScore = round[winnerTeam]
-      const loserScore = round[loserTeam]
+      const isWinnerRound = round[winnerTeam] > round[loserTeam];
+      const winnerScore = round[winnerTeam];
+      const loserScore = round[loserTeam];
 
-      return { winnerScore, loserScore, isWinnerRound }
+      return { winnerScore, loserScore, isWinnerRound };
     })
 
     return {
@@ -79,11 +79,11 @@ export const EndGameModal = ({ visible, endScoreData }) => {
       winsWinner,
       winsLoser,
       avatar,
-      scoreList: scoreListWithInfo,
-    }
-  }
+      scoreList: scoreListWithInfo
+    };
+  };
 
-  const result = parseScoreData()
+  const result = parseScoreData();
 
   const rounds = result.scoreList.map((data, index) => (
     <View key={index}>
@@ -99,14 +99,14 @@ export const EndGameModal = ({ visible, endScoreData }) => {
               ? [styles.roundMark, styles.winnerMark]
               : [styles.roundMark, styles.loserMark]
           }
-        ></View>
+        />
       </View>
     </View>
-  ))
+  ));
 
   const dismissAndGoHome = () => {
-    navigation.replace('/')
-  }
+    navigation.replace('/');
+  };
 
   return (
     visible.modals.endOfGame && (
@@ -130,10 +130,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
                 style={styles.crown}
               />
               <View style={styles.avatarBackground}>
-                <Image
-                  source={result.avatar}
-                  style={styles.avatar}
-                />
+                <Image source={result.avatar} style={styles.avatar} />
               </View>
             </View>
             <View style={styles.winnerContainer}>
@@ -155,5 +152,5 @@ export const EndGameModal = ({ visible, endScoreData }) => {
         </View>
       </Modal>
     )
-  )
-}
+  );
+};

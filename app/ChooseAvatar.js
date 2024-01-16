@@ -1,16 +1,16 @@
-import { useRouter } from 'expo-router'
-import { Image, View, Pressable, Text, ToastAndroid } from 'react-native'
-import images from '../constants/images'
-import styles from '../styles/chooseAvatarStyle'
-import { useLocalSearchParams } from 'expo-router'
-import { useSettingsContext } from '../context/SettingsContext'
-import { PageTitle } from '../src/components/PageTitle'
-import storageKeys from '../constants/storageKeys'
-import { saveConfig } from '../src/misc/saveConfig'
-import { pages } from '../constants'
+import { useRouter } from 'expo-router';
+import { Image, View, Pressable, Text, ToastAndroid } from 'react-native';
+import images from '../constants/images';
+import styles from '../styles/chooseAvatarStyle';
+import { useLocalSearchParams } from 'expo-router';
+import { useSettingsContext } from '../context/SettingsContext';
+import { PageTitle } from '../src/components/PageTitle';
+import storageKeys from '../constants/storageKeys';
+import { saveConfig } from '../src/misc/saveConfig';
+import { pages } from '../constants';
 
 export default NewGame = () => {
-  const navigation = useRouter()
+  const navigation = useRouter();
 
   const {
     currentTeamAName,
@@ -24,8 +24,8 @@ export default NewGame = () => {
     defaultTeamAAvatar,
     setDefaultTeamAAvatar,
     defaultTeamBAvatar,
-    setDefaultTeamBAvatar,
-  } = useSettingsContext()
+    setDefaultTeamBAvatar
+  } = useSettingsContext();
 
   const avatars = [
     images.avatar1,
@@ -36,52 +36,52 @@ export default NewGame = () => {
     images.avatar6,
     images.avatar7,
     images.avatar8,
-    images.avatar9,
-  ]
+    images.avatar9
+  ];
 
-  const { teamName, origin } = useLocalSearchParams()
+  const { teamName, origin } = useLocalSearchParams();
 
   const states = {
     [pages.SETTINGS]: {
       [storageKeys.teamAName]: defaultTeamAName,
       [storageKeys.teamBName]: defaultTeamBName,
       [storageKeys.teamAAvatar]: defaultTeamAAvatar,
-      [storageKeys.teamBAvatar]: defaultTeamBAvatar,
+      [storageKeys.teamBAvatar]: defaultTeamBAvatar
     },
     [pages.NEW_GAME]: {
       [storageKeys.teamAName]: currentTeamAName,
       [storageKeys.teamBName]: currentTeamBName,
       [storageKeys.teamAAvatar]: currentTeamAAvatar,
-      [storageKeys.teamBAvatar]: currentTeamBAvatar,
-    },
-  }
+      [storageKeys.teamBAvatar]: currentTeamBAvatar
+    }
+  };
 
   const getCurrentAvatar = (item) => {
     if (
       teamName === states[origin][storageKeys.teamAName] &&
       item == states[origin][storageKeys.teamAAvatar]
     ) {
-      return [styles.item, styles.selectedAvatar]
+      return [styles.item, styles.selectedAvatar];
     }
     if (
       teamName === states[origin][storageKeys.teamBName] &&
       item == states[origin][storageKeys.teamBAvatar]
     ) {
-      return [styles.item, styles.selectedAvatar]
+      return [styles.item, styles.selectedAvatar];
     }
     if (
       teamName === states[origin][storageKeys.teamAName] &&
       item == states[origin][storageKeys.teamBAvatar]
     ) {
-      return [styles.item, styles.adversaryAvatar]
+      return [styles.item, styles.adversaryAvatar];
     }
     if (
       teamName === states[origin][storageKeys.teamBName] &&
       item == states[origin][storageKeys.teamAAvatar]
     ) {
-      return [styles.item, styles.adversaryAvatar]
+      return [styles.item, styles.adversaryAvatar];
     }
-    return [styles.item, styles.defaultAvatarStatus]
+    return [styles.item, styles.defaultAvatarStatus];
   }
 
   const isDisabled = (item) => {
@@ -90,12 +90,12 @@ export default NewGame = () => {
         item == states[origin][storageKeys.teamBAvatar]) ||
       (teamName === currentTeamBName &&
         item == states[origin][storageKeys.teamAAvatar])
-    )
+    );
   }
 
   const selectAvatar = (item) => {
     if (isDisabled(item)) {
-      ToastAndroid.show('Já escolhido pela outra equipe.', ToastAndroid.SHORT)
+      ToastAndroid.show('Já escolhido pela outra equipe.', ToastAndroid.SHORT);
       return
     }
 
@@ -103,31 +103,31 @@ export default NewGame = () => {
       teamName === states[origin][storageKeys.teamAName] &&
       origin == pages.SETTINGS
     ) {
-      setDefaultTeamAAvatar(item)
-      setCurrentTeamAAvatar(item)
-      saveConfig(storageKeys.teamAAvatar, item)
+      setDefaultTeamAAvatar(item);
+      setCurrentTeamAAvatar(item);
+      saveConfig(storageKeys.teamAAvatar, item);
     }
     if (
       teamName === states[origin][storageKeys.teamAName] &&
       origin == pages.NEW_GAME
     ) {
-      setCurrentTeamAAvatar(item)
+      setCurrentTeamAAvatar(item);
     }
     if (
       teamName === states[origin][storageKeys.teamBName] &&
       origin === pages.SETTINGS
     ) {
-      setDefaultTeamBAvatar(item)
-      setCurrentTeamBAvatar(item)
-      saveConfig(storageKeys.teamBAvatar, item)
+      setDefaultTeamBAvatar(item);
+      setCurrentTeamBAvatar(item);
+      saveConfig(storageKeys.teamBAvatar, item);
     }
     if (
       teamName === states[origin][storageKeys.teamBName] &&
       origin === pages.NEW_GAME
     ) {
-      setCurrentTeamBAvatar(item)
+      setCurrentTeamBAvatar(item);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -155,5 +155,5 @@ export default NewGame = () => {
         </Pressable>
       </View>
     </View>
-  )
+  );
 }

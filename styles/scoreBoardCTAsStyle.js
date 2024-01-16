@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT } from '../constants'
+import { COLORS, FONT } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
     marginVertical: 16,
     marginHorizontal: 32,
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   buttonBase: {
     marginVertical: 6,
@@ -15,22 +15,22 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   mainButton: {
     justifyContent: 'center',
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.primary
   },
   button: {
-    borderWidth: 3,
- },
+    borderWidth: 3
+  },
   mainButtonText: {
     color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
+    fontFamily: FONT.semiBold
   },
   buttonText: {
     color: COLORS.primary,
     fontFamily: FONT.semiBold,
     textAlign: 'center'
-  },
-})
+  }
+});

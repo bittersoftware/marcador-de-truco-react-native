@@ -1,11 +1,11 @@
-import { Image, Text, View, Pressable } from 'react-native'
-import { useRouter } from 'expo-router'
-import styles from '../styles/homeStyle'
-import { useSettingsContext } from '../context/SettingsContext'
-import { pages } from '../constants'
+import { Image, Text, View, Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
+import styles from '../styles/homeStyle';
+import { useSettingsContext } from '../context/SettingsContext';
+import { pages } from '../constants';
 
 export const Home = () => {
-  const navigation = useRouter()
+  const navigation = useRouter();
 
   const {
     currentTeamAAvatar,
@@ -29,17 +29,27 @@ export const Home = () => {
     defaultGameMode,
     setDefaultGameMode,
     preventSleep,
-    setPreventSleep,
-  } = useSettingsContext()
+    setPreventSleep
+  } = useSettingsContext();
 
   const newGame = () => {
-    if (!currentTeamAName) setCurrentTeamAName(defaultTeamAName)
-    if (!currentTeamBName) setCurrentTeamBName(defaultTeamBName)
-    if (!currentTeamAAvatar) setCurrentTeamAAvatar(defaultTeamAAvatar)
-    if (!currentTeamBAvatar) setCurrentTeamBAvatar(defaultTeamBAvatar)
-    if (!currentGameMode) setCurrentGameMode(defaultGameMode)
+    if (!currentTeamAName) {
+      setCurrentTeamAName(defaultTeamAName);
+    }
+    if (!currentTeamBName) {
+      setCurrentTeamBName(defaultTeamBName);
+    }
+    if (!currentTeamAAvatar) {
+      setCurrentTeamAAvatar(defaultTeamAAvatar);
+    }
+    if (!currentTeamBAvatar) {
+      setCurrentTeamBAvatar(defaultTeamBAvatar);
+    }
+    if (!currentGameMode) {
+      setCurrentGameMode(defaultGameMode);
+    }
 
-    navigation.push(pages.NEW_GAME)
+    navigation.push(pages.NEW_GAME);
   }
 
   return (
@@ -80,5 +90,5 @@ export const Home = () => {
         </Pressable>
       </View>
     </View>
-  )
+  );
 }

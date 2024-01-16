@@ -1,43 +1,43 @@
-import { Picker } from '@react-native-picker/picker'
-import { View } from 'react-native'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
-import styles from '../../styles/gameModeStyles'
-import { useSettingsContext } from '../../context/SettingsContext'
-import { pages } from '../../constants'
-import { saveConfig } from '../misc/saveConfig'
-import storageKeys from '../../constants/storageKeys'
+import { Picker } from '@react-native-picker/picker';
+import { View } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import styles from '../../styles/gameModeStyles';
+import { useSettingsContext } from '../../context/SettingsContext';
+import { pages } from '../../constants';
+import { saveConfig } from '../misc/saveConfig';
+import storageKeys from '../../constants/storageKeys';
 
 export const GameModes = ({ origin }) => {
   const {
     currentGameMode,
     defaultGameMode,
     setCurrentGameMode,
-    setDefaultGameMode,
-  } = useSettingsContext()
+    setDefaultGameMode
+  } = useSettingsContext();
 
   const getGameMode = () => {
     if (origin === pages.SETTINGS) {
-      return defaultGameMode
+      return defaultGameMode;
     }
     if (origin === pages.NEW_GAME) {
-      return currentGameMode
+      return currentGameMode;
     }
-    console.log('Unknown origin get', origin)
-  }
+    console.log('Unknown origin get', origin);
+  };
 
   const gameModePicker = (itemValue, _) => {
     if (origin === pages.SETTINGS) {
-      setDefaultGameMode(itemValue)
-      setCurrentGameMode(itemValue)
-      saveConfig(storageKeys.gameMode, itemValue)
-      return
+      setDefaultGameMode(itemValue);
+      setCurrentGameMode(itemValue);
+      saveConfig(storageKeys.gameMode, itemValue);
+      return;
     }
     if (origin === pages.NEW_GAME) {
-      setCurrentGameMode(itemValue)
-      return
+      setCurrentGameMode(itemValue);
+      return;
     }
-    console.log('Unknown origin set', origin)
-  }
+    console.log('Unknown origin set', origin);
+  };
 
   return (
     <View style={styles.pickerContainer}>
@@ -55,5 +55,5 @@ export const GameModes = ({ origin }) => {
         </Picker>
       </View>
     </View>
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import { Text } from 'react-native'
+import { Text } from 'react-native';
 
 export default History = () => {
-  return <Text>History Screen</Text>
+  return <Text>History Screen</Text>;
 }

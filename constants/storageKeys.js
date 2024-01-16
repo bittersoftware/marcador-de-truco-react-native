@@ -4,5 +4,5 @@ export default defaultKeys = {
   teamAAvatar: 'teamAAvatar',
   teamBAvatar: 'teamBAvatar',
   gameMode: 'gameMode',
-  preventSleep: 'preventSleep',
-}
+  preventSleep: 'preventSleep'
+};

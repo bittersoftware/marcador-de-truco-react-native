@@ -1,8 +1,8 @@
-import { Modal, Text, Pressable, View, Image } from 'react-native'
-import { useSettingsContext } from '../../context/SettingsContext'
-import { useEffect } from 'react'
-import { styles } from '../../styles/endMatchModalStyle'
-import { gameModes } from '../misc/gameModes'
+import { Modal, Text, Pressable, View, Image } from 'react-native';
+import { useSettingsContext } from '../../context/SettingsContext';
+import { useEffect } from 'react';
+import { styles } from '../../styles/endMatchModalStyle';
+import { gameModes } from '../misc/gameModes';
 
 export const EndMatchModal = ({
   visible,
@@ -12,26 +12,26 @@ export const EndMatchModal = ({
   winsA,
   winsB,
   setPointsHistory,
-  currentRoundRef,
+  currentRoundRef
 }) => {
   const { currentTeamAName, currentTeamBName, currentGameMode } =
-    useSettingsContext()
+    useSettingsContext();
 
-  const MAX_POINTS = 12
-  const MAX_WINS = gameModes[currentGameMode].maxWins 
+  const MAX_POINTS = 12;
+  const MAX_WINS = gameModes[currentGameMode].maxWins;
 
   const getWinnerTeamName = () => {
-    const hasAWon = score.pointsA === MAX_POINTS
-    const hasBWon = score.pointsB === MAX_POINTS
+    const hasAWon = score.pointsA === MAX_POINTS;
+    const hasBWon = score.pointsB === MAX_POINTS;
 
     if (hasAWon || hasBWon) {
-      return hasAWon ? currentTeamAName : currentTeamBName
+      return hasAWon ? currentTeamAName : currentTeamBName;
     }
-  }
+  };
 
   const isEndOfGame = () => {
-    return winsA >= MAX_WINS || winsB >= MAX_WINS
-  }
+    return winsA >= MAX_WINS || winsB >= MAX_WINS;
+  };
 
   useEffect(() => {
     if (getWinnerTeamName()) {
@@ -39,28 +39,28 @@ export const EndMatchModal = ({
         visible.setModals((prevModals) => ({
           ...prevModals,
           endOfMatch: false,
-          endOfGame: true,
-        }))
+          endOfGame: true
+        }));
       } else {
         visible.setModals((prevModals) => ({
           ...prevModals,
-          endOfMatch: true,
-        }))
+          endOfMatch: true
+        }));
       }
     }
-  }, [score.pointsA, score.pointsB, matchesData])
+  }, [score.pointsA, score.pointsB, matchesData]);
 
   const dismissAndRestart = () => {
-    setPointsHistory(() => [])
-    currentRoundRef.current = -1
+    setPointsHistory(() => []);
+    currentRoundRef.current = -1;
 
-    setScore(() => ({ pointsA: 0, pointsB: 0 }))
+    setScore(() => ({ pointsA: 0, pointsB: 0 }));
 
     visible.setModals((prevModals) => ({
       ...prevModals,
-      endOfMatch: false,
-    }))
-  }
+      endOfMatch: false
+    }));
+  };
 
   return (
     visible.modals.endOfMatch && (
@@ -72,10 +72,12 @@ export const EndMatchModal = ({
               <View style={styles.winnerTeamTextContainer}>
                 <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
               </View>
-              <Image source={require('../../assets/images/medal.png')} style={styles.image} />
+              <Image
+                source={require('../../assets/images/medal.png')}
+                style={styles.image}
+              />
             </View>
-            <Text style={styles.roundText}>
-              Jogo {winsA + winsB}</Text>
+            <Text style={styles.roundText}>Jogo {winsA + winsB}</Text>
             <Text style={styles.roundText}>
               Melhor de {currentGameMode.maxMatches}
             </Text>
@@ -89,5 +91,5 @@ export const EndMatchModal = ({
         </View>
       </Modal>
     )
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 12,
+    gap: 12
   },
   textContainer: {
     borderRadius: 5,
@@ -16,27 +16,27 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.secondary,
     flexGrow: 1,
     flex: 1,
-    paddingVertical: 4,
+    paddingVertical: 4
   },
   teamsText: {
     textAlign: 'center',
     color: COLORS.lightWhite,
     fontSize: SIZES.medium,
-    fontFamily: FONT.medium,
+    fontFamily: FONT.medium
   },
   markerContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   marker: {
     width: 10,
     height: 10,
     margin: 2,
-    borderRadius: 5,
+    borderRadius: 5
   },
   winMarker: {
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.tertiary
   },
   clearMarker: {
-    backgroundColor: COLORS.lightWhite,
-  },
-})
+    backgroundColor: COLORS.lightWhite
+  }
+});

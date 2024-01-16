@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
   centeredView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 22
   },
   modalView: {
     display: 'flex',
@@ -20,36 +20,36 @@ export const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 2
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5
   },
   listContainer: {
     flex: 1,
     display: 'flex',
-    marginBottom: 24,
+    marginBottom: 24
   },
   flatListContainer: {
-    paddingHorizontal: 24,
+    paddingHorizontal: 24
   },
   listItem: {
     alignSelf: 'center',
     flexGrow: 0,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems:'center',
-    gap: 8,
+    alignItems: 'center',
+    gap: 8
   },
   teamsContainer: {
     flexDirection: 'row',
-    marginBottom: 12,
+    marginBottom: 12
   },
   teamsText: {
     marginHorizontal: 4,
     fontSize: SIZES.medium,
-    fontFamily: FONT.semiBold,
+    fontFamily: FONT.semiBold
   },
   roundTextContainer: {
     borderRadius: 15,
@@ -57,13 +57,13 @@ export const styles = StyleSheet.create({
     height: 26,
     backgroundColor: COLORS.primary,
     justifyContent: 'center',
-    display: 'flex',
+    display: 'flex'
   },
   roundText: {
     fontFamily: FONT.medium,
     color: COLORS.lightWhite,
     textAlign: 'center',
-    fontSize: SIZES.medium,
+    fontSize: SIZES.medium
   },
   pointsTextContainer: {
     padding: 2,
@@ -73,14 +73,14 @@ export const styles = StyleSheet.create({
     margin: 4,
     flexDirection: 'row',
     flexGrow: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   pointsText: {
     fontFamily: FONT.semiBold,
     textAlign: 'left',
     fontSize: SIZES.medium,
     marginHorizontal: 6,
-    color: COLORS.secondary,
+    color: COLORS.secondary
   },
   buttonsContainer: {
     display: 'flex',
@@ -90,29 +90,29 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    marginBottom: 6,
+    marginBottom: 6
   },
   buttonUndo: {
     borderColor: COLORS.primary,
     borderWidth: 2,
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.tertiary
   },
   buttonClose: {
     backgroundColor: COLORS.primary,
-    width: 150,
+    width: 150
   },
   buttonCloseText: {
     color: COLORS.lightWhite,
     fontFamily: FONT.semiBold,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   buttonUndoText: {
     color: COLORS.primary,
     fontFamily: FONT.semiBold,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
-  },
-})
+    textAlign: 'center'
+  }
+});

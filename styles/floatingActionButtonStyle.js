@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icon: {
-    color: COLORS.lightWhite,
+    color: COLORS.lightWhite
   }
-})
+});

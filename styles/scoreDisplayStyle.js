@@ -1,16 +1,16 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES, SHADOWS } from "../constants";
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 export const styles = StyleSheet.create({
   scoreContainer: {
     paddingTop: 20,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   scoreText: {
     color: COLORS.secondary,
@@ -23,5 +23,5 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
     ...SHADOWS.medium
-  },
-})
+  }
+});

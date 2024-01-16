@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS } from "../constants";
+import { COLORS } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,6 +8,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     padding: 8,
-    borderRadius: 12,
-  },
-})
+    borderRadius: 12
+  }
+});

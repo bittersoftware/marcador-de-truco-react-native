@@ -1,78 +1,78 @@
-import { useEffect, useState, useRef } from 'react'
-import { View } from 'react-native'
-import { PointsButtons } from './PointsButtons'
-import { PointsLabels } from './PointsLabels'
-import { EndMatchModal } from './EndMatchModal'
-import { EndGameModal } from './EndGameModal'
-import { PointsHistoryModal } from './PointsHistoryModal'
-import { styles } from '../../styles/pointsBoardStyle'
-import { useSettingsContext } from '../../context/SettingsContext'
+import { useEffect, useState, useRef } from 'react';
+import { View } from 'react-native';
+import { PointsButtons } from './PointsButtons';
+import { PointsLabels } from './PointsLabels';
+import { EndMatchModal } from './EndMatchModal';
+import { EndGameModal } from './EndGameModal';
+import { PointsHistoryModal } from './PointsHistoryModal';
+import { styles } from '../../styles/pointsBoardStyle';
+import { useSettingsContext } from '../../context/SettingsContext';
 
 export const PointsBoard = ({
   updateScore,
   score,
   showHistory,
   matchesData,
-  setMatchesData,
+  setMatchesData
 }) => {
-  const { currentTeamAName, currentTeamBName } = useSettingsContext()
+  const { currentTeamAName, currentTeamBName } = useSettingsContext();
 
   const [modals, setModals] = useState({
     pointsHistory: false,
     endOfMatch: false,
-    endOfGame: false,
-  })
+    endOfGame: false
+  });
 
-  const [endScoreData, setEndScoreData] = useState([])
+  const [endScoreData, setEndScoreData] = useState([]);
 
-  const [pointsHistory, setPointsHistory] = useState([])
-  const currentRoundRef = useRef(-1)
+  const [pointsHistory, setPointsHistory] = useState([]);
+  const currentRoundRef = useRef(-1);
 
-  const MAX_POINTS = 12
+  const MAX_POINTS = 12;
 
   const getWinnerTeamName = () => {
-    const hasAWon = score.pointsA === MAX_POINTS
-    const hasBWon = score.pointsB === MAX_POINTS
+    const hasAWon = score.pointsA === MAX_POINTS;
+    const hasBWon = score.pointsB === MAX_POINTS;
 
     if (hasAWon || hasBWon) {
-      return hasAWon ? currentTeamAName : currentTeamBName
+      return hasAWon ? currentTeamAName : currentTeamBName;
     }
-  }
+  };
 
   const handleScoreChange = (team, points) => {
     if (team === currentTeamAName) {
       updateScore((prevScoreData) => ({
         pointsA: points,
-        pointsB: prevScoreData.pointsB,
-      }))
+        pointsB: prevScoreData.pointsB
+      }));
     }
 
     if (team === currentTeamBName) {
       updateScore((prevScoreData) => ({
         pointsA: prevScoreData.pointsA,
-        pointsB: points,
-      }))
+        pointsB: points
+      }));
     }
-  }
+  };
 
   const updateScoreData = (winnerTeam) => {
     const winnerScore =
-      score.pointsA > score.pointsB ? score.pointsA : score.pointsB
+      score.pointsA > score.pointsB ? score.pointsA : score.pointsB;
 
     const loserScore =
-      score.pointsA < score.pointsB ? score.pointsA : score.pointsB
+      score.pointsA < score.pointsB ? score.pointsA : score.pointsB;
 
     const loserTeam =
-      winnerTeam == currentTeamAName ? currentTeamBName : currentTeamAName
+      winnerTeam == currentTeamAName ? currentTeamBName : currentTeamAName;
 
-    setEndScoreData((prevEndScoreData) => ([
+    setEndScoreData((prevEndScoreData) => [
       ...prevEndScoreData,
-      { [winnerTeam]: winnerScore, [loserTeam]: loserScore },
-    ]))
-  }
+      { [winnerTeam]: winnerScore, [loserTeam]: loserScore }
+    ]);
+  };
 
   useEffect(() => {
-    const winnerTeam = getWinnerTeamName()
+    const winnerTeam = getWinnerTeamName();
 
     if (winnerTeam) {
       setMatchesData((prevSetMatches) => ({
@@ -84,19 +84,19 @@ export const PointsBoard = ({
         matchesWonByB:
           winnerTeam === currentTeamBName
             ? prevSetMatches.matchesWonByB + 1
-            : prevSetMatches.matchesWonByB,
-      }))
+            : prevSetMatches.matchesWonByB
+      }));
 
-      updateScoreData(winnerTeam)
+      updateScoreData(winnerTeam);
     }
-  }, [score])
+  }, [score]);
 
   useEffect(() => {
     setModals((prevModals) => ({
       ...prevModals,
-      pointsHistory: showHistory.showPointsHistory,
-    }))
-  }, [showHistory.showPointsHistory])
+      pointsHistory: showHistory.showPointsHistory
+    }));
+  }, [showHistory.showPointsHistory]);
 
   const renderPointsHistoryModal = () => {
     return (
@@ -109,8 +109,8 @@ export const PointsBoard = ({
         setPointsHistory={setPointsHistory}
         currentRoundRef={currentRoundRef}
       />
-    )
-  }
+    );
+  };
 
   const renderEndMatchModal = () => {
     return (
@@ -124,8 +124,8 @@ export const PointsBoard = ({
         setPointsHistory={setPointsHistory}
         currentRoundRef={currentRoundRef}
       />
-    )
-  }
+    );
+  };
 
   const renderEndGameModal = () => {
     return (
@@ -136,8 +136,8 @@ export const PointsBoard = ({
         winsA={matchesData.matchesWonByA}
         winsB={matchesData.matchesWonByB}
       />
-    )
-  }
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -162,5 +162,5 @@ export const PointsBoard = ({
       <View>{renderEndMatchModal()}</View>
       <View>{renderEndGameModal()}</View>
     </View>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import { Modal, View } from 'react-native'
-import { ScoreBoardCTAs } from './ScoreBoardCTAs'
-import { styles } from '../../styles/boardOptionsModalStyle'
+import { Modal, View } from 'react-native';
+import { ScoreBoardCTAs } from './ScoreBoardCTAs';
+import { styles } from '../../styles/boardOptionsModalStyle';
 
 export const BoardOptionsModal = ({
   visible,
   handleClickHistory,
-  setModal,
+  setModal
 }) => {
   return (
     visible && (
@@ -20,5 +20,5 @@ export const BoardOptionsModal = ({
         </View>
       </Modal>
     )
-  )
-}
+  );
+};

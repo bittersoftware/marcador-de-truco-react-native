@@ -1,7 +1,6 @@
+import { StyleSheet } from 'react-native';
 
-import { StyleSheet } from 'react-native'
-
-import { COLORS, FONT, SIZES, SHADOWS } from '../constants'
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   pickerContainer: {
@@ -11,12 +10,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginHorizontal: 20,
     paddingHorizontal: 10,
-    marginBottom: 16,
+    marginBottom: 16
   },
   picker: {
     flexGrow: 1,
-    color: COLORS.gray,
-  },
-})
+    color: COLORS.gray
+  }
+});
 
-export default styles
+export default styles;

@@ -1,33 +1,33 @@
-import { Text, View, Pressable } from 'react-native'
-import { styles } from '../../styles/scoreBoardCTAsStyle'
-import { useSettingsContext } from '../../context/SettingsContext'
-import { useRouter } from 'expo-router'
-import { useState } from 'react'
-import { pages } from '../../constants'
+import { Text, View, Pressable } from 'react-native';
+import { styles } from '../../styles/scoreBoardCTAsStyle';
+import { useSettingsContext } from '../../context/SettingsContext';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { pages } from '../../constants';
 
 export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
-  const navigation = useRouter()
+  const navigation = useRouter();
 
-  const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext()
+  const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext();
 
-  const [confirm, setConfirm] = useState(false)
-  const [btnText, setBtnText] = useState('Encerrar jogo')
+  const [confirm, setConfirm] = useState(false);
+  const [btnText, setBtnText] = useState('Encerrar jogo');
 
   const navHomeScreen = () => {
     if (!confirm) {
-      setConfirm(() => true)
-      setBtnText(() => 'Confirma?')
-      return
+      setConfirm(() => true);
+      setBtnText(() => 'Confirma?');
+      return;
     }
-    setCurrentTeamAName('')
-    setCurrentTeamBName('')
-    navigation.replace(pages.HOME)
-  }
+    setCurrentTeamAName('');
+    setCurrentTeamBName('');
+    navigation.replace(pages.HOME);
+  };
 
   const dismissModal = () => {
-    setModal(() => false)
-    setConfirm(() => false)
-  }
+    setModal(() => false);
+    setConfirm(() => false);
+  };
 
   return (
     <View style={styles.container}>
@@ -51,5 +51,5 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
         <Text style={styles.buttonText}>Voltar</Text>
       </Pressable>
     </View>
-  )
-}
+  );
+};

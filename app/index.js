@@ -1,11 +1,11 @@
-import { useCallback } from 'react'
-import { useFonts } from 'expo-font'
+import { useCallback } from 'react';
+import { useFonts } from 'expo-font';
 //import { StatusBar } from 'expo-status-bar'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Home } from './Home'
-import * as SplashScreen from 'expo-splash-screen'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Home } from './Home';
+import * as SplashScreen from 'expo-splash-screen';
 
-SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -14,22 +14,22 @@ export default function App() {
     'Font-Regular': require('../assets/fonts/Montserrat-Regular.otf'),
     'Font-Medium': require('../assets/fonts/Montserrat-Medium.otf'),
     'Font-Thin': require('../assets/fonts/Montserrat-Thin.otf'),
-    'Font-Light': require('../assets/fonts/Montserrat-Light.otf'),
-  })
+    'Font-Light': require('../assets/fonts/Montserrat-Light.otf')
+  });
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync()
+      await SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError])
+  }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) {
-    return null
+    return null;
   }
 
   return (
     <SafeAreaProvider>
-        <Home />
+      <Home />
     </SafeAreaProvider>
-  )
+  );
 }
