@@ -17,6 +17,7 @@ import { useSettingsContext } from '../context/SettingsContext'
 import { TeamDefinition } from '../src/components/TeamDefinition'
 import { PageTitle } from '../src/components/PageTitle'
 import { GameModes } from '../src/components/GameModes'
+import { pages } from '../constants'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -40,7 +41,7 @@ export default NewGame = () => {
       )
       return
     }
-    navigation.replace('/ScoreBoard')
+    navigation.replace(pages.SCOREBOARD)
   }
 
   return (
@@ -49,11 +50,11 @@ export default NewGame = () => {
         <PageTitle text={'Novo Jogo'} />
         <View style={styles.card}>
           <Text style={styles.sectionTextTitle}>Equipes</Text>
-          <TeamDefinition />
+          <TeamDefinition origin={pages.NEW_GAME} />
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTextTitle}>Rodadas</Text>
-          <GameModes />
+          <GameModes origin={pages.NEW_GAME}/>
         </View>
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={() => startGame()}>

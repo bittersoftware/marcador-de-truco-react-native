@@ -3,8 +3,11 @@ import { View, Pressable, Image, TextInput } from 'react-native'
 import styles from '../../styles/teamDefinitionStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useRouter } from 'expo-router'
+import pages from '../../constants/pages'
+import { saveConfig } from '../misc/saveConfig'
+import storageKeys from '../../constants/storageKeys'
 
-export const TeamDefinition = () => {
+export const TeamDefinition = ({ origin }) => {
   const navigation = useRouter()
   const MAX_CHARS = 15
 
@@ -15,15 +18,64 @@ export const TeamDefinition = () => {
     currentTeamBAvatar,
     currentTeamBName,
     setCurrentTeamBName,
+    defaultTeamAAvatar,
+    defaultTeamAName,
+    setDefaultTeamAName,
+    defaultTeamBAvatar,
+    defaultTeamBName,
+    setDefaultTeamBName,
   } = useSettingsContext()
 
-  const renderSingleTeamDefinition = (teamName, setCurrentTeamName, avatar) => (
+
+  const renderTeamAComponent = () => {
+    if (origin === pages.SETTINGS) {
+      return renderSingleTeamDefinition(
+        defaultTeamAName,
+        defaultTeamAAvatar,
+        (text) => {
+          setDefaultTeamAName(text)
+          setCurrentTeamAName(text)
+          saveConfig(storageKeys.teamAName, text)
+        }
+      )
+    }
+    if (origin === pages.NEW_GAME) {
+      return renderSingleTeamDefinition(
+        currentTeamAName,
+        currentTeamAAvatar,
+        (text) => setCurrentTeamAName(text)
+      )
+    }
+  }
+
+  const renderTeamBComponent = () => {
+    if (origin === pages.SETTINGS) {
+      return renderSingleTeamDefinition(
+        defaultTeamBName,
+        defaultTeamBAvatar,
+        (text) => {
+          setDefaultTeamBName(text)
+          setCurrentTeamBName(text)
+          saveConfig(storageKeys.teamBName, text)
+        }
+      )
+    }
+    if (origin === pages.NEW_GAME) {
+      return renderSingleTeamDefinition(
+        currentTeamBName,
+        currentTeamBAvatar,
+        (text) => setCurrentTeamBName(text)
+      )
+    }
+  }
+
+  const renderSingleTeamDefinition = (teamName, avatar, handleTextChange) => (
     <View style={styles.teamSettingsContainer}>
       <Pressable
         onPress={() =>
           navigation.push({
-            pathname: '/ChooseAvatar',
-            params: { teamName: teamName },
+            pathname: pages.CHOOSE_AVATAR,
+            params: { teamName: teamName, origin: origin },
           })
         }
         style={styles.avatarContainer}
@@ -37,7 +89,7 @@ export const TeamDefinition = () => {
           defaultValue={teamName}
           placeholder={'Adicione um nome'}
           placeholderTextColor={styles.placeHolderText.color}
-          onChangeText={(text) => setCurrentTeamName(text)}
+          onChangeText={handleTextChange}
         />
       </View>
     </View>
@@ -45,16 +97,8 @@ export const TeamDefinition = () => {
 
   return (
     <View style={styles.container}>
-      {renderSingleTeamDefinition(
-        currentTeamAName,
-        setCurrentTeamAName,
-        currentTeamAAvatar
-      )}
-      {renderSingleTeamDefinition(
-        currentTeamBName,
-        setCurrentTeamBName,
-        currentTeamBAvatar
-      )}
+      {renderTeamAComponent()}
+      {renderTeamBComponent()}
     </View>
   )
 }

@@ -2,28 +2,44 @@ import { Image, Text, View, Pressable } from 'react-native'
 import { useRouter } from 'expo-router'
 import styles from '../styles/homeStyle'
 import { useSettingsContext } from '../context/SettingsContext'
+import { pages } from '../constants'
 
 export const Home = () => {
   const navigation = useRouter()
 
   const {
+    currentTeamAAvatar,
+    setCurrentTeamAAvatar,
     currentTeamAName,
+    currentTeamBAvatar,
+    setCurrentTeamBAvatar,
     setCurrentTeamAName,
     currentTeamBName,
     setCurrentTeamBName,
+    defaultTeamAAvatar,
+    setDefaultTeamAAvatar,
     defaultTeamAName,
+    setDefaultTeamAName,
     defaultTeamBName,
+    defaultTeamBAvatar,
+    setDefaultTeamBAvatar,
+    setDefaultTeamBName,
+    currentGameMode,
+    setCurrentGameMode,
+    defaultGameMode,
+    setDefaultGameMode,
+    preventSleep,
+    setPreventSleep,
   } = useSettingsContext()
 
-
   const newGame = () => {
-    if (!currentTeamAName) {
-      setCurrentTeamAName(defaultTeamAName)
-    }
-    if (!currentTeamBName) {
-      setCurrentTeamBName(defaultTeamBName)
-    }
-    navigation.push('/NewGame')
+    if (!currentTeamAName) setCurrentTeamAName(defaultTeamAName)
+    if (!currentTeamBName) setCurrentTeamBName(defaultTeamBName)
+    if (!currentTeamAAvatar) setCurrentTeamAAvatar(defaultTeamAAvatar)
+    if (!currentTeamBAvatar) setCurrentTeamBAvatar(defaultTeamBAvatar)
+    if (!currentGameMode) setCurrentGameMode(defaultGameMode)
+
+    navigation.push(pages.NEW_GAME)
   }
 
   return (
@@ -52,13 +68,13 @@ export const Home = () => {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.replace('/History')}
+          onPress={() => navigation.replace(pages.HISTORY)}
         >
           <Text style={styles.buttonText}>Histórico</Text>
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.replace('/Settings')}
+          onPress={() => navigation.push(pages.SETTINGS)}
         >
           <Text style={styles.buttonText}>Configurações</Text>
         </Pressable>

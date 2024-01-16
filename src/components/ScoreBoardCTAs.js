@@ -2,10 +2,12 @@ import { Text, View, Pressable } from 'react-native'
 import { styles } from '../../styles/scoreBoardCTAsStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { pages } from '../../constants'
 
 export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
   const navigation = useRouter()
+
   const { setCurrentTeamAName, setCurrentTeamBName } = useSettingsContext()
 
   const [confirm, setConfirm] = useState(false)
@@ -19,7 +21,7 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
     }
     setCurrentTeamAName('')
     setCurrentTeamBName('')
-    navigation.replace('/')
+    navigation.replace(pages.HOME)
   }
 
   const dismissModal = () => {

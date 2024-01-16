@@ -1,25 +1,42 @@
-import { useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
 import { View } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import styles from '../../styles/gameModeStyles'
 import { useSettingsContext } from '../../context/SettingsContext'
+import { pages } from '../../constants'
+import { saveConfig } from '../misc/saveConfig'
+import storageKeys from '../../constants/storageKeys'
 
-export const GameModes = () => {
-  const { setCurrentGameMode } = useSettingsContext()
+export const GameModes = ({ origin }) => {
+  const {
+    currentGameMode,
+    defaultGameMode,
+    setCurrentGameMode,
+    setDefaultGameMode,
+  } = useSettingsContext()
 
-  const [selectedGameMode, setSelectedGameMode] = useState()
-
-  const gameModes = {
-    1: { maxWins: 1, maxMatches: 1 },
-    2: { maxWins: 2, maxMatches: 3 },
-    3: { maxWins: 3, maxMatches: 5 },
-    4: { maxWins: 4, maxMatches: 7 },
+  const getGameMode = () => {
+    if (origin === pages.SETTINGS) {
+      return defaultGameMode
+    }
+    if (origin === pages.NEW_GAME) {
+      return currentGameMode
+    }
+    console.log('Unknown origin get', origin)
   }
 
   const gameModePicker = (itemValue, _) => {
-    setSelectedGameMode(itemValue)
-    setCurrentGameMode(gameModes[itemValue])
+    if (origin === pages.SETTINGS) {
+      setDefaultGameMode(itemValue)
+      setCurrentGameMode(itemValue)
+      saveConfig(storageKeys.gameMode, itemValue)
+      return
+    }
+    if (origin === pages.NEW_GAME) {
+      setCurrentGameMode(itemValue)
+      return
+    }
+    console.log('Unknown origin set', origin)
   }
 
   return (
@@ -27,7 +44,7 @@ export const GameModes = () => {
       <MaterialCommunityIcons name="cards" size={28} color="black" />
       <View style={styles.picker}>
         <Picker
-          selectedValue={selectedGameMode}
+          selectedValue={getGameMode()}
           onValueChange={gameModePicker}
           style={styles.picker}
         >

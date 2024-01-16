@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native'
 import { styles } from '../../styles/teamNamesDisplayStyle'
 import { useSettingsContext } from '../../context/SettingsContext'
+import { gameModes } from '../misc/gameModes'
 
 export const TeamNamesDisplay = ({ teamA, teamB, aWins, bWins }) => {
   const { currentGameMode } = useSettingsContext()
@@ -13,8 +14,8 @@ export const TeamNamesDisplay = ({ teamA, teamB, aWins, bWins }) => {
     (_, index) => `$bWin-${index}`
   )
 
-  const aClearNum = currentGameMode.maxWins - aWins
-  const bClearNum = currentGameMode.maxWins - bWins
+  const aClearNum = gameModes[currentGameMode].maxWins - aWins
+  const bClearNum = gameModes[currentGameMode].maxWins - bWins
   const aClearMarker = Array.from(
     { length: aClearNum },
     (_, index) => `$aClear-${index}`

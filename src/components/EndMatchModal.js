@@ -2,6 +2,7 @@ import { Modal, Text, Pressable, View, Image } from 'react-native'
 import { useSettingsContext } from '../../context/SettingsContext'
 import { useEffect } from 'react'
 import { styles } from '../../styles/endMatchModalStyle'
+import { gameModes } from '../misc/gameModes'
 
 export const EndMatchModal = ({
   visible,
@@ -17,6 +18,7 @@ export const EndMatchModal = ({
     useSettingsContext()
 
   const MAX_POINTS = 12
+  const MAX_WINS = gameModes[currentGameMode].maxWins 
 
   const getWinnerTeamName = () => {
     const hasAWon = score.pointsA === MAX_POINTS
@@ -28,7 +30,7 @@ export const EndMatchModal = ({
   }
 
   const isEndOfGame = () => {
-    return winsA >= currentGameMode.maxWins || winsB >= currentGameMode.maxWins
+    return winsA >= MAX_WINS || winsB >= MAX_WINS
   }
 
   useEffect(() => {

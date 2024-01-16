@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ScoreDisplay } from '../src/components/ScoreDisplay'
 import { TeamNamesDisplay } from '../src/components/TeamNamesDisplay'
 import { PointsBoard } from '../src/components/PointsBoard'
 import { BoardOptionsModal } from '../src/components/BoardOptionsModal'
 import { FloatingActionButton } from '../src/components/FloatingActionButton'
 import { useSettingsContext } from '../context/SettingsContext'
-import { View } from 'react-native'
+import { View, ToastAndroid } from 'react-native'
+import { useNavigation } from 'expo-router'
+import { pages } from '../constants'
 
 export default ScoreBoard = () => {
+  const navigation = useNavigation()
+
   const { currentTeamAName, currentTeamBName } = useSettingsContext()
 
   const [scoreData, setScoreData] = useState({
@@ -34,8 +38,27 @@ export default ScoreBoard = () => {
     setShowPointsHistory(true)
   }
 
+  // prevent leaving the game when press/swipe back
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault()
+      if (
+        e.data.action.type === 'GO_BACK' &&
+        e.target.startsWith('ScoreBoard')
+      ) {
+        ToastAndroid.show(
+          'Selecione Encerrar jogo e confirme',
+          ToastAndroid.SHORT
+        )
+        handleClickFloatingAction()
+        return
+      }
+      navigation.dispatch(e.data.action)
+    })
+  }, [])
+
   return (
-    <View style={{backgroundColor: 'white', flex: 1,}}>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
       <ScoreDisplay scoreData={scoreData} />
       <TeamNamesDisplay
         teamA={currentTeamAName}

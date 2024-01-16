@@ -5,6 +5,9 @@ import styles from '../styles/chooseAvatarStyle'
 import { useLocalSearchParams } from 'expo-router'
 import { useSettingsContext } from '../context/SettingsContext'
 import { PageTitle } from '../src/components/PageTitle'
+import storageKeys from '../constants/storageKeys'
+import { saveConfig } from '../src/misc/saveConfig'
+import { pages } from '../constants'
 
 export default NewGame = () => {
   const navigation = useRouter()
@@ -12,10 +15,16 @@ export default NewGame = () => {
   const {
     currentTeamAName,
     currentTeamBName,
+    defaultTeamAName,
+    defaultTeamBName,
     currentTeamAAvatar,
     setCurrentTeamAAvatar,
     currentTeamBAvatar,
     setCurrentTeamBAvatar,
+    defaultTeamAAvatar,
+    setDefaultTeamAAvatar,
+    defaultTeamBAvatar,
+    setDefaultTeamBAvatar,
   } = useSettingsContext()
 
   const avatars = [
@@ -30,19 +39,46 @@ export default NewGame = () => {
     images.avatar9,
   ]
 
-  const params = useLocalSearchParams()
+  const { teamName, origin } = useLocalSearchParams()
+
+  const states = {
+    [pages.SETTINGS]: {
+      [storageKeys.teamAName]: defaultTeamAName,
+      [storageKeys.teamBName]: defaultTeamBName,
+      [storageKeys.teamAAvatar]: defaultTeamAAvatar,
+      [storageKeys.teamBAvatar]: defaultTeamBAvatar,
+    },
+    [pages.NEW_GAME]: {
+      [storageKeys.teamAName]: currentTeamAName,
+      [storageKeys.teamBName]: currentTeamBName,
+      [storageKeys.teamAAvatar]: currentTeamAAvatar,
+      [storageKeys.teamBAvatar]: currentTeamBAvatar,
+    },
+  }
 
   const getCurrentAvatar = (item) => {
-    if (params.teamName === currentTeamAName && item == currentTeamAAvatar) {
+    if (
+      teamName === states[origin][storageKeys.teamAName] &&
+      item == states[origin][storageKeys.teamAAvatar]
+    ) {
       return [styles.item, styles.selectedAvatar]
     }
-    if (params.teamName === currentTeamBName && item == currentTeamBAvatar) {
+    if (
+      teamName === states[origin][storageKeys.teamBName] &&
+      item == states[origin][storageKeys.teamBAvatar]
+    ) {
       return [styles.item, styles.selectedAvatar]
     }
-    if (params.teamName === currentTeamAName && item == currentTeamBAvatar) {
+    if (
+      teamName === states[origin][storageKeys.teamAName] &&
+      item == states[origin][storageKeys.teamBAvatar]
+    ) {
       return [styles.item, styles.adversaryAvatar]
     }
-    if (params.teamName === currentTeamBName && item == currentTeamAAvatar) {
+    if (
+      teamName === states[origin][storageKeys.teamBName] &&
+      item == states[origin][storageKeys.teamAAvatar]
+    ) {
       return [styles.item, styles.adversaryAvatar]
     }
     return [styles.item, styles.defaultAvatarStatus]
@@ -50,8 +86,10 @@ export default NewGame = () => {
 
   const isDisabled = (item) => {
     return (
-      (params.teamName === currentTeamAName && item == currentTeamBAvatar) ||
-      (params.teamName === currentTeamBName && item == currentTeamAAvatar)
+      (teamName === currentTeamAName &&
+        item == states[origin][storageKeys.teamBAvatar]) ||
+      (teamName === currentTeamBName &&
+        item == states[origin][storageKeys.teamAAvatar])
     )
   }
 
@@ -61,13 +99,39 @@ export default NewGame = () => {
       return
     }
 
-    if (params.teamName === currentTeamAName) setCurrentTeamAAvatar(item)
-    if (params.teamName === currentTeamBName) setCurrentTeamBAvatar(item)
+    if (
+      teamName === states[origin][storageKeys.teamAName] &&
+      origin == pages.SETTINGS
+    ) {
+      setDefaultTeamAAvatar(item)
+      setCurrentTeamAAvatar(item)
+      saveConfig(storageKeys.teamAAvatar, item)
+    }
+    if (
+      teamName === states[origin][storageKeys.teamAName] &&
+      origin == pages.NEW_GAME
+    ) {
+      setCurrentTeamAAvatar(item)
+    }
+    if (
+      teamName === states[origin][storageKeys.teamBName] &&
+      origin === pages.SETTINGS
+    ) {
+      setDefaultTeamBAvatar(item)
+      setCurrentTeamBAvatar(item)
+      saveConfig(storageKeys.teamBAvatar, item)
+    }
+    if (
+      teamName === states[origin][storageKeys.teamBName] &&
+      origin === pages.NEW_GAME
+    ) {
+      setCurrentTeamBAvatar(item)
+    }
   }
 
   return (
     <View style={styles.container}>
-      <PageTitle text={'Selecione Avatar'}/>
+      <PageTitle text={'Selecione Avatar'} />
       <View style={styles.gridContainer}>
         {avatars.map((item, idx) => (
           <Pressable

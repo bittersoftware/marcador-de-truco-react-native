@@ -1,24 +1,56 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import images from '../constants/images'
+import { applyDefaults } from '../src/misc/defaults'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import storageKeys from '../constants/storageKeys'
 
 const SettingsContext = createContext()
 
 export const SettingsProvider = ({ children }) => {
-  const [defaultTeamAName, setDefaultTeamAName] = useState('Equipe Azul')
-  const [defaultTeamBName, setDefaultTeamBName] = useState('Equipe Verde')
-  const [defaultTeamAAvatar, setdefaultTeamAAvatar] = useState(images.avatar1)
-  const [defaultTeamBAvatar, setdefaultTeamBAvatar] = useState(images.avatar2)
-  const [currentTeamAName, setCurrentTeamAName] = useState(defaultTeamAName)
-  const [currentTeamBName, setCurrentTeamBName] = useState(defaultTeamBName)
-  const [currentTeamAAvatar, setCurrentTeamAAvatar] =
-    useState(defaultTeamAAvatar)
-  const [currentTeamBAvatar, setCurrentTeamBAvatar] =
-    useState(defaultTeamBAvatar)
-  const [currentGameMode, setCurrentGameMode] = useState({
-    maxWins: 1,
-    maxMatches: 1,
-  })
+  const [defaultTeamAName, setDefaultTeamAName] = useState(null)
+  const [defaultTeamBName, setDefaultTeamBName] = useState(null)
+  const [defaultTeamAAvatar, setDefaultTeamAAvatar] = useState(null)
+  const [defaultTeamBAvatar, setDefaultTeamBAvatar] = useState(null)
   const [defaultGameMode, setDefaultGameMode] = useState('')
+  const [preventSleep, setPreventSleep] = useState(true)
+  const [currentTeamAName, setCurrentTeamAName] = useState(null)
+  const [currentTeamBName, setCurrentTeamBName] = useState(null)
+  const [currentTeamAAvatar, setCurrentTeamAAvatar] = useState(null)
+  const [currentTeamBAvatar, setCurrentTeamBAvatar] = useState(null)
+  const [currentGameMode, setCurrentGameMode] = useState(null)
+
+  useEffect(() => {
+    const settingsSetup = async () => {
+      await applyDefaults()
+
+      // parse objects
+      const teamAAvatarString = await AsyncStorage.getItem(
+        storageKeys.teamAAvatar
+      )
+      const teamAAvatar = JSON.parse(teamAAvatarString)
+      const teamBAvatarString = await AsyncStorage.getItem(
+        storageKeys.teamBAvatar
+      )
+      const teamBAvatar = JSON.parse(teamBAvatarString)
+      const gameModeString = await AsyncStorage.getItem(storageKeys.gameMode)
+
+      // convert to int
+      const gameMode = Number(gameModeString)
+
+      const preventSleepString = await AsyncStorage.getItem(storageKeys.preventSleep)
+      const preventSleep = preventSleepString === 'true'
+
+      // apply values
+      setDefaultTeamAName(await AsyncStorage.getItem(storageKeys.teamAName))
+      setDefaultTeamBName(await AsyncStorage.getItem(storageKeys.teamBName))
+      setDefaultTeamAAvatar(teamAAvatar)
+      setDefaultTeamBAvatar(teamBAvatar)
+      setDefaultGameMode(gameMode)
+      setPreventSleep(preventSleep)
+    }
+
+    settingsSetup()
+  }, [])
 
   const values = {
     currentTeamAAvatar,
@@ -29,14 +61,20 @@ export const SettingsProvider = ({ children }) => {
     setCurrentTeamAName,
     currentTeamBName,
     setCurrentTeamBName,
+    defaultTeamAAvatar,
+    setDefaultTeamAAvatar,
     defaultTeamAName,
     setDefaultTeamAName,
     defaultTeamBName,
+    defaultTeamBAvatar,
+    setDefaultTeamBAvatar,
     setDefaultTeamBName,
     currentGameMode,
     setCurrentGameMode,
     defaultGameMode,
     setDefaultGameMode,
+    preventSleep,
+    setPreventSleep,
   }
 
   return (
