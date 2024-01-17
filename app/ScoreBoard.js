@@ -7,7 +7,6 @@ import { FloatingActionButton } from '../src/components/FloatingActionButton';
 import { useSettingsContext } from '../context/SettingsContext';
 import { View, ToastAndroid } from 'react-native';
 import { useNavigation } from 'expo-router';
-import { pages } from '../constants';
 
 export default ScoreBoard = () => {
   const navigation = useNavigation();

@@ -2,7 +2,9 @@ import { Modal, Text, Pressable, View, Image } from 'react-native';
 import { styles } from '../../styles/endGameModalStyle';
 import { useRouter } from 'expo-router';
 import { useSettingsContext } from '../../context/SettingsContext';
-import images from '../../constants/images';
+import { pages } from '../../constants';
+import dbUtils from '../database/database';
+import { generateEndScore } from '../misc/generateEndScoreData';
 
 export const EndGameModal = ({ visible, endScoreData }) => {
   const navigation = useRouter();
@@ -10,80 +12,17 @@ export const EndGameModal = ({ visible, endScoreData }) => {
   const { currentTeamAName, currentTeamAAvatar, currentTeamBAvatar } =
     useSettingsContext();
 
-  const avatars = [
-    images.avatar1,
-    images.avatar2,
-    images.avatar3,
-    images.avatar4,
-    images.avatar5,
-    images.avatar6,
-    images.avatar7,
-    images.avatar8,
-    images.avatar9
-  ];
+  if (!visible.modals.endOfGame) return;
 
-  const getEndGameData = () => {
-    let winnerPerRound = [];
-    let winnerTeam = '';
-    let loserTeam = '';
-    let winsWinner = 0;
-    let winsLoser = 0;
-    let teamA = '';
-    let teamB = '';
-    let avatar = '';
+  const result = generateEndScore({
+    endScoreData: endScoreData,
+    teamAName: currentTeamAName,
+    teamAAvatar: currentTeamAAvatar,
+    teamBAvatar: currentTeamBAvatar
+  });
 
-    const gameScoreData = endScoreData.map((round) => {
-      [teamA, teamB] = Object.keys(round).sort();
-      const winnerTeam = round[teamA] > round[teamB] ? teamA : teamB;
-      winnerPerRound.push(winnerTeam);
-    })
-
-    const frequencyCount = {};
-
-    winnerPerRound.forEach((element) => {
-      frequencyCount[element] = (frequencyCount[element] || 0) + 1;
-    })
-
-    const teamAVictories = frequencyCount[teamA] ? frequencyCount[teamA] : 0;
-    const teamBVictories = frequencyCount[teamB] ? frequencyCount[teamB] : 0;
-
-    winnerTeam = teamAVictories > teamBVictories ? teamA : teamB;
-    loserTeam = teamAVictories > teamBVictories ? teamB : teamA;
-    avatar =
-      winnerTeam === currentTeamAName ? currentTeamAAvatar : currentTeamBAvatar;
-
-    return {
-      winnerTeam: winnerTeam,
-      loserTeam: loserTeam,
-      winsWinner: frequencyCount[winnerTeam],
-      winsLoser: frequencyCount[loserTeam] ? frequencyCount[loserTeam] : 0,
-      avatar: avatar
-    };
-  };
-
-  const parseScoreData = () => {
-    const gameData = getEndGameData();
-    const { winnerTeam, loserTeam, winsWinner, winsLoser, avatar } = gameData;
-
-    const scoreListWithInfo = endScoreData.map((round) => {
-      const isWinnerRound = round[winnerTeam] > round[loserTeam];
-      const winnerScore = round[winnerTeam];
-      const loserScore = round[loserTeam];
-
-      return { winnerScore, loserScore, isWinnerRound };
-    })
-
-    return {
-      winnerTeam,
-      loserTeam,
-      winsWinner,
-      winsLoser,
-      avatar,
-      scoreList: scoreListWithInfo
-    };
-  };
-
-  const result = parseScoreData();
+  // store data in database
+  dbUtils.storeNewRow(result, console.log, console.log);
 
   const rounds = result.scoreList.map((data, index) => (
     <View key={index}>
@@ -105,7 +44,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
   ));
 
   const dismissAndGoHome = () => {
-    navigation.replace('/');
+    navigation.replace(pages.HOME);
   };
 
   return (
@@ -130,7 +69,7 @@ export const EndGameModal = ({ visible, endScoreData }) => {
                 style={styles.crown}
               />
               <View style={styles.avatarBackground}>
-                <Image source={result.avatar} style={styles.avatar} />
+                <Image source={result.winnerAvatar} style={styles.avatar} />
               </View>
             </View>
             <View style={styles.winnerContainer}>
