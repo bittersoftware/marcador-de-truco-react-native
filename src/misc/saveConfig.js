@@ -9,14 +9,16 @@ export const saveConfig = async (key, value) => {
     case storageKeys.teamBName:
       await AsyncStorage.setItem(storageKeys.teamBName, value);
       break;
-    case storageKeys.teamAAvatar:
+    case storageKeys.teamAAvatar: {
       const jsonAValue = JSON.stringify(value);
       await AsyncStorage.setItem(storageKeys.teamAAvatar, jsonAValue);
       break;
-    case storageKeys.teamBAvatar:
+    }
+    case storageKeys.teamBAvatar: {
       const jsonBValue = JSON.stringify(value);
       await AsyncStorage.setItem(storageKeys.teamBAvatar, jsonBValue);
       break;
+    }
     case storageKeys.gameMode:
       await AsyncStorage.setItem(storageKeys.gameMode, value.toString());
       break;

@@ -13,7 +13,7 @@ const defaults = {
 
 export const applyDefaults = async () => {
   try {
-    keys = Object.values(storageKeys);
+    const keys = Object.values(storageKeys);
 
     const keyValues = await Promise.all(
       keys.map(async (key) => {

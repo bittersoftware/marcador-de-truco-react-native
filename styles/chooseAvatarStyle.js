@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'flex-end',
     marginBottom: 64
   },
   confirmButton: {

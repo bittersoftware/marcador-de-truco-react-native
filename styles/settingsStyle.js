@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: SIZES.medium,
-    fontFamily: FONT.semiBold,
     fontFamily: FONT.semiBold
   }
 });

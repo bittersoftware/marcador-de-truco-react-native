@@ -27,7 +27,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    semi: ['error', 'never'],
+    semi: [2, 'always'],
     'comma-dangle': [2, 'never'],
     'react/jsx-filename-extension': [
       1,

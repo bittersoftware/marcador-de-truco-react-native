@@ -71,12 +71,10 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
-    color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold
+    color: COLORS.lightWhite
   },
   backButtonText: {
     fontSize: SIZES.medium,
-    fontFamily: FONT.semiBold,
     fontFamily: FONT.semiBold
   }
 });
