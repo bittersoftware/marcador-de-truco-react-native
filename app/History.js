@@ -1,24 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import dbUtils from '../src/database/database';
 import { HistoryItem } from '../src/components/HistoryItem';
 import { PageTitle } from '../src/components/PageTitle';
 
 export default function History() {
+  const OFFSET = 3;
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [dataList, setDataList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMoreData, setHasMoreData] = useState(true);
 
   useEffect(() => {
-    dbUtils.readAllData(setData, console.log);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await dbUtils.readDataOffset(
+          page,
+          OFFSET,
+          (data) => console.log('success', data),
+          (error) => console.log('error', error)
+        );
 
-    setIsLoading(false);
-  }, []);
+        if (data && data.length > 0) {
+          setDataList((prevData) => [...prevData, ...data]);
+        } else {
+          setHasMoreData(false);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const showNames = () => {
-    return data.map((match, index) => {
-      return <HistoryItem key={index} data={match} />;
-    });
-  };
+    fetchData();
+  }, [page]);
 
   if (isLoading) {
     return (
@@ -28,6 +45,20 @@ export default function History() {
     );
   }
 
+  if (dataList.length === 0) {
+    return (
+      <View>
+        <Text>No data</Text>
+      </View>
+    );
+  }
+
+  const handleLoadMore = () => {
+    if (!isLoading && hasMoreData) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
   return (
     <View
       style={{
@@ -36,7 +67,21 @@ export default function History() {
       }}
     >
       <PageTitle text={'Histórico'} />
-      {showNames()}
+      <FlatList
+        data={dataList}
+        renderItem={({ item }) => <HistoryItem data={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        ListFooterComponent={() => (
+          <TouchableOpacity
+            style={{ backgroundColor: 'pink', padding: 6 }}
+            onPress={handleLoadMore}
+          >
+            <Text>
+              {isLoading ? 'Carregando' : hasMoreData ? 'Carregar mais' : 'Fim'}
+            </Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }

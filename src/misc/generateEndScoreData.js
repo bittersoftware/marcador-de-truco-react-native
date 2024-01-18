@@ -1,3 +1,21 @@
+function getCurrentDateTime() {
+  const now = new Date();
+
+  // Get date components
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = now.getFullYear();
+
+  // Get time components
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  // Create the formatted date and time string
+  const formattedDateTime = `${day}-${month}-${year} ${hours}:${minutes}`;
+
+  return formattedDateTime;
+}
+
 const getEndGameData = (
   endScoreData,
   currentTeamAName,
@@ -11,7 +29,6 @@ const getEndGameData = (
   let loserAvatar = '';
   let teamA = '';
   let teamB = '';
-
 
   endScoreData.map((round) => {
     [teamA, teamB] = Object.keys(round).sort();
@@ -34,7 +51,6 @@ const getEndGameData = (
     winnerTeam === currentTeamAName ? currentTeamAAvatar : currentTeamBAvatar;
   loserAvatar =
     winnerTeam === currentTeamAName ? currentTeamBAvatar : currentTeamAAvatar;
-
 
   return {
     winnerTeam: winnerTeam,
@@ -77,7 +93,8 @@ const parseScoreData = (data) => {
     winsLoser,
     winnerAvatar,
     loserAvatar,
-    scoreList: scoreListWithInfo
+    scoreList: scoreListWithInfo,
+    time: getCurrentDateTime()
   };
 };
 

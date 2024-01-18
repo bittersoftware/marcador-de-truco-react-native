@@ -22,7 +22,15 @@ export const EndGameModal = ({ visible, endScoreData }) => {
   });
 
   // store data in database
-  dbUtils.storeNewRow(result, console.log, console.log);
+  dbUtils.storeNewRow(
+    result,
+    (insertedId) => {
+      console.log('Row inserted with ID:', insertedId);
+    },
+    (error) => {
+      console.error('Error storing new row:', error);
+    }
+  );
 
   const rounds = result.scoreList.map((data, index) => (
     <View key={index}>

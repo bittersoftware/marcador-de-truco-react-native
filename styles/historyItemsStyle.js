@@ -4,23 +4,52 @@ import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     marginVertical: 4,
-    marginHorizontal: 24
+    marginHorizontal: 12
   },
   card: {
-    flexDirection: 'row',
     flexGrow: 1,
     backgroundColor: COLORS.lightWhite,
     marginVertical: 2,
     borderRadius: 12,
     paddingVertical: 6,
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
     justifyContent: 'space-around',
     ...SHADOWS.medium
   },
+  headerContainer: {
+    flexDirection: 'row',
+    marginVertical: 4,
+  },
+  indexTextContainer: {
+    backgroundColor: COLORS.gray3,
+    borderRadius: 5,
+    paddingHorizontal: 6,
+    marginHorizontal: 2,
+    justifyContent: 'center'
+  },
+  indexText: {
+    color: COLORS.gray,
+    fontFamily: FONT.regular,
+  },
+  timeTextContainer: {
+    flexGrow: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  timeText: {
+    color: COLORS.gray,
+    paddingHorizontal: 8,
+    marginHorizontal: 2,
+    backgroundColor: COLORS.gray3,
+    borderRadius: 4,
+    fontFamily: FONT.regular
+  },
+  contentContainer: {
+    flexDirection: 'row'
+  },
   teamsContainer: {
-    flex: 0.4,
+    flex: 0.5,
     alignItems: 'center',
     padding: 4
   },
@@ -40,18 +69,18 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center'
   },
-  textContainer: { paddingTop: 4 },
-  text: {
+  teamTextContainer: { paddingTop: 2 },
+  teamText: {
     display: 'flex',
-    fontSize: SIZES.medium,
+    fontSize: SIZES.small,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
     color: COLORS.primary
   },
   middleContainer: {
-    flexGrow: 0.2,
     justifyContent: 'space-around'
   },
+  timeContainer: {},
   scoreContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -65,21 +94,21 @@ const styles = StyleSheet.create({
   },
   roundsContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   roundWin: {
     width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 1,
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.tertiary
   },
   roundLose: {
     width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 1,
-    backgroundColor: COLORS.gray2,
+    backgroundColor: COLORS.gray2
   }
 });
 

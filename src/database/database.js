@@ -8,10 +8,6 @@ class DatabaseUtils {
     this.createTable();
   }
 
-  openDatabase = () => {
-    this.db = SQLite.openDatabase(DB_NAME);
-  };
-
   createTable = () => {
     this.db.transaction(
       (tx) => {
@@ -24,7 +20,8 @@ class DatabaseUtils {
             'loserTeam TEXT,' +
             'loserAvatar INTEGER,' +
             'winsLoser INTEGER,' +
-            'scoreList TEXT' +
+            'scoreList TEXT,' +
+            'time TEXT' +
             ')'
         );
       },
@@ -37,7 +34,7 @@ class DatabaseUtils {
     this.db.transaction(
       (tx) => {
         tx.executeSql(
-          'INSERT INTO matches (winnerTeam, winnerAvatar, winsWinner, loserTeam, loserAvatar, winsLoser, scoreList) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          'INSERT INTO matches (winnerTeam, winnerAvatar, winsWinner, loserTeam, loserAvatar, winsLoser, scoreList, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
           [
             data.winnerTeam,
             data.winnerAvatar,
@@ -45,7 +42,8 @@ class DatabaseUtils {
             data.loserTeam,
             data.loserAvatar,
             data.winsLoser,
-            JSON.stringify(data.scoreList)
+            JSON.stringify(data.scoreList),
+            data.time
           ],
           (_, resultSet) => callback(resultSet.insertId),
           (_, error) => errorCallback(error)
@@ -53,6 +51,34 @@ class DatabaseUtils {
       },
       (error) => console.log('Error storing new row:', error)
     );
+  };
+
+  // Modify readDataOffset to return a Promise
+  readDataOffset = (page, offset, callback, errorCallback) => {
+    return new Promise((resolve, reject) => {
+      this.db.transaction(
+        (tx) => {
+          tx.executeSql(
+            'SELECT * FROM matches ORDER BY id DESC LIMIT ? OFFSET ?',
+            [offset, (page - 1) * offset],
+            (_, { rows }) => {
+              const data = rows._array;
+              const parsedData = this.parseDatabaseResult(data);
+              callback(parsedData);
+              resolve(parsedData); 
+            },
+            (_, error) => {
+              errorCallback(error);
+              reject(error); 
+            }
+          );
+        },
+        (error) => {
+          errorCallback(error);
+          reject(error); 
+        }
+      );
+    });
   };
 
   readAllData = (callback, errorCallback) => {
