@@ -20,13 +20,16 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite
   },
+  scrollView: {
+    flex: 1,
+  },
   card: {
     backgroundColor: COLORS.lightWhite,
     marginHorizontal: 36,
     paddingVertical: 8,
     borderRadius: 16,
-    marginTop: 24,
-    ...SHADOWS.medium
+    marginVertical: 6,
+    ...SHADOWS.small
   },
   sectionTextTitle: {
     fontSize: SIZES.medium,
@@ -54,11 +57,20 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: 12
   },
+  deleteButton: {
+    alignSelf: 'center',
+    backgroundColor: COLORS.tertiary,
+    padding: 10,
+    borderRadius: 24,
+  },
+  deleteText: {
+    fontFamily: FONT.semiBold
+  },
   buttonContainer: {
     justifyContent: 'flex-end',
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: 24
+    paddingBottom: 12
   },
   backButtonText: {
     fontSize: SIZES.medium,

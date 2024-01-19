@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import dbUtils from '../src/database/database';
 import { PageTitle } from '../src/components/PageTitle';
 import { HistoryList } from '../src/components/HistoryList';
 import styles from '../styles/historyStyle';
-import { useRouter } from 'expo-router';
 
 export default function History() {
-  const navigation = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const dataList = useRef([]);
   const hasMoreData = useRef(true);
@@ -69,10 +67,6 @@ export default function History() {
     }
   };
 
-  const handleBack = () => {
-    navigation.back();
-  };
-
   return (
     <View style={styles.container}>
       <PageTitle text={'Histórico'} />
@@ -83,9 +77,6 @@ export default function History() {
         isLoading={isLoading}
         firstLoad={firstLoad}
       />
-      <Pressable onPress={handleBack} style={styles.button}>
-        <Text style={styles.buttonText}>Voltar</Text>
-      </Pressable>
     </View>
   );
 }

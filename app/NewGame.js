@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { Picker } from '@react-native-picker/picker';
 import {
-  TextInput,
   Text,
   View,
   Pressable,
-  Image,
   Keyboard,
   TouchableWithoutFeedback,
   ToastAndroid
 } from 'react-native';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import styles from '../styles/newGameStyle';
 import { useSettingsContext } from '../context/SettingsContext';
 import { TeamDefinition } from '../src/components/TeamDefinition';
@@ -22,15 +17,8 @@ import { pages } from '../constants';
 export default NewGame = () => {
   const navigation = useRouter();
   const {
-    currentTeamAAvatar,
     currentTeamAName,
-    setCurrentTeamAName,
-    currentTeamBAvatar,
     currentTeamBName,
-    setCurrentTeamBName,
-    defaultTeamAName,
-    defaultTeamBName,
-    setCurrentGameMode
   } = useSettingsContext();
 
   const startGame = () => {
@@ -59,9 +47,6 @@ export default NewGame = () => {
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={() => startGame()}>
             <Text style={styles.buttonText}>Iniciar</Text>
-          </Pressable>
-          <Pressable onPress={() => navigation.replace('/')}>
-            <Text style={styles.backButtonText}>Voltar</Text>
           </Pressable>
         </View>
       </View>
