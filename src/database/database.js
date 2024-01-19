@@ -53,7 +53,6 @@ class DatabaseUtils {
     );
   };
 
-  // Modify readDataOffset to return a Promise
   readDataOffset = (page, offset, callback, errorCallback) => {
     return new Promise((resolve, reject) => {
       this.db.transaction(
@@ -65,17 +64,17 @@ class DatabaseUtils {
               const data = rows._array;
               const parsedData = this.parseDatabaseResult(data);
               callback(parsedData);
-              resolve(parsedData); 
+              resolve(parsedData);
             },
             (_, error) => {
               errorCallback(error);
-              reject(error); 
+              reject(error);
             }
           );
         },
         (error) => {
           errorCallback(error);
-          reject(error); 
+          reject(error);
         }
       );
     });

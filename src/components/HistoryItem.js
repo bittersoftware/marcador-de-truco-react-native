@@ -1,8 +1,8 @@
 import { View, Image, Text } from 'react-native';
 import styles from '../../styles/historyItemsStyle';
+import { memo } from 'react';
 
-export const HistoryItem = ({ data }) => {
-  console.log(data.id)
+const HistoryItem = ({ data }) => {
   const renderTeam = (name, avatar) => {
     return (
       <View style={styles.teamsContainer}>
@@ -56,3 +56,7 @@ export const HistoryItem = ({ data }) => {
   );
 };
 
+export default memo(HistoryItem, (prevProps, nextProps) => {
+  if (prevProps.id === nextProps.id) return false;
+  return true;
+});

@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View } from 'react-native';
 import dbUtils from '../src/database/database';
 import { PageTitle } from '../src/components/PageTitle';
 import { HistoryList } from '../src/components/HistoryList';
 
 export default function History() {
-  const OFFSET = 2;
+  const OFFSET = 8;
   const [isLoading, setIsLoading] = useState(false);
   const [dataList, setDataList] = useState([]);
-  const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
+  const page = useRef(1);
+  const firstLoad = useRef(false);
 
   useEffect(() => {
-    console.log('useeffect page', page);
     setIsLoading(true);
-    fetchData(page);
-  }, [page]);
+    fetchData(page.current);
+    firstLoad.current = true;
+  }, []);
 
   const fetchData = async (page) => {
     try {
+      firstLoad.current = false;
       const data = await dbUtils.readDataOffset(
-        page,
+        page.toString(),
         OFFSET,
-        (data) => console.log('success', data),
+        () => console.log('success'),
         (error) => console.log('error', error)
       );
 
@@ -57,8 +59,9 @@ export default function History() {
 
   const handleLoadMore = () => {
     if (!isLoading && hasMoreData) {
-      setPage(page + 1);
+      page.current = page.current + 1;
       setIsLoading(true);
+      fetchData(page.current);
     }
   };
 
@@ -75,6 +78,7 @@ export default function History() {
         dataList={dataList}
         hasMoreData={hasMoreData}
         isLoading={isLoading}
+        firstLoad={firstLoad}
       />
     </View>
   );
