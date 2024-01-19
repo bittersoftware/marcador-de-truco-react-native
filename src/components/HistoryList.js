@@ -1,7 +1,8 @@
 import { useRef } from 'react';
-import { Text, TouchableOpacity, FlatList } from 'react-native';
-import HistoryItem from './HistoryItem';
+import { Text, Pressable, FlatList, View } from 'react-native';
+import { HistoryItem } from './HistoryItem';
 import { ActivityIndicator } from 'react-native';
+import styles from '../../styles/historyListStyle';
 
 export const HistoryList = ({
   handleLoadMore,
@@ -13,30 +14,23 @@ export const HistoryList = ({
   const flatListRef = useRef(null);
 
   const renderFooter = () => {
-    if (!isLoading && hasMoreData) {
+    if (!isLoading && hasMoreData.current) {
       return (
-        <TouchableOpacity
-          style={{ backgroundColor: 'pink', padding: 6 }}
-          onPress={handleLoadMore}
-        >
-          <Text>{isLoading ? 'Carregando' : 'Carregar mais'}</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <Pressable style={styles.button} onPress={handleLoadMore}>
+            <Text style={styles.buttonText}>
+              {isLoading ? 'Carregando' : 'Carregar mais'}
+            </Text>
+          </Pressable>
+        </View>
       );
     }
     if (isLoading) return <ActivityIndicator />;
   };
 
-  const scrollToIndex = (index) => {
-    flatListRef?.current?.scrollToIndex({
-      animated: true,
-      index: index
-    });
-  };
-
   const scrollHandle = () => {
-    if (firstLoad.current && dataList.length > 0) {
-      scrollToIndex(0);
-      return
+    if (firstLoad.current && dataList.current.length > 0) {
+      return;
     }
     flatListRef.current.scrollToEnd();
   };
@@ -45,10 +39,11 @@ export const HistoryList = ({
     <FlatList
       ref={flatListRef}
       onContentSizeChange={scrollHandle}
-      data={dataList}
+      data={dataList.current}
       renderItem={({ item }) => <HistoryItem data={item} />}
       keyExtractor={(item) => item.id.toString()}
       ListFooterComponent={renderFooter}
+      style={styles.listContainer}
     />
   );
 };

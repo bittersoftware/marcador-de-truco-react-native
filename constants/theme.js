@@ -9,7 +9,9 @@ const COLORS = {
   gray3: '#EEEEEE',
 
   white: '#F3F4F8',
-  lightWhite: '#FAFAFC'
+  lightWhite: '#FAFAFC',
+
+  transparent: '#FFFFFFFF'
 };
 
 const FONT = {

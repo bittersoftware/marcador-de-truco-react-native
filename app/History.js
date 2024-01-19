@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import dbUtils from '../src/database/database';
 import { PageTitle } from '../src/components/PageTitle';
 import { HistoryList } from '../src/components/HistoryList';
+import styles from '../styles/historyStyle';
+import { useRouter } from 'expo-router';
 
 export default function History() {
-  const OFFSET = 8;
+  const navigation = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [dataList, setDataList] = useState([]);
-  const [hasMoreData, setHasMoreData] = useState(true);
+  const dataList = useRef([]);
+  const hasMoreData = useRef(true);
   const page = useRef(1);
   const firstLoad = useRef(false);
+
+  const OFFSET = 8;
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,15 +28,15 @@ export default function History() {
       const data = await dbUtils.readDataOffset(
         page.toString(),
         OFFSET,
-        () => console.log('success'),
+        () => console.log('success', data),
         (error) => console.log('error', error)
       );
 
       if (data && data.length > 0) {
-        setDataList((prevData) => prevData.concat(data));
+        dataList.current = [...dataList.current, ...data];
       }
       if (data[data.length - 1].id === 1) {
-        setHasMoreData(false);
+        hasMoreData.current = false;
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -65,13 +69,12 @@ export default function History() {
     }
   };
 
+  const handleBack = () => {
+    navigation.back();
+  };
+
   return (
-    <View
-      style={{
-        backgroundColor: 'white',
-        flex: 1
-      }}
-    >
+    <View style={styles.container}>
       <PageTitle text={'Histórico'} />
       <HistoryList
         handleLoadMore={handleLoadMore}
@@ -80,6 +83,9 @@ export default function History() {
         isLoading={isLoading}
         firstLoad={firstLoad}
       />
+      <Pressable onPress={handleBack} style={styles.button}>
+        <Text style={styles.buttonText}>Voltar</Text>
+      </Pressable>
     </View>
   );
 }
