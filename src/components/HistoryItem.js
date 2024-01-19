@@ -2,8 +2,7 @@ import { View, Image, Text } from 'react-native';
 import styles from '../../styles/historyItemsStyle';
 
 export const HistoryItem = ({ data }) => {
-  //console.log('data', data);
-  //console.log('scoreList', data.scoreList);
+  console.log(data.id)
   const renderTeam = (name, avatar) => {
     return (
       <View style={styles.teamsContainer}>
@@ -25,7 +24,6 @@ export const HistoryItem = ({ data }) => {
       />
     );
   };
-  //{data.scoreList.map((data, index) => renderRounds(data, index))}
 
   return (
     <View style={styles.container}>
@@ -48,7 +46,7 @@ export const HistoryItem = ({ data }) => {
               <Text style={styles.scoreText}>{data.winsLoser}</Text>
             </View>
             <View style={styles.roundsContainer}>
-              <Text>scorelist</Text>
+              {data.scoreList.map((data, index) => renderRounds(data, index))}
             </View>
           </View>
           {renderTeam(data.loserTeam, data.loserAvatar)}
@@ -57,3 +55,4 @@ export const HistoryItem = ({ data }) => {
     </View>
   );
 };
+

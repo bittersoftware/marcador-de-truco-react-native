@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View } from 'react-native';
 import dbUtils from '../src/database/database';
-import { HistoryItem } from '../src/components/HistoryItem';
 import { PageTitle } from '../src/components/PageTitle';
+import { HistoryList } from '../src/components/HistoryList';
 
 export default function History() {
-  const OFFSET = 3;
-  const [isLoading, setIsLoading] = useState(true);
+  const OFFSET = 2;
+  const [isLoading, setIsLoading] = useState(false);
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const data = await dbUtils.readDataOffset(
-          page,
-          OFFSET,
-          (data) => console.log('success', data),
-          (error) => console.log('error', error)
-        );
-
-        if (data && data.length > 0) {
-          setDataList((prevData) => [...prevData, ...data]);
-        } else {
-          setHasMoreData(false);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
+    console.log('useeffect page', page);
+    setIsLoading(true);
+    fetchData(page);
   }, [page]);
+
+  const fetchData = async (page) => {
+    try {
+      const data = await dbUtils.readDataOffset(
+        page,
+        OFFSET,
+        (data) => console.log('success', data),
+        (error) => console.log('error', error)
+      );
+
+      if (data && data.length > 0) {
+        setDataList((prevData) => prevData.concat(data));
+      }
+      if (data[data.length - 1].id === 1) {
+        setHasMoreData(false);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -55,7 +57,8 @@ export default function History() {
 
   const handleLoadMore = () => {
     if (!isLoading && hasMoreData) {
-      setPage((prevPage) => prevPage + 1);
+      setPage(page + 1);
+      setIsLoading(true);
     }
   };
 
@@ -67,20 +70,11 @@ export default function History() {
       }}
     >
       <PageTitle text={'Histórico'} />
-      <FlatList
-        data={dataList}
-        renderItem={({ item }) => <HistoryItem data={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        ListFooterComponent={() => (
-          <TouchableOpacity
-            style={{ backgroundColor: 'pink', padding: 6 }}
-            onPress={handleLoadMore}
-          >
-            <Text>
-              {isLoading ? 'Carregando' : hasMoreData ? 'Carregar mais' : 'Fim'}
-            </Text>
-          </TouchableOpacity>
-        )}
+      <HistoryList
+        handleLoadMore={handleLoadMore}
+        dataList={dataList}
+        hasMoreData={hasMoreData}
+        isLoading={isLoading}
       />
     </View>
   );
