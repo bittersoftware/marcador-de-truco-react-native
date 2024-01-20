@@ -62,6 +62,7 @@ export const Home = () => {
       </View>
       <View style={styles.buttonsContainer}>
         <Pressable
+          android_ripple={{color: 'white'}}
           style={[styles.button, styles.mainButton]}
           onPress={() => newGame()}
         >
@@ -70,12 +71,14 @@ export const Home = () => {
           </Text>
         </Pressable>
         <Pressable
+          android_ripple={{color: 'gray'}}
           style={styles.button}
           onPress={() => navigation.push(pages.HISTORY)}
         >
           <Text style={styles.buttonText}>Histórico</Text>
         </Pressable>
         <Pressable
+          android_ripple={{color: 'gray'}}
           style={styles.button}
           onPress={() => navigation.push(pages.SETTINGS)}
         >

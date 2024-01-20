@@ -16,10 +16,7 @@ import { pages } from '../constants';
 
 export default NewGame = () => {
   const navigation = useRouter();
-  const {
-    currentTeamAName,
-    currentTeamBName,
-  } = useSettingsContext();
+  const { currentTeamAName, currentTeamBName } = useSettingsContext();
 
   const startGame = () => {
     if (!currentTeamAName || !currentTeamBName) {
@@ -27,10 +24,10 @@ export default NewGame = () => {
         'O nome das equipes não pode estar vazio!',
         ToastAndroid.SHORT
       );
-      return
+      return;
     }
     navigation.replace(pages.SCOREBOARD);
-  }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -45,11 +42,15 @@ export default NewGame = () => {
           <GameModes origin={pages.NEW_GAME} />
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.button} onPress={() => startGame()}>
+          <Pressable
+            android_ripple={{ color: 'white' }}
+            style={styles.button}
+            onPress={() => startGame()}
+          >
             <Text style={styles.buttonText}>Iniciar</Text>
           </Pressable>
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
-}
+};

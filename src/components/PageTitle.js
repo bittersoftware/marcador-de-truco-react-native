@@ -23,7 +23,7 @@ export const PageTitle = ({ text }) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Pressable onPress={goHome}>
+        <Pressable onPress={goHome} android_ripple={{ color: 'white' }}>
           <Ionicons name="chevron-back" size={24} color="white" />
         </Pressable>
       </View>

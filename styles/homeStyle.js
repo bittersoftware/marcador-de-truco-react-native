@@ -39,17 +39,18 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    paddingTop: 36
+    paddingTop: 36,
+    justifyContent: 'flex-end'
   },
   button: {
     borderColor: COLORS.primary,
-    borderWidth: 4,
     padding: 12,
-    marginBottom: 18,
+    marginBottom: 8,
     flexDirection: 'row',
     width: 200,
     justifyContent: 'center',
-    borderRadius: 36
+    borderRadius: 36,
+    backgroundColor: COLORS.lightWhite,
   },
   mainButton: {
     backgroundColor: COLORS.primary
