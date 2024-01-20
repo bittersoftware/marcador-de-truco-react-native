@@ -86,27 +86,29 @@ export const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end'
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    marginBottom: 6
+  secondaryButtonContainer: {
+    marginVertical: 6,
+    backgroundColor: COLORS.gray3,
+    borderRadius: 36,
+    width: 150,
   },
-  buttonUndo: {
-    borderColor: COLORS.primary,
-    borderWidth: 2,
-    backgroundColor: COLORS.tertiary
-  },
-  buttonClose: {
+  primaryButtonContainer: {
+    marginVertical: 6,
     backgroundColor: COLORS.primary,
-    width: 150
+    borderRadius: 36,
+    width: 150,
   },
-  buttonCloseText: {
+  buttonBase: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+  },
+  mainButtonText: {
     color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
-    textAlign: 'center'
+    fontFamily: FONT.semiBold
   },
-  buttonUndoText: {
+  buttonText: {
     color: COLORS.primary,
     fontFamily: FONT.semiBold,
     textAlign: 'center'

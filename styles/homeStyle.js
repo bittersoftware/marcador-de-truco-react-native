@@ -31,9 +31,10 @@ const styles = StyleSheet.create({
   subText: {
     display: 'flex',
     textAlign: 'center',
-    fontFamily: FONT.regular,
+    fontFamily: FONT.medium,
     marginHorizontal: 15,
-    color: COLORS.lightWhite,
+    marginTop: 24,
+    color: COLORS.gray3,
     padding: 8,
     fontSize: SIZES.medium
   },

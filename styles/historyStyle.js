@@ -15,13 +15,14 @@ const styles = StyleSheet.create({
   emptyContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: COLORS.tertiary,
   },
   emptyImage: {
     width: 200,
     height: 200,
     resizeMode: 'center',
+    marginTop: 100,
   },
   emptyText: {
     fontFamily: FONT.medium,

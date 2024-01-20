@@ -37,6 +37,7 @@ export default Settings = () => {
     }
     dbUtils.resetDatabase();
     setBtnText(() => 'Apagar');
+    setConfirm(() => false);
   };
 
   return (
@@ -69,9 +70,15 @@ export default Settings = () => {
             </View>
             <View style={styles.card}>
               <Text style={styles.sectionTextTitle}>Apagar histórico</Text>
-              <Pressable onPress={resetDatabase} style={styles.deleteButton}>
-                <Text style={styles.deleteText}>{btnText}</Text>
-              </Pressable>
+              <View style={styles.deleteButtonContainer}>
+                <Pressable
+                  android_ripple={{ color: 'black', borderless: true }}
+                  onPress={resetDatabase}
+                  style={styles.deleteButton}
+                >
+                  <Text style={styles.deleteText}>{btnText}</Text>
+                </Pressable>
+              </View>
             </View>
           </ScrollView>
         </View>

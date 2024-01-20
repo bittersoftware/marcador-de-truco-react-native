@@ -31,25 +31,33 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={[styles.buttonBase, styles.mainButton]}
-        onPress={() => pointsHistory()}
-      >
-        <Text style={styles.mainButtonText}>Rodadas</Text>
-      </Pressable>
-      <Pressable
-        style={[styles.buttonBase, styles.button]}
-        onPress={navHomeScreen}
-      >
-        <Text style={styles.buttonText}>{btnText}</Text>
-      </Pressable>
-
-      <Pressable
-        style={[styles.buttonBase, styles.button]}
-        onPress={dismissModal}
-      >
-        <Text style={styles.buttonText}>Voltar</Text>
-      </Pressable>
+      <View style={styles.primaryButtonContainer}>
+        <Pressable
+          android_ripple={{ color: 'white', borderless: true }}
+          style={[styles.buttonBase, styles.mainButton]}
+          onPress={() => pointsHistory()}
+        >
+          <Text style={styles.mainButtonText}>Rodadas</Text>
+        </Pressable>
+      </View>
+      <View style={styles.secondaryButtonContainer}>
+        <Pressable
+          android_ripple={{ color: 'black', borderless: true }}
+          style={[styles.buttonBase, styles.button]}
+          onPress={navHomeScreen}
+        >
+          <Text style={styles.buttonText}>{btnText}</Text>
+        </Pressable>
+      </View>
+      <View style={styles.secondaryButtonContainer}>
+        <Pressable
+          android_ripple={{ color: 'black', borderless: true }}
+          style={[styles.buttonBase, styles.button]}
+          onPress={dismissModal}
+        >
+          <Text style={styles.buttonText}>Voltar</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite
   },
   scrollView: {
-    flex: 1,
+    flex: 1
   },
   card: {
     backgroundColor: COLORS.lightWhite,
@@ -57,16 +57,20 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: 12
   },
-  deleteButton: {
+  deleteButtonContainer: {
+    backgroundColor: COLORS.tertiary,
     alignSelf: 'flex-start',
     marginLeft: 18,
-    backgroundColor: COLORS.tertiary,
-    padding: 10,
     borderRadius: 24,
     marginBottom: 8,
+    width: 120,
+  },
+  deleteButton: {
+    padding: 12,
   },
   deleteText: {
-    fontFamily: FONT.semiBold
+    fontFamily: FONT.semiBold,
+    textAlign: 'center'
   },
   buttonContainer: {
     justifyContent: 'flex-end',

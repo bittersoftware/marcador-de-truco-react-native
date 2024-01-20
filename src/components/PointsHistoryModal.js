@@ -114,20 +114,26 @@ export const PointsHistoryModal = ({
             </View>
             <View style={styles.buttonsContainer}>
               {pointsHistory.length > 1 && (
-                <Pressable
-                  style={[styles.button, styles.buttonUndo]}
-                  onPress={() => undoLastPoint()}
-                  disabled={pointsHistory.length > 1 ? false : true}
-                >
-                  <Text style={styles.buttonUndoText}>{btnText}</Text>
-                </Pressable>
+                <View style={styles.primaryButtonContainer}>
+                  <Pressable
+                    android_ripple={{ color: 'white', borderless: true }}
+                    style={styles.buttonBase}
+                    onPress={() => undoLastPoint()}
+                    disabled={pointsHistory.length > 1 ? false : true}
+                  >
+                    <Text style={styles.mainButtonText}>{btnText}</Text>
+                  </Pressable>
+                </View>
               )}
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => dismissHistoryModal()}
-              >
-                <Text style={styles.buttonCloseText}>Fechar</Text>
-              </Pressable>
+              <View style={styles.secondaryButtonContainer}>
+                <Pressable
+                    android_ripple={{ color: 'black', borderless: true }}
+                  style={styles.buttonBase}
+                  onPress={() => dismissHistoryModal()}
+                >
+                  <Text style={styles.buttonText}>Fechar</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </View>

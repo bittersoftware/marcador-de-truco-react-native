@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   icon: {
     color: COLORS.lightWhite

@@ -5,7 +5,11 @@ import { styles } from '../../styles/floatingActionButtonStyle';
 export const FloatingActionButton = ({ handleClickFloatingAction }) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={handleClickFloatingAction}>
+      <Pressable
+        style={styles.button}
+        android_ripple={{ color: 'white', borderless: true }}
+        onPress={handleClickFloatingAction}
+      >
         <SimpleLineIcons
           name="options-vertical"
           size={24}
