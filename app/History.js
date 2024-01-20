@@ -33,7 +33,7 @@ export default function History() {
       if (data && data.length > 0) {
         dataList.current = [...dataList.current, ...data];
       }
-      if (data.lendth > 0 && data[data.length - 1].id === 1) {
+      if (data.length > 0 && data[data.length - 1].id === 1) {
         hasMoreData.current = false;
       }
     } catch (error) {
@@ -67,7 +67,7 @@ export default function History() {
   );
 
   const handleLoadMore = () => {
-    if (!isLoading && hasMoreData) {
+    if (!isLoading && hasMoreData.current) {
       page.current = page.current + 1;
       setIsLoading(true);
       fetchData(page.current);

@@ -15,7 +15,7 @@ export const HistoryList = ({
   const flatListRef = useRef(null);
 
   const renderFooter = () => {
-    if (!isLoading && hasMoreData.current && dataList.length > 0) {
+    if (!isLoading && hasMoreData.current && dataList.current.length > 0) {
       return (
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={handleLoadMore}>
