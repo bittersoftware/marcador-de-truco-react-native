@@ -22,7 +22,7 @@ export const Home = () => {
     defaultTeamBAvatar,
     currentGameMode,
     setCurrentGameMode,
-    defaultGameMode,
+    defaultGameMode
   } = useSettingsContext();
 
   const newGame = () => {
@@ -43,7 +43,7 @@ export const Home = () => {
     }
 
     navigation.push(pages.NEW_GAME);
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -61,30 +61,36 @@ export const Home = () => {
         </Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Pressable
-          android_ripple={{color: 'white'}}
-          style={[styles.button, styles.mainButton]}
-          onPress={() => newGame()}
-        >
-          <Text style={[styles.buttonText, styles.mainButtonText]}>
-            Novo Jogo
-          </Text>
-        </Pressable>
-        <Pressable
-          android_ripple={{color: 'gray'}}
-          style={styles.button}
-          onPress={() => navigation.push(pages.HISTORY)}
-        >
-          <Text style={styles.buttonText}>Histórico</Text>
-        </Pressable>
-        <Pressable
-          android_ripple={{color: 'gray'}}
-          style={styles.button}
-          onPress={() => navigation.push(pages.SETTINGS)}
-        >
-          <Text style={styles.buttonText}>Configurações</Text>
-        </Pressable>
+        <View style={styles.primaryButtonContainer}>
+          <Pressable
+            android_ripple={{ color: 'white', borderless: true }}
+            style={styles.button}
+            onPress={() => newGame()}
+          >
+            <Text style={[styles.buttonText, styles.mainButtonText]}>
+              Novo Jogo
+            </Text>
+          </Pressable>
+        </View>
+        <View style={styles.secondaryButtonContainer}>
+          <Pressable
+            android_ripple={{ color: 'gray', borderless: true }}
+            style={styles.button}
+            onPress={() => navigation.push(pages.HISTORY)}
+          >
+            <Text style={styles.buttonText}>Histórico</Text>
+          </Pressable>
+        </View>
+        <View style={styles.secondaryButtonContainer}>
+          <Pressable
+            android_ripple={{ color: 'gray', borderless: true }}
+            style={styles.button}
+            onPress={() => navigation.push(pages.SETTINGS)}
+          >
+            <Text style={styles.buttonText}>Configurações</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
-}
+};

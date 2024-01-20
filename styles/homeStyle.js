@@ -43,18 +43,21 @@ const styles = StyleSheet.create({
     paddingTop: 36,
     justifyContent: 'flex-end'
   },
-  button: {
-    borderColor: COLORS.primary,
-    padding: 12,
+  primaryButtonContainer: {
     marginBottom: 8,
+    borderRadius: 36,
+    backgroundColor: COLORS.primary
+  },
+  secondaryButtonContainer: {
+    marginBottom: 8,
+    borderRadius: 36,
+    backgroundColor: COLORS.lightWhite
+  },
+  button: {
+    padding: 12,
     flexDirection: 'row',
     width: 200,
-    justifyContent: 'center',
-    borderRadius: 36,
-    backgroundColor: COLORS.lightWhite,
-  },
-  mainButton: {
-    backgroundColor: COLORS.primary
+    justifyContent: 'center'
   },
   buttonText: {
     fontSize: SIZES.medium,
