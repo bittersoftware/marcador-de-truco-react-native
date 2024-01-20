@@ -1,8 +1,9 @@
 import { useRef } from 'react';
-import { Text, Pressable, FlatList, View } from 'react-native';
+import { Text, Pressable, FlatList, View, Image } from 'react-native';
 import { HistoryItem } from './HistoryItem';
 import { ActivityIndicator } from 'react-native';
 import styles from '../../styles/historyListStyle';
+import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 export const HistoryList = ({
   handleLoadMore,
@@ -14,7 +15,7 @@ export const HistoryList = ({
   const flatListRef = useRef(null);
 
   const renderFooter = () => {
-    if (!isLoading && hasMoreData.current) {
+    if (!isLoading && hasMoreData.current && dataList.length > 0) {
       return (
         <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={handleLoadMore}>
@@ -28,7 +29,7 @@ export const HistoryList = ({
     if (isLoading) return <ActivityIndicator />;
   };
 
-  const scrollHandle = () => {
+  const scrollHandler = () => {
     if (firstLoad.current && dataList.current.length > 0) {
       return;
     }
@@ -38,7 +39,7 @@ export const HistoryList = ({
   return (
     <FlatList
       ref={flatListRef}
-      onContentSizeChange={scrollHandle}
+      onContentSizeChange={scrollHandler}
       data={dataList.current}
       renderItem={({ item }) => <HistoryItem data={item} />}
       keyExtractor={(item) => item.id.toString()}

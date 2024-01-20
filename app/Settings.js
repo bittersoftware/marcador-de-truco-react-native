@@ -17,9 +17,12 @@ import pages from '../constants/pages';
 import storageKeys from '../constants/storageKeys';
 import { saveConfig } from '../src/misc/saveConfig';
 import dbUtils from '../src/database/database';
+import { useState } from 'react';
 
 export default Settings = () => {
   const { preventSleep, setPreventSleep } = useSettingsContext();
+  const [confirm, setConfirm] = useState(false);
+  const [btnText, setBtnText] = useState('Apagar');
 
   const toggleSwitch = () => {
     setPreventSleep((previousState) => !previousState);
@@ -27,8 +30,13 @@ export default Settings = () => {
   };
 
   const resetDatabase = () => {
-    console.log('try to reset');
+    if (!confirm) {
+      setConfirm(() => true);
+      setBtnText(() => 'Confirma?');
+      return;
+    }
     dbUtils.resetDatabase();
+    setBtnText(() => 'Apagar');
   };
 
   return (
@@ -62,7 +70,7 @@ export default Settings = () => {
             <View style={styles.card}>
               <Text style={styles.sectionTextTitle}>Apagar histórico</Text>
               <Pressable onPress={resetDatabase} style={styles.deleteButton}>
-                <Text style={styles.deleteText}>APAGAR</Text>
+                <Text style={styles.deleteText}>{btnText}</Text>
               </Pressable>
             </View>
           </ScrollView>

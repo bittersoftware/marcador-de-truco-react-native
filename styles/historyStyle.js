@@ -7,23 +7,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.gray3,
   },
-  buttonContainer: {
+  activityContainer: {
     flex: 1,
-    paddingTop: 36
-  },
-  button: {
-    alignSelf: 'center',
-    backgroundColor: COLORS.primary,
-    padding: 12,
-    marginBottom: 6,
-    flexDirection: 'row',
     justifyContent: 'center',
-    borderRadius: 36
+    color: COLORS.secondary,
   },
-  buttonText: {
-    fontSize: SIZES.medium,
-    color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.tertiary,
+  },
+  emptyImage: {
+    width: 200,
+    height: 200,
+    resizeMode: 'center',
+  },
+  emptyText: {
+    fontFamily: FONT.medium,
+    color: COLORS.secondary,
+    fontSize: SIZES.large,
+    textAlign: 'center',
   },
 });
 

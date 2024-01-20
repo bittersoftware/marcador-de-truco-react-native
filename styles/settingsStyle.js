@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: COLORS.lightWhite,
-    marginHorizontal: 36,
+    marginHorizontal: 18,
     paddingVertical: 8,
     borderRadius: 16,
     marginVertical: 6,
@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 12
   },
   deleteButton: {
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 18,
     backgroundColor: COLORS.tertiary,
     padding: 10,
     borderRadius: 24,
+    marginBottom: 8,
   },
   deleteText: {
     fontFamily: FONT.semiBold

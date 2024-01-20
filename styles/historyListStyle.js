@@ -4,7 +4,7 @@ import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginBottom: 4,
+    marginBottom: 4
   },
   buttonContainer: {
     marginVertical: 4,
@@ -15,12 +15,11 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     paddingHorizontal: 12,
     paddingVertical: 10,
-    ...SHADOWS.small,
+    ...SHADOWS.small
   },
   buttonText: {
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite
-
   }
 });
 
