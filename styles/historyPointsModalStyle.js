@@ -15,7 +15,9 @@ export const styles = StyleSheet.create({
     height: '90%',
     backgroundColor: COLORS.tertiary,
     borderRadius: 20,
-    padding: 35,
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingHorizontal: 12,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -44,12 +46,34 @@ export const styles = StyleSheet.create({
   },
   teamsContainer: {
     flexDirection: 'row',
-    marginBottom: 12
+    marginBottom: 12,
+    backgroundColor: COLORS.secondary,
+    padding: 4,
+    borderRadius: 8,
   },
-  teamsText: {
-    marginHorizontal: 4,
+  teamAText: {
+    flex: 0.5,
+    marginRight: 4,
     fontSize: SIZES.medium,
-    fontFamily: FONT.semiBold
+    fontFamily: FONT.semiBold,
+    color: COLORS.lightWhite,
+    textAlign: 'center',
+    alignSelf: 'center'
+  },
+  xText: {
+    fontSize: SIZES.large,
+    fontFamily: FONT.bold,
+    color: COLORS.gray,
+    alignSelf: 'center'
+  },
+  teamBText: {
+    flex: 0.5,
+    marginLeft: 4,
+    fontSize: SIZES.medium,
+    fontFamily: FONT.semiBold,
+    color: COLORS.lightWhite,
+    textAlign: 'center',
+    alignSelf: 'center'
   },
   roundTextContainer: {
     borderRadius: 15,
@@ -68,8 +92,7 @@ export const styles = StyleSheet.create({
   pointsTextContainer: {
     padding: 2,
     borderRadius: 30,
-    borderColor: COLORS.primary,
-    borderWidth: 2,
+    backgroundColor: COLORS.gray3,
     margin: 4,
     flexDirection: 'row',
     flexGrow: 1,
@@ -90,19 +113,19 @@ export const styles = StyleSheet.create({
     marginVertical: 6,
     backgroundColor: COLORS.gray3,
     borderRadius: 36,
-    width: 150,
+    width: 150
   },
   primaryButtonContainer: {
     marginVertical: 6,
     backgroundColor: COLORS.primary,
     borderRadius: 36,
-    width: 150,
+    width: 150
   },
   buttonBase: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 12,
-    paddingVertical: 12,
+    paddingVertical: 12
   },
   mainButtonText: {
     color: COLORS.lightWhite,

@@ -100,9 +100,9 @@ export const PointsHistoryModal = ({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.teamsContainer}>
-              <Text style={styles.teamsText}>{currentTeamAName}</Text>
-              <Text style={styles.teamsText}>x</Text>
-              <Text style={styles.teamsText}>{currentTeamBName}</Text>
+              <Text style={styles.teamAText}>{currentTeamAName}</Text>
+              <Text style={styles.xText}>x</Text>
+              <Text style={styles.teamBText}>{currentTeamBName}</Text>
             </View>
             <View style={styles.listContainer}>
               <FlatList

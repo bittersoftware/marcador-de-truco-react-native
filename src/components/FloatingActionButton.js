@@ -1,21 +1,16 @@
-import { Pressable, View } from 'react-native';
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../../styles/floatingActionButtonStyle';
 
 export const FloatingActionButton = ({ handleClickFloatingAction }) => {
   return (
     <View style={styles.container}>
-      <Pressable
-        style={styles.button}
-        android_ripple={{ color: 'white', borderless: true }}
+      <Ionicons
+        name="ellipsis-vertical-circle-sharp"
+        size={56}
+        color={styles.icon.color}
         onPress={handleClickFloatingAction}
-      >
-        <SimpleLineIcons
-          name="options-vertical"
-          size={24}
-          color={styles.icon.color}
-        />
-      </Pressable>
+      />
     </View>
   );
 };
