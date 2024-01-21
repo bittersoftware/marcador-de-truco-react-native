@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: COLORS.primary
   },
   titleContainer: {
     flexDirection: 'row',
@@ -107,8 +108,9 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite
   },
   footerContainer: {
+    paddingTop: 24,
     marginRight: 12,
-    marginBottom: 12
+    marginBottom: 12,
   },
   footerRowContainer: {
     justifyContent: 'center',
