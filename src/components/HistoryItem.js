@@ -1,7 +1,11 @@
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Pressable } from 'react-native';
 import styles from '../../styles/historyItemsStyle';
+import { useRouter } from 'expo-router';
+import { pages } from '../../constants';
 
 export const HistoryItem = ({ data }) => {
+  const navigation = useRouter();
+
   const renderTeam = (name, avatar) => {
     return (
       <View style={styles.teamsContainer}>
@@ -24,8 +28,15 @@ export const HistoryItem = ({ data }) => {
     );
   };
 
+  const openEndGame = (id) => {
+    navigation.push({
+      pathname: pages.END_GAME,
+      params: { id: id }
+    });
+  };
+
   return (
-    <View style={styles.container}>
+    <Pressable onPress={() => openEndGame(data.id)} style={styles.container}>
       <View style={styles.card}>
         <View style={styles.headerContainer}>
           <View style={styles.indexTextContainer}>
@@ -51,7 +62,6 @@ export const HistoryItem = ({ data }) => {
           {renderTeam(data.loserTeam, data.loserAvatar)}
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
-

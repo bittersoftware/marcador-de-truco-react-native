@@ -66,7 +66,7 @@ export default ScoreBoard = () => {
         bWins={matchesData.matchesWonByB}
       />
       <PointsBoard
-        updateScore={setScoreData}
+        setScoreData={setScoreData}
         score={scoreData}
         showHistory={{ showPointsHistory, setShowPointsHistory }}
         matchesData={matchesData}

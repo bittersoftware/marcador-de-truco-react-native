@@ -3,25 +3,14 @@ import { StyleSheet } from 'react-native';
 import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
-  centeredView: {
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.primary
+  },
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  modalView: {
-    backgroundColor: COLORS.primary,
-    borderRadius: 20,
-    paddingVertical: 35,
-    paddingHorizontal: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
   },
   titleContainer: {
     flexDirection: 'row',
@@ -33,11 +22,6 @@ export const styles = StyleSheet.create({
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
     color: COLORS.lightWhite
-  },
-  logo: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain'
   },
   avatarContainer: {
     alignItems: 'center'
@@ -67,25 +51,28 @@ export const styles = StyleSheet.create({
   },
   loserTeamText: {
     fontFamily: FONT.bold,
-    fontSize: SIZES.medium,
+    fontSize: SIZES.large,
     color: COLORS.tertiary
   },
   scoreText: {
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite,
-    fontSize: SIZES.large
+    fontSize: SIZES.xLarge,
+    marginVertical: 8
   },
   buttonText: {
     color: COLORS.primary,
     fontFamily: FONT.bold,
     textAlign: 'center'
   },
-  button: {
+  buttonContainer: {
     marginTop: 12,
     borderRadius: 20,
     backgroundColor: COLORS.tertiary,
-    padding: 10,
     elevation: 2
+  },
+  button: {
+    padding: 10
   },
   roundsContainer: {
     margin: 12,
@@ -118,5 +105,24 @@ export const styles = StyleSheet.create({
   },
   loserMark: {
     backgroundColor: COLORS.lightWhite
+  },
+  footerContainer: {
+    marginRight: 12,
+    marginBottom: 12
+  },
+  footerRowContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 8
+  },
+  footerLogo: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain'
+  },
+  footerText: {
+    fontFamily: FONT.medium,
+    color: COLORS.lightWhite
   }
 });

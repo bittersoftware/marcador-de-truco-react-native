@@ -93,6 +93,37 @@ class DatabaseUtils {
     );
   };
 
+  getItem = (id, callback, errorCallback) => {
+    return new Promise((resolve, reject) => {
+      this.db.transaction(
+        (tx) => {
+          tx.executeSql(
+            'SELECT * FROM matches WHERE id = ?',
+            [id],
+            (_, { rows }) => {
+              if (rows._array.length !== 1) {
+                console.log('data error', rows._array.length);
+                return undefined;
+              }
+              const data = rows._array;
+              const parsedData = this.parseDatabaseResult(data);
+              callback(parsedData[0]);
+              resolve(parsedData[0]);
+            },
+            (_, error) => {
+              errorCallback(error);
+              reject(error);
+            }
+          );
+        },
+        (error) => {
+          errorCallback(error);
+          reject(error);
+        }
+      );
+    });
+  };
+
   deleteItem = (id, callback, errorCallback) => {
     this.db.transaction(
       (tx) => {

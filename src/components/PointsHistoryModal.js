@@ -6,7 +6,7 @@ import { styles } from '../../styles/historyPointsModalStyle';
 export const PointsHistoryModal = ({
   visible,
   score,
-  updateScore,
+  setScoreData,
   historyButton,
   pointsHistory,
   setPointsHistory,
@@ -41,7 +41,7 @@ export const PointsHistoryModal = ({
     currentRoundRef.current -= 1;
     isUndoRef.current = true;
 
-    updateScore(() => ({
+    setScoreData(() => ({
       pointsA: ptsA,
       pointsB: ptsB
     }));
