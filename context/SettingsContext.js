@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import images from '../constants/images';
 import { applyDefaults } from '../src/misc/defaults';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import storageKeys from '../constants/storageKeys';

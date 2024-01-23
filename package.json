@@ -36,7 +36,8 @@
     "react-native-web": "~0.19.6",
     "expo-updates": "~0.18.19",
     "expo-dev-client": "~2.4.12",
-    "expo-system-ui": "~2.4.0"
+    "expo-system-ui": "~2.4.0",
+    "expo-keep-awake": "~12.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

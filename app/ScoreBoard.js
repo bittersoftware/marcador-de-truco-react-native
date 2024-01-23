@@ -7,11 +7,13 @@ import { FloatingActionButton } from '../src/components/FloatingActionButton';
 import { useSettingsContext } from '../context/SettingsContext';
 import { View, ToastAndroid } from 'react-native';
 import { useNavigation } from 'expo-router';
+import { useKeepAwake } from 'expo-keep-awake';
 
 export default ScoreBoard = () => {
   const navigation = useNavigation();
 
-  const { currentTeamAName, currentTeamBName } = useSettingsContext();
+  const { currentTeamAName, currentTeamBName, preventSleep } =
+    useSettingsContext();
 
   const [scoreData, setScoreData] = useState({
     pointsA: 0,
@@ -30,12 +32,12 @@ export default ScoreBoard = () => {
 
   const handleClickFloatingAction = () => {
     setModal(() => true);
-  }
+  };
 
   const handleClickHistory = () => {
     setModal(() => false);
     setShowPointsHistory(true);
-  }
+  };
 
   // prevent leaving the game when press/swipe back
   useEffect(() => {
@@ -50,11 +52,17 @@ export default ScoreBoard = () => {
           ToastAndroid.SHORT
         );
         handleClickFloatingAction();
-        return
+        return;
       }
       navigation.dispatch(e.data.action);
-    })
+    });
   }, []);
+
+  // keep screen awake
+  if (preventSleep) {
+    useKeepAwake();
+    console.log('Screen will be kept awake');
+  }
 
   return (
     <View style={{ backgroundColor: 'white', flex: 1 }}>
@@ -82,4 +90,4 @@ export default ScoreBoard = () => {
       />
     </View>
   );
-}
+};
