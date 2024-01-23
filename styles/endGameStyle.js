@@ -109,14 +109,12 @@ export const styles = StyleSheet.create({
   },
   footerContainer: {
     paddingTop: 24,
-    marginRight: 12,
     marginBottom: 12,
+    justifyContent: 'center',
   },
   footerRowContainer: {
-    justifyContent: 'center',
     flexDirection: 'row',
-    gap: 8,
-    marginTop: 8
+    marginTop: 8,
   },
   footerLogo: {
     width: 20,
@@ -124,6 +122,8 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   footerText: {
+    marginLeft: 6,
+    marginRight: 10,
     fontFamily: FONT.medium,
     color: COLORS.lightWhite
   }
