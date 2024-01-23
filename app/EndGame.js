@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { styles } from '../styles/endGameStyle';
 import { useRouter } from 'expo-router';
-import { useSettingsContext } from '../context/SettingsContext';
 import { pages } from '../constants';
 import dbUtils from '../src/database/database';
 import { useLocalSearchParams } from 'expo-router';
@@ -26,11 +25,10 @@ const adUnitId = __DEV__
 export default EndGame = () => {
   const navigation = useRouter();
   const nav = useNavigation();
-  const { id } = useLocalSearchParams();
+  const { id, origin } = useLocalSearchParams();
   const [isItemLoading, setIsItemLoading] = useState(true);
   const [result, setResult] = useState(null);
   const viewToSnapshot = useRef();
-  const [snapshotImg, setSnapshotImg] = useState();
   const [isSnapshot, setIsSnapshot] = useState(false);
   const { isLoaded, isClosed, load, show } = useInterstitialAd(adUnitId);
 
@@ -38,8 +36,6 @@ export default EndGame = () => {
     try {
       setIsSnapshot(true);
       const uri = await captureRef(viewToSnapshot);
-      setSnapshotImg(uri);
-      console.log(uri);
       await Sharing.shareAsync(uri);
       setIsSnapshot(false);
     } catch (error) {
@@ -64,7 +60,8 @@ export default EndGame = () => {
 
   useEffect(() => {
     fetchData(id);
-    load();
+    // only load ads if is end of game
+    if (origin === pages.SCOREBOARD) load();
   }, [load]);
 
   useEffect(() => {
@@ -114,10 +111,6 @@ export default EndGame = () => {
     </View>
   ));
 
-  const dismissAndGoHome = () => {
-    navigation.replace(pages.HOME);
-  };
-
   return (
     <View style={styles.container}>
       <View
@@ -163,7 +156,7 @@ export default EndGame = () => {
             <View style={styles.buttonContainer}>
               <Pressable
                 onPress={() => {
-                  if (isLoaded) {
+                  if (isLoaded && origin === pages.SCOREBOARD) {
                     show();
                   } else {
                     navigation.replace(pages.HOME);
@@ -180,7 +173,7 @@ export default EndGame = () => {
         <View style={styles.footerContainer}>
           <View style={styles.footerRowContainer}>
             <FontAwesome5 name="google-play" size={16} color="white" />
-            <Text style={styles.footerText}>Marcador Truco</Text>
+            <Text style={styles.footerText}>Marcador de Truco</Text>
             <Image
               source={require('../assets/images/icon.png')}
               style={styles.footerLogo}

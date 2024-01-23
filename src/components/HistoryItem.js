@@ -31,7 +31,7 @@ export const HistoryItem = ({ data }) => {
   const openEndGame = (id) => {
     navigation.push({
       pathname: pages.END_GAME,
-      params: { id: id }
+      params: { id: id, origin: pages.HISTORY }
     });
   };
 

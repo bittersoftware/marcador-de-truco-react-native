@@ -180,7 +180,7 @@ export const PointsBoard = ({
         // nav replace with props id = element saved in db
         navigation.replace({
           pathname: pages.END_GAME,
-          params: { id: insertedId }
+          params: { id: insertedId, origin: pages.SCOREBOARD }
         });
       },
       (error) => {
