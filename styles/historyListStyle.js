@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
+import { COLORS, FONT, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginBottom: 4
+    marginVertical: 4,
   },
   buttonContainer: {
     marginVertical: 4,

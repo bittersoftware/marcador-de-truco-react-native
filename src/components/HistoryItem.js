@@ -2,6 +2,7 @@ import { View, Image, Text, Pressable } from 'react-native';
 import styles from '../../styles/historyItemsStyle';
 import { useRouter } from 'expo-router';
 import { pages } from '../../constants';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 export const HistoryItem = ({ data }) => {
   const navigation = useRouter();
@@ -39,12 +40,13 @@ export const HistoryItem = ({ data }) => {
     <Pressable onPress={() => openEndGame(data.id)} style={styles.container}>
       <View style={styles.card}>
         <View style={styles.headerContainer}>
-          <View style={styles.indexTextContainer}>
-            <Text style={styles.indexText}>{data.id}</Text>
-          </View>
           <View style={styles.timeTextContainer}>
+            <Text style={styles.timeText}>{data.id}</Text>
             <Text style={styles.timeText}>{data.time?.split(' ')[1]}</Text>
             <Text style={styles.timeText}>{data.time?.split(' ')[0]}</Text>
+          </View>
+          <View style={styles.iconContainer}>
+            <SimpleLineIcons name="options" size={18} color="gray" />
           </View>
         </View>
         <View style={styles.contentContainer}>

@@ -4,13 +4,12 @@ import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 4,
+    marginVertical: 2,
     marginHorizontal: 12
   },
   card: {
     flexGrow: 1,
     backgroundColor: COLORS.lightWhite,
-    marginVertical: 2,
     borderRadius: 12,
     paddingVertical: 6,
     paddingHorizontal: 6,
@@ -19,32 +18,23 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    marginVertical: 4,
-  },
-  indexTextContainer: {
-    backgroundColor: COLORS.gray3,
-    borderRadius: 5,
-    paddingHorizontal: 6,
-    marginHorizontal: 2,
-    justifyContent: 'center'
-  },
-  indexText: {
-    color: COLORS.gray,
-    fontFamily: FONT.regular,
+    marginVertical: 4
   },
   timeTextContainer: {
     flexGrow: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   timeText: {
     color: COLORS.gray,
     paddingHorizontal: 8,
     marginHorizontal: 2,
     backgroundColor: COLORS.gray3,
-    borderRadius: 4,
+    borderRadius: 5,
     fontFamily: FONT.regular
   },
+  iconContainer: { paddingRight: 8 },
   contentContainer: {
     flexDirection: 'row'
   },

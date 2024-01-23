@@ -1,9 +1,8 @@
 import { useRef } from 'react';
-import { Text, Pressable, FlatList, View, Image } from 'react-native';
+import { Text, Pressable, FlatList, View } from 'react-native';
 import { HistoryItem } from './HistoryItem';
 import { ActivityIndicator } from 'react-native';
 import styles from '../../styles/historyListStyle';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 export const HistoryList = ({
   handleLoadMore,
