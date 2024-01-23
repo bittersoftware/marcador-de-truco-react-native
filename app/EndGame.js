@@ -76,7 +76,11 @@ export default EndGame = () => {
   useEffect(() => {
     nav.addListener('beforeRemove', (e) => {
       e.preventDefault();
-      if (e.data.action.type === 'GO_BACK' && e.target.startsWith('EndGame')) {
+      if (
+        e.data.action.type === 'GO_BACK' &&
+        e.target.startsWith('EndGame') &&
+        origin === pages.SCOREBOARD
+      ) {
         ToastAndroid.show('Selecione Fechar', ToastAndroid.SHORT);
         return;
       }
@@ -158,8 +162,10 @@ export default EndGame = () => {
                 onPress={() => {
                   if (isLoaded && origin === pages.SCOREBOARD) {
                     show();
-                  } else {
+                  } else if (origin === pages.SCOREBOARD) {
                     navigation.replace(pages.HOME);
+                  } else {
+                    navigation.back();
                   }
                 }}
                 style={styles.button}
