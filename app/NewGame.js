@@ -13,6 +13,7 @@ import { TeamDefinition } from '../src/components/TeamDefinition';
 import { PageTitle } from '../src/components/PageTitle';
 import { GameModes } from '../src/components/GameModes';
 import { pages } from '../constants';
+import { banner } from '../src/ads/banner';
 
 export default NewGame = () => {
   const navigation = useRouter();
@@ -49,6 +50,9 @@ export default NewGame = () => {
           >
             <Text style={styles.buttonText}>Iniciar</Text>
           </Pressable>
+        </View>
+        <View>
+          {banner(pages.NEW_GAME)}
         </View>
       </View>
     </TouchableWithoutFeedback>

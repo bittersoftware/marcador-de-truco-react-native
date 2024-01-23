@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useSettingsContext } from '../../context/SettingsContext';
 
-export const PageTitle = ({ text }) => {
+export const PageTitle = ({ text, ads }) => {
   const navigation = useRouter();
   const { defaultTeamAName, defaultTeamBName } = useSettingsContext();
 

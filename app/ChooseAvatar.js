@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Image, View, Pressable, Text, ToastAndroid } from 'react-native';
+import { Image, View, Pressable, ScrollView, ToastAndroid } from 'react-native';
 import images from '../constants/images';
 import styles from '../styles/chooseAvatarStyle';
 import { useLocalSearchParams } from 'expo-router';
@@ -8,6 +8,7 @@ import { PageTitle } from '../src/components/PageTitle';
 import storageKeys from '../constants/storageKeys';
 import { saveConfig } from '../src/misc/saveConfig';
 import { pages } from '../constants';
+import { banner } from '../src/ads/banner';
 
 export default NewGame = () => {
   const navigation = useRouter();
@@ -82,7 +83,7 @@ export default NewGame = () => {
       return [styles.item, styles.adversaryAvatar];
     }
     return [styles.item, styles.defaultAvatarStatus];
-  }
+  };
 
   const isDisabled = (item) => {
     return (
@@ -91,12 +92,12 @@ export default NewGame = () => {
       (teamName === currentTeamBName &&
         item == states[origin][storageKeys.teamAAvatar])
     );
-  }
+  };
 
   const selectAvatar = (item) => {
     if (isDisabled(item)) {
       ToastAndroid.show('Já escolhido pela outra equipe.', ToastAndroid.SHORT);
-      return
+      return;
     }
 
     if (
@@ -127,33 +128,30 @@ export default NewGame = () => {
     ) {
       setCurrentTeamBAvatar(item);
     }
+
+    navigation.back();
   };
 
   return (
     <View style={styles.container}>
       <PageTitle text={'Selecione Avatar'} />
-      <View style={styles.gridContainer}>
-        {avatars.map((item, idx) => (
-          <Pressable
-            key={idx}
-            onPress={() => selectAvatar(item)}
-            style={() => getCurrentAvatar(item)}
-          >
-            <Image
-              source={item}
-              style={[styles.image, () => getCurrentAvatar(item)]}
-            />
-          </Pressable>
-        ))}
-      </View>
-      <View style={styles.confirmButtonContainer}>
-        <Pressable
-          onPress={() => navigation.back()}
-          style={styles.confirmButton}
-        >
-          <Text style={styles.confirmButtonText}>Confirmar</Text>
-        </Pressable>
-      </View>
+      <ScrollView>
+        <View style={styles.gridContainer}>
+          {avatars.map((item, idx) => (
+            <Pressable
+              key={idx}
+              onPress={() => selectAvatar(item)}
+              style={() => getCurrentAvatar(item)}
+            >
+              <Image
+                source={item}
+                style={[styles.image, () => getCurrentAvatar(item)]}
+              />
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
+      <View>{banner(pages.CHOOSE_AVATAR)}</View>
     </View>
   );
-}
+};

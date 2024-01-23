@@ -51,25 +51,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 45
   },
-  confirmButtonContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginBottom: 64
-  },
-  confirmButton: {
-    backgroundColor: COLORS.primary,
-    width: 130,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center'
-  },
-  confirmButtonText: {
-    color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
-    fontSize: SIZES.medium,
-    textAlign: 'center'
-  }
 });
 
 export default styles;

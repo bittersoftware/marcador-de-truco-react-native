@@ -1,4 +1,11 @@
-import { Text, Pressable, View, Image, ActivityIndicator } from 'react-native';
+import {
+  Text,
+  Pressable,
+  View,
+  Image,
+  ActivityIndicator,
+  ToastAndroid
+} from 'react-native';
 import { styles } from '../styles/endGameStyle';
 import { useRouter } from 'expo-router';
 import { useSettingsContext } from '../context/SettingsContext';
@@ -6,19 +13,26 @@ import { pages } from '../constants';
 import dbUtils from '../src/database/database';
 import { useLocalSearchParams } from 'expo-router';
 import { useState, useEffect, useRef } from 'react';
-import { PageTitle } from '../src/components/PageTitle';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { captureRef } from 'react-native-view-shot';
 import * as Sharing from 'expo-sharing';
+import { useInterstitialAd, TestIds } from 'react-native-google-mobile-ads';
+import { useNavigation } from 'expo-router';
+
+const adUnitId = __DEV__
+  ? TestIds.INTERSTITIAL
+  : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 export default EndGame = () => {
   const navigation = useRouter();
+  const nav = useNavigation();
   const { id } = useLocalSearchParams();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isItemLoading, setIsItemLoading] = useState(true);
   const [result, setResult] = useState(null);
   const viewToSnapshot = useRef();
   const [snapshotImg, setSnapshotImg] = useState();
   const [isSnapshot, setIsSnapshot] = useState(false);
+  const { isLoaded, isClosed, load, show } = useInterstitialAd(adUnitId);
 
   const onShare = async () => {
     try {
@@ -44,15 +58,36 @@ export default EndGame = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
-      setIsLoading(false);
+      setIsItemLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData(id);
+    load();
+  }, [load]);
+
+  useEffect(() => {
+    if (isClosed) {
+      // Action after the ad is closed
+      navigation.replace(pages.HOME);
+    }
+  }, [isClosed]);
+
+  // prevent leaving the game when press/swipe back
+  // Need to select button
+  useEffect(() => {
+    nav.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+      if (e.data.action.type === 'GO_BACK' && e.target.startsWith('EndGame')) {
+        ToastAndroid.show('Selecione Fechar', ToastAndroid.SHORT);
+        return;
+      }
+      nav.dispatch(e.data.action);
+    });
   }, []);
 
-  if (isLoading) {
+  if (isItemLoading) {
     return (
       <View style={styles.activityContainer}>
         <ActivityIndicator size="large" />
@@ -85,7 +120,6 @@ export default EndGame = () => {
 
   return (
     <View style={styles.container}>
-      <PageTitle text={'Resultado'} />
       <View
         ref={viewToSnapshot}
         collapsable={false}
@@ -116,14 +150,31 @@ export default EndGame = () => {
         </View>
         <View style={styles.roundsContainer}>{rounds}</View>
         {!isSnapshot && (
-          <View style={styles.buttonContainer}>
-            <Pressable
-              onPress={onShare}
-              style={styles.button}
-              android_ripple={{ color: 'white', borderless: true }}
-            >
-              <Text style={styles.buttonText}>Compartilhar</Text>
-            </Pressable>
+          <View>
+            <View style={styles.buttonContainer}>
+              <Pressable
+                onPress={onShare}
+                style={styles.button}
+                android_ripple={{ color: 'white', borderless: true }}
+              >
+                <Text style={styles.buttonText}>Compartilhar</Text>
+              </Pressable>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Pressable
+                onPress={() => {
+                  if (isLoaded) {
+                    show();
+                  } else {
+                    navigation.replace(pages.HOME);
+                  }
+                }}
+                style={styles.button}
+                android_ripple={{ color: 'white', borderless: true }}
+              >
+                <Text style={styles.buttonText}>Fechar</Text>
+              </Pressable>
+            </View>
           </View>
         )}
         <View style={styles.footerContainer}>
