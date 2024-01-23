@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import { COLORS, FONT, SIZES } from '../constants';
 
@@ -9,9 +9,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   modalView: {
-    backgroundColor: COLORS.tertiary,
+    width: Dimensions.get('window').width - 42,
+    backgroundColor: COLORS.lightWhite,
     borderColor: COLORS.secondary,
-    borderWidth: 6,
     borderRadius: 20,
     paddingTop: 35,
     paddingBottom: 18,
@@ -28,52 +28,45 @@ export const styles = StyleSheet.create({
   },
   mainText: {
     fontFamily: FONT.semiBold,
-    fontSize: SIZES.medium,
-    color: COLORS.primary
+    fontSize: SIZES.large,
+    color: COLORS.primary,
+    marginBottom: 8
   },
-  winnerContainer: {
+  roundText: {
+    color: COLORS.gray2,
+    fontFamily: FONT.medium
+  },
+  image: {
+    height: 200,
+    resizeMode: 'contain',
+    alignSelf: 'center'
+  },
+  mainImageContainer: {
     margin: 20
   },
   winnerTeamTextContainer: {
-    color: COLORS.primary,
-    borderWidth: 6,
-    borderRadius: 12,
-    borderColor: COLORS.lightWhite,
-    backgroundColor: COLORS.secondary,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8
   },
   teamText: {
-    color: COLORS.lightWhite,
-    padding: 12,
-    fontFamily: FONT.bold,
-    fontSize: SIZES.large
-  },
-  image: {
-    width: 40,
-    height: 50,
-    alignSelf: 'center'
-  },
-  roundText: {
     color: COLORS.primary,
-    fontFamily: FONT.medium
+    fontFamily: FONT.bold,
+    fontSize: SIZES.xxLarge
   },
-  buttonText: {
-    color: COLORS.lightWhite,
-    fontFamily: FONT.semiBold,
-    textAlign: 'center'
-  },
-  button: {
+  buttonContainer: {
     marginTop: 24,
+    marginBottom: 8,
     borderRadius: 20,
     backgroundColor: COLORS.primary,
     padding: 10,
     elevation: 2
+  },
+  button: { paddingHorizontal: 4 },
+  buttonText: {
+    color: COLORS.lightWhite,
+    fontFamily: FONT.semiBold,
+    textAlign: 'center'
   }
 });

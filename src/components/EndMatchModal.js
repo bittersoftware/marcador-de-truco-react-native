@@ -15,20 +15,26 @@ export const EndMatchModal = ({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.mainText}>Fim da partida</Text>
-            <View style={styles.winnerContainer}>
-              <View style={styles.winnerTeamTextContainer}>
-                <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
-              </View>
+            <Text style={styles.roundText}>Jogo {winsA + winsB}</Text>
+            <Text style={styles.roundText}>Melhor de {max}</Text>
+            <View style={styles.mainImageContainer}>
               <Image
-                source={require('../../assets/images/medal.png')}
+                source={require('../../assets/images/trophy.png')}
                 style={styles.image}
               />
             </View>
-            <Text style={styles.roundText}>Jogo {winsA + winsB}</Text>
-            <Text style={styles.roundText}>Melhor de {max}</Text>
-            <Pressable style={styles.button} onPress={() => dismissModal()}>
-              <Text style={styles.buttonText}>Próxima partida</Text>
-            </Pressable>
+            <View style={styles.winnerTeamTextContainer}>
+              <Text style={styles.teamText}>{getWinnerTeamName()}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Pressable
+                style={styles.button}
+                onPress={() => dismissModal()}
+                android_ripple={{ color: 'white', borderless: true }}
+              >
+                <Text style={styles.buttonText}>Próxima partida</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
