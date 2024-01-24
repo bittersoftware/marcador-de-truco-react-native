@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 48
   },
   modalView: {
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.lightWhite,
     borderRadius: 20,
     alignItems: 'center',
     shadowColor: '#000',

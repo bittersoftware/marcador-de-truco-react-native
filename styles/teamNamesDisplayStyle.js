@@ -5,7 +5,7 @@ import { COLORS, FONT, SIZES } from '../constants';
 export const styles = StyleSheet.create({
   container: {
     margin: 12,
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.gray3,
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 12

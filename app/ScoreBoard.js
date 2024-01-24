@@ -8,6 +8,7 @@ import { useSettingsContext } from '../context/SettingsContext';
 import { View, ToastAndroid } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { useKeepAwake } from 'expo-keep-awake';
+import styles from '../styles/scoreBoardStyle';
 
 export default ScoreBoard = () => {
   const navigation = useNavigation();
@@ -64,7 +65,7 @@ export default ScoreBoard = () => {
   }
 
   return (
-    <View style={{ backgroundColor: 'white', flex: 1 }}>
+    <View style={styles.container}>
       <ScoreDisplay scoreData={scoreData} />
       <TeamNamesDisplay
         teamA={currentTeamAName}

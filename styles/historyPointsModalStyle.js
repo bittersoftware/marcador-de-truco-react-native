@@ -6,16 +6,17 @@ export const styles = StyleSheet.create({
   centeredView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22
+    marginTop: 22,
+    flex: 1
   },
   modalView: {
     display: 'flex',
     margin: 20,
     width: '90%',
     height: '90%',
-    backgroundColor: COLORS.tertiary,
     borderRadius: 20,
     paddingTop: 12,
+    backgroundColor: COLORS.gray,
     paddingBottom: 12,
     paddingHorizontal: 12,
     alignItems: 'center',
@@ -26,7 +27,11 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+  },
+  bg: {
+    flex: 1,
+    justifyContent: 'center',
   },
   listContainer: {
     flex: 1,
@@ -47,28 +52,25 @@ export const styles = StyleSheet.create({
   teamsContainer: {
     flexDirection: 'row',
     marginBottom: 12,
-    backgroundColor: COLORS.secondary,
-    padding: 4,
-    borderRadius: 8,
   },
   teamAText: {
     flex: 0.5,
     marginRight: 4,
+    backgroundColor: COLORS.secondary,
+    padding: 4,
+    borderRadius: 8,
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite,
     textAlign: 'center',
     alignSelf: 'center'
   },
-  xText: {
-    fontSize: SIZES.large,
-    fontFamily: FONT.bold,
-    color: COLORS.gray,
-    alignSelf: 'center'
-  },
   teamBText: {
     flex: 0.5,
     marginLeft: 4,
+    backgroundColor: COLORS.secondary,
+    padding: 4,
+    borderRadius: 8,
     fontSize: SIZES.medium,
     fontFamily: FONT.semiBold,
     color: COLORS.lightWhite,
