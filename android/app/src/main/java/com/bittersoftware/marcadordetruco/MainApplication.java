@@ -12,6 +12,7 @@ import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
+import io.invertase.googlemobileads.ReactNativeGoogleMobileAdsPackage;
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -33,6 +34,18 @@ public class MainApplication extends Application implements ReactApplication {
         List<ReactPackage> packages = new PackageList(this).getPackages();
         // Packages that cannot be autolinked yet can be added manually here, for example:
         // packages.add(new MyReactNativePackage());
+        // Add ReactNativeGoogleMobileAdsPackage if it's not already included
+        boolean hasGoogleMobileAdsPackage = false;
+        for (ReactPackage reactPackage : packages) {
+          if (reactPackage instanceof ReactNativeGoogleMobileAdsPackage) {
+            hasGoogleMobileAdsPackage = true;
+            break;
+          }
+        }
+        if (!hasGoogleMobileAdsPackage) {
+          packages.add(new ReactNativeGoogleMobileAdsPackage());
+        }
+        
         return packages;
       }
 
