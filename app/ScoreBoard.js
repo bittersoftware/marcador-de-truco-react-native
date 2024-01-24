@@ -61,7 +61,6 @@ export default ScoreBoard = () => {
   // keep screen awake
   if (preventSleep) {
     useKeepAwake();
-    console.log('Screen will be kept awake');
   }
 
   return (

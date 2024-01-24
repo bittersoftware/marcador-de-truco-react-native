@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Pressable, ToastAndroid } from 'react-native';
 import { styles } from '../../styles/pointsButtonsStyle';
+import * as Haptics from 'expo-haptics';
 
 export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
   const pointsList = Array.from({ length: 13 })
@@ -24,13 +25,20 @@ export const PointsButtons = ({ team, selectedIndex, onScoreChange }) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
-  const handlePress = (el) => {
-    if (!isInNextPoints(el)) {
-      showToast('Use Rodadas para desfazer jogadas');
-    } else if (!isValidPoint(el)) {
-      showToast('Pega ladrão! Esse valor não vale.');
-    } else {
-      onScoreChange(team, el);
+  const handlePress = async (el) => {
+    try {
+      if (!isInNextPoints(el)) {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+        showToast('Use Rodadas para desfazer jogadas');
+      } else if (!isValidPoint(el)) {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        showToast('Pega ladrão! Esse valor não vale.');
+      } else {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        onScoreChange(team, el);
+      }
+    } catch (error) {
+      console.error('Error triggering haptics:', error);
     }
   };
 

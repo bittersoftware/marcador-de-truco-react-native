@@ -37,7 +37,8 @@
     "expo-updates": "~0.18.19",
     "expo-dev-client": "~2.4.12",
     "expo-system-ui": "~2.4.0",
-    "expo-keep-awake": "~12.3.0"
+    "expo-keep-awake": "~12.3.0",
+    "expo-haptics": "~12.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
