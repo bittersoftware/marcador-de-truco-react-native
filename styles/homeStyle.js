@@ -6,8 +6,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 32,
     backgroundColor: COLORS.primary
+  },
+  firstSectionContainer: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 32,
+    paddingTop: 68,
   },
   imageContainer: {
     padding: 24
@@ -30,12 +36,20 @@ const styles = StyleSheet.create({
   subText: {
     display: 'flex',
     textAlign: 'center',
-    fontFamily: FONT.medium,
+    fontFamily: FONT.semiBold,
     marginHorizontal: 15,
     marginTop: 24,
     color: COLORS.secondary,
+    backgroundColor: COLORS.primary,
     padding: 8,
     fontSize: SIZES.medium
+  },
+  secondSectionContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 32,
+    marginBottom: 32
   },
   buttonsContainer: {
     flex: 1,

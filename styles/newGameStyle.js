@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.primary
   },
+  bg: {
+    flex: 1,
+  },
   mainTextContainer: {
     marginHorizontal: 'auto',
     backgroundColor: COLORS.tertiary,
@@ -15,10 +18,10 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: COLORS.lightWhite,
-    marginHorizontal: 36,
-    paddingVertical: 8,
+    marginHorizontal: 8,
+    paddingVertical: 2,
     borderRadius: 16,
-    marginTop: 24,
+    marginTop: 8,
     ...SHADOWS.medium
   },
   sectionTextTitle: {

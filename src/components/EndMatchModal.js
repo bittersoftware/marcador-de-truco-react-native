@@ -14,8 +14,8 @@ export const EndMatchModal = ({
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.mainText}>Fim da partida</Text>
-            <Text style={styles.roundText}>Jogo {winsA + winsB}</Text>
+            <Text style={styles.mainText}>Fim da rodada</Text>
+            <Text style={styles.roundText}>Rodada {winsA + winsB}</Text>
             <Text style={styles.roundText}>Melhor de {max}</Text>
             <View style={styles.mainImageContainer}>
               <Image
@@ -32,7 +32,7 @@ export const EndMatchModal = ({
                 onPress={() => dismissModal()}
                 android_ripple={{ color: 'white', borderless: true }}
               >
-                <Text style={styles.buttonText}>Próxima partida</Text>
+                <Text style={styles.buttonText}>Próxima rodada</Text>
               </Pressable>
             </View>
           </View>

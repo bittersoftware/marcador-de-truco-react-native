@@ -1,34 +1,33 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT, SIZES } from '../constants';
+import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.gray3,
+    backgroundColor: COLORS.primary,
   },
   activityContainer: {
     flex: 1,
     justifyContent: 'center',
-    color: COLORS.secondary,
+    color: COLORS.primary,
   },
   emptyContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: COLORS.tertiary,
+    justifyContent: 'center',
   },
   emptyImage: {
     width: 200,
-    height: 200,
+    height: 150,
     resizeMode: 'center',
-    marginTop: 100,
   },
   emptyText: {
-    fontFamily: FONT.medium,
+    fontFamily: FONT.bold,
     color: COLORS.secondary,
-    fontSize: SIZES.large,
+    fontSize: SIZES.xLarge,
     textAlign: 'center',
+    marginHorizontal: 36,
   },
 });
 

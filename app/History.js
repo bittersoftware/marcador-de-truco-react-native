@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, ActivityIndicator, Image } from 'react-native';
+import {
+  Text,
+  View,
+  ActivityIndicator,
+  Image,
+  ImageBackground
+} from 'react-native';
 import dbUtils from '../src/database/database';
 import { PageTitle } from '../src/components/PageTitle';
 import { HistoryList } from '../src/components/HistoryList';
@@ -61,7 +67,7 @@ export default function History() {
         source={require('../assets/images/empty.png')}
       />
       <Text style={styles.emptyText}>
-        Termine ao menos uma partida para ver o histórico.
+        Termine ao menos um jogo para ver o histórico.
       </Text>
     </View>
   );
@@ -79,16 +85,21 @@ export default function History() {
   return (
     <View style={styles.container}>
       <PageTitle text={'Histórico'} />
-      {!hasData && renderEmpty()}
-      {hasData && (
-        <HistoryList
-          handleLoadMore={handleLoadMore}
-          dataList={dataList}
-          hasMoreData={hasMoreData}
-          isLoading={isLoading}
-          firstLoad={firstLoad}
-        />
-      )}
+      <ImageBackground
+        style={{ flex: 1 }}
+        source={require('../assets/bg_center.png')}
+      >
+        {!hasData && renderEmpty()}
+        {hasData && (
+          <HistoryList
+            handleLoadMore={handleLoadMore}
+            dataList={dataList}
+            hasMoreData={hasMoreData}
+            isLoading={isLoading}
+            firstLoad={firstLoad}
+          />
+        )}
+      </ImageBackground>
     </View>
   );
 }

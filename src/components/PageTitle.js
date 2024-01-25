@@ -21,7 +21,7 @@ export const PageTitle = ({ text, ads }) => {
   };
 
   return (
-    <View style={{overflow: 'hidden', paddingBottom: 5}}>
+    <View style={styles.mainContainer}>
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           <Pressable onPress={goHome} android_ripple={{ color: 'white' }}>
@@ -41,6 +41,10 @@ export const PageTitle = ({ text, ads }) => {
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    overflow: 'hidden',
+    paddingBottom: 5,
+  },
   container: {
     flexDirection: 'row',
     backgroundColor: COLORS.primary,
@@ -50,17 +54,16 @@ const styles = StyleSheet.create({
     ...SHADOWS.small
   },
   buttonContainer: {
-    justifyContent: 'center',
-    paddingHorizontal: 12,
+    alignSelf: 'center',
+    padding: 12,
     position: 'absolute',
     left: 12,
-    top: 16
   },
   mainTextContainer: {
     flexGrow: 1,
     marginHorizontal: 'auto',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   mainText: {
     display: 'flex',
