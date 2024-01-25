@@ -143,23 +143,21 @@ export default EndGame = () => {
           <Text style={styles.loserTeamText}>{result.loserTeam}</Text>
         </View>
         <View style={styles.roundsContainer}>{rounds}</View>
-        {isSnapshot && (
-          <View style={styles.footerContainer}>
-            <View style={styles.footerRowContainer}>
-              <FontAwesome5
-                name="google-play"
-                size={16}
-                color={styles.footerText.color}
-              />
-              <Image
-                source={require('../assets/images/icon.png')}
-                style={styles.footerLogo}
-              />
-            </View>
-            <Text style={styles.footerText}>Marcador de Truco</Text>
-            <Text style={styles.footerText}>by bittersoftware</Text>
+        <View style={styles.footerContainer}>
+          <View style={styles.footerRowContainer}>
+            <FontAwesome5
+              name="google-play"
+              size={16}
+              color={styles.footerText.color}
+            />
+            <Image
+              source={require('../assets/images/icon.png')}
+              style={styles.footerLogo}
+            />
           </View>
-        )}
+          <Text style={styles.footerText}>Marcador de Truco</Text>
+          <Text style={styles.footerText}>by bittersoftware</Text>
+        </View>
         {!isSnapshot && (
           <View style={styles.buttonsContainer}>
             <View style={styles.primaryButtonContainer}>
