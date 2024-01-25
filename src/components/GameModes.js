@@ -41,7 +41,11 @@ export const GameModes = ({ origin }) => {
 
   return (
     <View style={styles.pickerContainer}>
-      <MaterialCommunityIcons name="cards" size={28} color="black" />
+      <MaterialCommunityIcons
+        name="cards"
+        size={28}
+        color={styles.pickerContainer.color}
+      />
       <View style={styles.picker}>
         <Picker
           selectedValue={getGameMode()}

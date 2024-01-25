@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginHorizontal: 20,
     paddingHorizontal: 10,
-    marginBottom: 16
+    marginBottom: 16,
+    color: COLORS.tertiary
   },
   picker: {
     flexGrow: 1,
-    color: COLORS.gray
+    color: COLORS.gray,
   }
 });
 
