@@ -32,7 +32,7 @@ export default function History() {
       const data = await dbUtils.readDataOffset(
         page.toString(),
         OFFSET,
-        () => console.log('success', data),
+        (data) => console.log('db load success', data),
         (error) => console.log('error', error)
       );
 
