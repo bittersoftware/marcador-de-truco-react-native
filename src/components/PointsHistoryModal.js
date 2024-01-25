@@ -127,7 +127,7 @@ export const PointsHistoryModal = ({
               )}
               <View style={styles.secondaryButtonContainer}>
                 <Pressable
-                  android_ripple={{ color: 'black', borderless: true }}
+                  android_ripple={{ color: 'white', borderless: true }}
                   style={styles.buttonBase}
                   onPress={() => dismissHistoryModal()}
                 >

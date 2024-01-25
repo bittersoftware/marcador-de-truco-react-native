@@ -72,7 +72,7 @@ export default Settings = () => {
               <Text style={styles.sectionTextTitle}>Apagar histórico</Text>
               <View style={styles.deleteButtonContainer}>
                 <Pressable
-                  android_ripple={{ color: 'black', borderless: true }}
+                  android_ripple={{ color: 'white', borderless: true }}
                   onPress={resetDatabase}
                   style={styles.deleteButton}
                 >

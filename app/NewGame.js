@@ -42,18 +42,18 @@ export default NewGame = () => {
           <Text style={styles.sectionTextTitle}>Rodadas</Text>
           <GameModes origin={pages.NEW_GAME} />
         </View>
-        <View style={styles.buttonContainer}>
-          <Pressable
-            android_ripple={{ color: 'white' }}
-            style={styles.button}
-            onPress={() => startGame()}
-          >
-            <Text style={styles.buttonText}>Iniciar</Text>
-          </Pressable>
+        <View style={styles.bottomContainer}>
+          <View style={styles.buttonContainer}>
+            <Pressable
+              android_ripple={{ color: 'white' }}
+              style={styles.button}
+              onPress={() => startGame()}
+            >
+              <Text style={styles.buttonText}>Iniciar</Text>
+            </Pressable>
+          </View>
         </View>
-        <View>
-          {banner(pages.NEW_GAME)}
-        </View>
+        {banner(pages.NEW_GAME)}
       </View>
     </TouchableWithoutFeedback>
   );

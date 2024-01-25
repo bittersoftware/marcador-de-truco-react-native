@@ -42,7 +42,7 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
       </View>
       <View style={styles.secondaryButtonContainer}>
         <Pressable
-          android_ripple={{ color: 'black', borderless: true }}
+          android_ripple={{ color: 'white', borderless: true }}
           style={[styles.buttonBase, styles.button]}
           onPress={navHomeScreen}
         >
@@ -51,7 +51,7 @@ export const ScoreBoardCTAs = ({ pointsHistory, setModal }) => {
       </View>
       <View style={styles.secondaryButtonContainer}>
         <Pressable
-          android_ripple={{ color: 'black', borderless: true }}
+          android_ripple={{ color: 'white', borderless: true }}
           style={[styles.buttonBase, styles.button]}
           onPress={dismissModal}
         >

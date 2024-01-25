@@ -42,24 +42,23 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     color: COLORS.gray
   },
-  buttonContainer: {
+  bottomContainer: {
     flex: 1,
     justifyContent: 'flex-end',
     display: 'flex',
     alignItems: 'center',
     paddingBottom: 54,
-    gap: 12
+  },
+  buttonContainer: {
+    backgroundColor: COLORS.tertiary,
+    marginBottom: 18,
+    width: 120,
+    borderRadius: 30
   },
   button: {
-    borderColor: COLORS.primary,
-    backgroundColor: COLORS.tertiary,
-    borderWidth: 4,
     padding: 12,
-    marginBottom: 18,
     flexDirection: 'row',
-    width: 120,
     justifyContent: 'center',
-    borderRadius: 30
   },
   buttonText: {
     fontSize: SIZES.medium,
