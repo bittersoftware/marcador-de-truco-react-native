@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.xLarge,
     textAlign: 'center',
     marginHorizontal: 36,
+    backgroundColor: COLORS.primary,
   },
 });
 
