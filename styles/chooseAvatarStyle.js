@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.tertiary
   },
   adversaryAvatar: {
-    backgroundColor: COLORS.secondary
+    backgroundColor: COLORS.gray,
+    opacity: 0.3,
   },
   image: {
     height: 90,
     width: 90,
     alignItems: 'center',
     resizeMode: 'contain',
-    borderRadius: 45
+    borderRadius: 45,
   },
 });
 
