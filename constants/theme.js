@@ -1,8 +1,8 @@
 const COLORS = {
-  primary: '#312651',
-  secondary: '#444262',
-  tertiary: '#FF7754',
-  lightTertiary: '#FF775466',
+  primary: '#ecf0f1',
+  secondary: '#312651',
+  tertiary: '#4C6AF0',
+  lightTertiary: '#dbe1fc',
 
   gray: '#83829A',
   gray2: '#C1C0C8',
@@ -18,7 +18,10 @@ const FONT = {
   regular: 'Font-Regular',
   medium: 'Font-Medium',
   semiBold: 'Font-SemiBold',
-  bold: 'Font-Bold'
+  bold: 'Font-Bold',
+  game: 'Font-Game3',
+  game2: 'Font-Game2',
+  game3: 'Font-Game'
 };
 
 const SIZES = {

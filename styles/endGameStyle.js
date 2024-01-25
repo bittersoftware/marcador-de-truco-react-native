@@ -4,8 +4,7 @@ import { COLORS, FONT, SIZES } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: COLORS.primary
+    flex: 1
   },
   contentContainer: {
     flex: 1,
@@ -22,22 +21,25 @@ export const styles = StyleSheet.create({
   mainText: {
     fontFamily: FONT.bold,
     fontSize: SIZES.large,
-    color: COLORS.lightWhite
+    color: COLORS.secondary
   },
   avatarContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 24
   },
-  crown: {
-    height: 70,
+  victory: {
+    height: 300,
+    width: 300,
     resizeMode: 'contain',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    position: 'relative'
   },
   avatarBackground: {
-    width: 110,
-    height: 110,
     borderRadius: 55,
-    backgroundColor: COLORS.lightWhite,
-    justifyContent: 'space-around'
+    backgroundColor: COLORS.lightTertiary,
+    justifyContent: 'space-around',
+    position: 'absolute',
+    top: 96
   },
   avatar: {
     width: 100,
@@ -46,18 +48,19 @@ export const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   winnerTeamText: {
-    fontFamily: FONT.bold,
+    marginTop: 12,
+    fontFamily: FONT.game,
     fontSize: SIZES.xxLarge,
     color: COLORS.tertiary
   },
   loserTeamText: {
-    fontFamily: FONT.bold,
+    fontFamily: FONT.game,
     fontSize: SIZES.large,
     color: COLORS.tertiary
   },
   scoreText: {
-    fontFamily: FONT.semiBold,
-    color: COLORS.lightWhite,
+    fontFamily: FONT.game,
+    color: COLORS.tertiary,
     fontSize: SIZES.xLarge,
     marginVertical: 8
   },
@@ -66,34 +69,45 @@ export const styles = StyleSheet.create({
     fontFamily: FONT.bold,
     textAlign: 'center'
   },
-  buttonContainer: {
+  primaryButtonContainer: {
     marginTop: 12,
     borderRadius: 20,
     backgroundColor: COLORS.tertiary,
-    elevation: 2
+    elevation: 2,
+    width: 150
+  },
+  secondaryButtonContainer: {
+    marginTop: 12,
+    borderRadius: 20,
+    backgroundColor: COLORS.secondary,
+    elevation: 2,
+    width: 150
   },
   button: {
-    padding: 10
+    paddingVertical: 10,
+    paddingHorizontal: 18
   },
   roundsContainer: {
-    margin: 12,
+    marginHorizontal: 12,
     flexDirection: 'row',
     gap: 12,
-    padding: 12
+    paddingHorizontal: 12,
+    paddingVertical: 12
   },
   singleRoundContainer: {
     alignItems: 'center'
   },
   roundsScoreContainer: {
     borderRadius: 12,
-    borderColor: COLORS.lightWhite,
+    borderColor: COLORS.secondary,
     borderWidth: 2,
     alignItems: 'center',
     padding: 4
   },
   roundScoreText: {
-    color: COLORS.lightWhite,
-    fontFamily: FONT.medium
+    color: COLORS.secondary,
+    fontFamily: FONT.game,
+    marginVertical: 4
   },
   roundMark: {
     width: 12,
@@ -105,26 +119,38 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.tertiary
   },
   loserMark: {
-    backgroundColor: COLORS.lightWhite
+    backgroundColor: COLORS.gray2
   },
   footerContainer: {
-    paddingTop: 24,
-    marginBottom: 12,
     justifyContent: 'center',
+    flex: 1,
+    alignItems: 'flex-end',
+    marginBottom: 24
   },
   footerRowContainer: {
     flexDirection: 'row',
-    marginTop: 8,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    gap: 12
   },
   footerLogo: {
     width: 20,
     height: 20,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    alignSelf: 'center'
   },
   footerText: {
+    alignSelf: 'center',
     marginLeft: 6,
     marginRight: 10,
-    fontFamily: FONT.medium,
-    color: COLORS.lightWhite
+    fontFamily: FONT.semiBold,
+    color: COLORS.secondary
+  },
+  buttonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    gap: 12,
+    alignItems: 'flex-end',
+    marginBottom: 24
   }
 });

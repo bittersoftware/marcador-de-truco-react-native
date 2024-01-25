@@ -13,11 +13,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   scoreText: {
-    color: COLORS.secondary,
+    color: COLORS.lightTertiary,
     fontSize: SIZES.xxLarge,
-    fontFamily: FONT.bold,
+    fontFamily: FONT.game,
     textAlign: 'center',
-    backgroundColor: COLORS.gray3,
+    backgroundColor: COLORS.tertiary,
     textAlignVertical: 'center',
     borderRadius: 50,
     width: 50,

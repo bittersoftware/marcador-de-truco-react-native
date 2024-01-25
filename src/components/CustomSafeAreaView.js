@@ -6,7 +6,7 @@ const statusBarArea = (color) => {
     container: {
       flex: 1,
       paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-      backgroundColor: color || COLORS.tertiary
+      backgroundColor: color || COLORS.primary
     }
   });
 };

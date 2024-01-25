@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   mainText: {
     fontFamily: FONT.semiBold,
     fontSize: SIZES.large,
-    color: COLORS.primary,
+    color: COLORS.secondary,
     marginBottom: 8
   },
   roundText: {
@@ -51,15 +51,15 @@ export const styles = StyleSheet.create({
     gap: 8
   },
   teamText: {
-    color: COLORS.primary,
-    fontFamily: FONT.bold,
+    color: COLORS.secondary,
+    fontFamily: FONT.game,
     fontSize: SIZES.xxLarge
   },
   buttonContainer: {
     marginTop: 24,
     marginBottom: 8,
     borderRadius: 20,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.tertiary,
     padding: 10,
     elevation: 2
   },

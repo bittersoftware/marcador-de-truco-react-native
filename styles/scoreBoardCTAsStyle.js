@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
   },
   secondaryButtonContainer: {
     marginVertical: 6,
-    backgroundColor: COLORS.gray3,
+    backgroundColor: COLORS.secondary,
     borderRadius: 36,
   },
   primaryButtonContainer: {
     marginVertical: 6,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.tertiary,
     borderRadius: 36,
   },
   buttonBase: {

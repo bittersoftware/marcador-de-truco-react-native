@@ -5,7 +5,7 @@ import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite
+    backgroundColor: COLORS.primary
   },
   mainTextContainer: {
     marginHorizontal: 'auto',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     textAlign: 'left',
     fontFamily: FONT.semiBold,
-    color: COLORS.primary,
+    color: COLORS.secondary,
     marginHorizontal: 24,
     marginVertical: 16
   },
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
   },
   deleteText: {
     fontFamily: FONT.semiBold,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: COLORS.primary
   },
   buttonContainer: {
     justifyContent: 'flex-end',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: SIZES.medium,
-    fontFamily: FONT.semiBold
+    fontFamily: FONT.semiBold,
   }
 });
 

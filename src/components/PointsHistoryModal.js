@@ -99,9 +99,9 @@ export const PointsHistoryModal = ({
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Text style={styles.mainText}>Rodadas</Text>
             <View style={styles.teamsContainer}>
               <Text style={styles.teamAText}>{currentTeamAName}</Text>
-              <Text style={styles.xText}>x</Text>
               <Text style={styles.teamBText}>{currentTeamBName}</Text>
             </View>
             <View style={styles.listContainer}>
@@ -127,7 +127,7 @@ export const PointsHistoryModal = ({
               )}
               <View style={styles.secondaryButtonContainer}>
                 <Pressable
-                    android_ripple={{ color: 'black', borderless: true }}
+                  android_ripple={{ color: 'black', borderless: true }}
                   style={styles.buttonBase}
                   onPress={() => dismissHistoryModal()}
                 >

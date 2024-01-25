@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.small,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
-    color: COLORS.primary
+    color: COLORS.secondary
   },
   middleContainer: {
     justifyContent: 'space-around'

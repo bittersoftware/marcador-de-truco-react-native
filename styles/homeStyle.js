@@ -7,10 +7,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 32,
-    backgroundColor: COLORS.tertiary
+    backgroundColor: COLORS.primary
   },
   imageContainer: {
-    alignItems: 'center',
     padding: 24
   },
   image: {
@@ -23,10 +22,10 @@ const styles = StyleSheet.create({
   },
   mainText: {
     display: 'flex',
-    fontSize: SIZES.xLarge,
+    fontSize: SIZES.xxLarge,
     textAlign: 'center',
-    fontFamily: FONT.semiBold,
-    color: COLORS.primary
+    fontFamily: FONT.game,
+    color: COLORS.tertiary
   },
   subText: {
     display: 'flex',
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     marginHorizontal: 15,
     marginTop: 24,
-    color: COLORS.gray3,
+    color: COLORS.secondary,
     padding: 8,
     fontSize: SIZES.medium
   },
@@ -46,12 +45,12 @@ const styles = StyleSheet.create({
   primaryButtonContainer: {
     marginBottom: 8,
     borderRadius: 36,
-    backgroundColor: COLORS.primary
+    backgroundColor: COLORS.tertiary
   },
   secondaryButtonContainer: {
     marginBottom: 8,
     borderRadius: 36,
-    backgroundColor: COLORS.lightWhite
+    backgroundColor: COLORS.secondary
   },
   button: {
     padding: 12,

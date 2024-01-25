@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.tertiary,
     borderRadius: 24,
     paddingHorizontal: 12,
     paddingVertical: 10,

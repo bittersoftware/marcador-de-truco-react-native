@@ -122,13 +122,10 @@ export default EndGame = () => {
         collapsable={false}
         style={styles.contentContainer}
       >
-        <View style={styles.titleContainer}>
-          <Text style={styles.mainText}>FIM DE JOGO</Text>
-        </View>
         <View style={styles.avatarContainer}>
           <Image
-            source={require('../assets/images/crown.png')}
-            style={styles.crown}
+            source={require('../assets/images/victory.png')}
+            style={styles.victory}
           />
           <View style={styles.avatarBackground}>
             <Image source={result.winnerAvatar} style={styles.avatar} />
@@ -146,9 +143,26 @@ export default EndGame = () => {
           <Text style={styles.loserTeamText}>{result.loserTeam}</Text>
         </View>
         <View style={styles.roundsContainer}>{rounds}</View>
+        {isSnapshot && (
+          <View style={styles.footerContainer}>
+            <View style={styles.footerRowContainer}>
+              <FontAwesome5
+                name="google-play"
+                size={16}
+                color={styles.footerText.color}
+              />
+              <Image
+                source={require('../assets/images/icon.png')}
+                style={styles.footerLogo}
+              />
+            </View>
+            <Text style={styles.footerText}>Marcador de Truco</Text>
+            <Text style={styles.footerText}>by bittersoftware</Text>
+          </View>
+        )}
         {!isSnapshot && (
-          <View>
-            <View style={styles.buttonContainer}>
+          <View style={styles.buttonsContainer}>
+            <View style={styles.primaryButtonContainer}>
               <Pressable
                 onPress={onShare}
                 style={styles.button}
@@ -157,7 +171,7 @@ export default EndGame = () => {
                 <Text style={styles.buttonText}>Compartilhar</Text>
               </Pressable>
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.secondaryButtonContainer}>
               <Pressable
                 onPress={() => {
                   if (isLoaded && origin === pages.SCOREBOARD) {
@@ -176,17 +190,6 @@ export default EndGame = () => {
             </View>
           </View>
         )}
-        <View style={styles.footerContainer}>
-          <View style={styles.footerRowContainer}>
-            <FontAwesome5 name="google-play" size={16} color="white" />
-            <Text style={styles.footerText}>Marcador de Truco</Text>
-            <Image
-              source={require('../assets/images/icon.png')}
-              style={styles.footerLogo}
-            />
-            <Text style={styles.footerText}>by bittersoftware</Text>
-          </View>
-        </View>
       </View>
     </View>
   );

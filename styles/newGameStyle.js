@@ -5,20 +5,13 @@ import { COLORS, FONT, SIZES, SHADOWS } from '../constants';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightWhite
+    backgroundColor: COLORS.primary
   },
   mainTextContainer: {
     marginHorizontal: 'auto',
     backgroundColor: COLORS.tertiary,
     height: 56,
     justifyContent: 'center'
-  },
-  mainText: {
-    display: 'flex',
-    fontSize: SIZES.xLarge,
-    textAlign: 'center',
-    fontFamily: FONT.semiBold,
-    color: COLORS.lightWhite
   },
   card: {
     backgroundColor: COLORS.lightWhite,
@@ -32,7 +25,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.medium,
     textAlign: 'left',
     fontFamily: FONT.semiBold,
-    color: COLORS.primary,
+    color: COLORS.secondary,
     marginHorizontal: 24,
     marginVertical: 16
   },
@@ -59,7 +52,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderColor: COLORS.primary,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.tertiary,
     borderWidth: 4,
     padding: 12,
     marginBottom: 18,

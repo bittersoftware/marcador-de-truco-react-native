@@ -12,6 +12,6 @@ export const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   icon: {
-    color: COLORS.primary
+    color: COLORS.secondary
   }
 });

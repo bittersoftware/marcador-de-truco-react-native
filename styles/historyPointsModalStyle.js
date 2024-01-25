@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     height: '90%',
     borderRadius: 20,
     paddingTop: 12,
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.lightWhite,
     paddingBottom: 12,
     paddingHorizontal: 12,
     alignItems: 'center',
@@ -29,9 +29,11 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  bg: {
-    flex: 1,
-    justifyContent: 'center',
+  mainText:{
+    fontFamily: FONT.game,
+    color: COLORS.tertiary,
+    fontSize: SIZES.xLarge,
+    paddingVertical: 12,
   },
   listContainer: {
     flex: 1,
@@ -56,7 +58,7 @@ export const styles = StyleSheet.create({
   teamAText: {
     flex: 0.5,
     marginRight: 4,
-    backgroundColor: COLORS.secondary,
+    backgroundColor: COLORS.tertiary,
     padding: 4,
     borderRadius: 8,
     fontSize: SIZES.medium,
@@ -68,7 +70,7 @@ export const styles = StyleSheet.create({
   teamBText: {
     flex: 0.5,
     marginLeft: 4,
-    backgroundColor: COLORS.secondary,
+    backgroundColor: COLORS.tertiary,
     padding: 4,
     borderRadius: 8,
     fontSize: SIZES.medium,
@@ -81,7 +83,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     width: 26,
     height: 26,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.secondary,
     justifyContent: 'center',
     display: 'flex'
   },
@@ -108,18 +110,20 @@ export const styles = StyleSheet.create({
     color: COLORS.secondary
   },
   buttonsContainer: {
+    flexDirection: 'row',
+    gap: 6,
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'space-between'
   },
   secondaryButtonContainer: {
     marginVertical: 6,
-    backgroundColor: COLORS.gray3,
+    backgroundColor: COLORS.secondary,
     borderRadius: 36,
     width: 150
   },
   primaryButtonContainer: {
     marginVertical: 6,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.tertiary,
     borderRadius: 36,
     width: 150
   },

@@ -4,7 +4,7 @@ import { COLORS } from '../constants';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.gray2,
+    backgroundColor: COLORS.lightTertiary,
     alignSelf: 'center',
     flexDirection: 'row',
     padding: 8,
