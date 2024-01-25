@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   scoreText: {
-    color: COLORS.lightTertiary,
+    color: COLORS.lightWhite,
     fontSize: SIZES.xxLarge,
     fontFamily: FONT.game,
     textAlign: 'center',
