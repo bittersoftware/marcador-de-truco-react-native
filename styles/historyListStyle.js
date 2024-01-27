@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import { COLORS, FONT, SHADOWS, SIZES } from '../constants';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   listContainer: {
     marginVertical: 4
   },
@@ -11,7 +14,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   emptyContainer: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -40,10 +43,8 @@ const styles = StyleSheet.create({
     color: COLORS.lightWhite
   },
   activityContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: COLORS.primary
+    marginVertical: 10,
+    alignItems: 'center'
   }
 });
 

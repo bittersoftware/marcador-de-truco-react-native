@@ -7,7 +7,6 @@ import React, { memo } from 'react';
 
 export const HistoryItem = memo(
   ({ data }) => {
-    console.log(data.id);
     const navigation = useRouter();
 
     const renderTeam = (name, avatar) => {
