@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS } from '../constants';
+import { COLORS, FONT } from '../constants';
 
 const styles = StyleSheet.create({
   pickerContainer: {
@@ -9,14 +9,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.gray3,
     borderRadius: 30,
     marginHorizontal: 20,
-    paddingHorizontal: 10,
+    paddingLeft: 10,
+    paddingRight: 30,
     marginBottom: 16,
-    color: COLORS.tertiary
+    color: COLORS.tertiary,
   },
   picker: {
-    flexGrow: 1,
-    color: COLORS.gray,
-  }
+    backgroundColor: COLORS.gray3,
+    borderWidth: 0,
+    borderRadius: 30,
+  },
+  pickerDropDown: { borderRadius: 8, borderWidth: 0, zIndex: 100 },
+  pickerText: { fontFamily: FONT.semiBold, color: COLORS.gray }
 });
 
 export default styles;

@@ -1,4 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { View } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import styles from '../../styles/gameModeStyles';
@@ -6,6 +7,7 @@ import { useSettingsContext } from '../../context/SettingsContext';
 import { pages } from '../../constants';
 import { saveConfig } from '../misc/saveConfig';
 import storageKeys from '../../constants/storageKeys';
+import { useState } from 'react';
 
 export const GameModes = ({ origin }) => {
   const {
@@ -14,6 +16,15 @@ export const GameModes = ({ origin }) => {
     setCurrentGameMode,
     setDefaultGameMode
   } = useSettingsContext();
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: 'Uma rodada', value: 1 },
+    { label: 'Melhor de 3 (Quem faz 2)', value: 2 },
+    { label: 'Melhor de 5 (Quem faz 3)', value: 3 },
+    { label: 'Melhor de 7 (Quem faz 4)', value: 4 }
+  ]);
 
   const getGameMode = () => {
     if (origin === pages.SETTINGS) {
@@ -25,7 +36,9 @@ export const GameModes = ({ origin }) => {
     console.log('Unknown origin get', origin);
   };
 
-  const gameModePicker = (itemValue, _) => {
+  const gameModePicker = (itemValue) => {
+    setValue(() => itemValue);
+
     if (origin === pages.SETTINGS) {
       setDefaultGameMode(itemValue);
       setCurrentGameMode(itemValue);
@@ -46,18 +59,17 @@ export const GameModes = ({ origin }) => {
         size={28}
         color={styles.pickerContainer.color}
       />
-      <View style={styles.picker}>
-        <Picker
-          selectedValue={getGameMode()}
-          onValueChange={gameModePicker}
-          style={styles.picker}
-        >
-          <Picker.Item label="Uma rodada" value={1} />
-          <Picker.Item label="Melhor de 3 (Quem faz 2)" value={2} />
-          <Picker.Item label="Melhor de 5 (Quem faz 3)" value={3} />
-          <Picker.Item label="Melhor de 7 (Quem faz 4)" value={4} />
-        </Picker>
-      </View>
+      <DropDownPicker
+        open={open}
+        value={value ? value : getGameMode()}
+        items={items}
+        setOpen={setOpen}
+        onSelectItem={(item) => gameModePicker(item.value)}
+        setItems={setItems}
+        style={styles.picker}
+        dropDownContainerStyle={styles.pickerDropDown}
+        textStyle={styles.pickerText}
+      />
     </View>
   );
 };

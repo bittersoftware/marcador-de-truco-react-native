@@ -5,7 +5,6 @@ import {
   TouchableWithoutFeedback,
   Switch,
   Pressable,
-  ScrollView
 } from 'react-native';
 import styles from '../styles/settingsStyle';
 import { useSettingsContext } from '../context/SettingsContext';
@@ -45,12 +44,11 @@ export default Settings = () => {
       <View style={styles.container}>
         <PageTitle text={'Configurações'} />
         <View style={styles.scrollView}>
-          <ScrollView>
             <View style={styles.card}>
               <Text style={styles.sectionTextTitle}>Equipes padrão</Text>
               <TeamDefinition origin={pages.SETTINGS} />
             </View>
-            <View style={styles.card}>
+            <View style={[styles.card, { zIndex: 1000 }]}>
               <Text style={styles.sectionTextTitle}>Rodadas padrão</Text>
               <GameModes origin={pages.SETTINGS} />
             </View>
@@ -80,7 +78,6 @@ export default Settings = () => {
                 </Pressable>
               </View>
             </View>
-          </ScrollView>
         </View>
       </View>
     </TouchableWithoutFeedback>

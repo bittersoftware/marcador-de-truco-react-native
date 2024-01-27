@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   avatarContainer: {
     alignItems: 'center',
-    marginTop: 24
+    marginTop: 24,
   },
   victory: {
     height: 300,
