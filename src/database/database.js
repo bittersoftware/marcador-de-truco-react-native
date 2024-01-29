@@ -31,19 +31,25 @@ class DatabaseUtils {
   };
 
   storeNewRow = (data, callback, errorCallback) => {
+    const trimData = {
+      ...data,
+      winnerTeam: data.winnerTeam.trim(),
+      loserTeam: data.loserTeam.trim()
+    };
+
     this.db.transaction(
       (tx) => {
         tx.executeSql(
           'INSERT INTO matches (winnerTeam, winnerAvatar, winsWinner, loserTeam, loserAvatar, winsLoser, scoreList, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
           [
-            data.winnerTeam,
-            data.winnerAvatar,
-            data.winsWinner,
-            data.loserTeam,
-            data.loserAvatar,
-            data.winsLoser,
-            JSON.stringify(data.scoreList),
-            data.time
+            trimData.winnerTeam,
+            trimData.winnerAvatar,
+            trimData.winsWinner,
+            trimData.loserTeam,
+            trimData.loserAvatar,
+            trimData.winsLoser,
+            JSON.stringify(trimData.scoreList),
+            trimData.time
           ],
           (_, resultSet) => callback(resultSet.insertId),
           (_, error) => errorCallback(error)
