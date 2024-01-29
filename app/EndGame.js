@@ -20,7 +20,7 @@ import { useNavigation } from 'expo-router';
 
 const adUnitId = __DEV__
   ? TestIds.INTERSTITIAL
-  : 'ca-app-pub-4711925247199151/4555349725';
+  : 'ca-app-pub-4711925247199151/2257269695';
 
 export default EndGame = () => {
   const navigation = useRouter();
