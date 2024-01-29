@@ -19,9 +19,7 @@ const FONT = {
   medium: 'Font-Medium',
   semiBold: 'Font-SemiBold',
   bold: 'Font-Bold',
-  game: 'Font-Game3',
-  game2: 'Font-Game2',
-  game3: 'Font-Game'
+  game: 'Font-Game',
 };
 
 const SIZES = {

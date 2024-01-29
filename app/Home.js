@@ -54,7 +54,7 @@ export const Home = () => {
         <View style={styles.firstSectionContainer}>
           <View style={styles.imageContainer}>
             <Image
-              source={require('../assets/images/home-img.png')}
+              source={require('../assets/images/logo.png')}
               style={styles.image}
             />
           </View>

@@ -151,7 +151,7 @@ export default EndGame = () => {
               color={styles.footerText.color}
             />
             <Image
-              source={require('../assets/images/icon.png')}
+              source={require('../assets/images/logo.png')}
               style={styles.footerLogo}
             />
           </View>

@@ -15,9 +15,7 @@ export default function App() {
     'Font-Medium': require('../assets/fonts/Montserrat-Medium.otf'),
     'Font-Thin': require('../assets/fonts/Montserrat-Thin.otf'),
     'Font-Light': require('../assets/fonts/Montserrat-Light.otf'),
-    'Font-Game': require('../assets/fonts/GAMERIA.ttf'),
-    'Font-Game2': require('../assets/fonts/Supply-Center.ttf'),
-    'Font-Game3': require('../assets/fonts/No-Continue.ttf')
+    'Font-Game': require('../assets/fonts/No-Continue.ttf')
   });
 
   const onLayoutRootView = useCallback(async () => {
