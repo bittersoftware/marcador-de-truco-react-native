@@ -17,8 +17,13 @@ export const banner = (origin) => {
     ? TestIds.ADAPTIVE_BANNER
     : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
+  const adUnitIdHistory = __DEV__
+    ? TestIds.ADAPTIVE_BANNER
+    : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
   if (origin === pages.NEW_GAME) adUnitId = adUnitIdNewGame;
   if (origin === pages.CHOOSE_AVATAR) adUnitId = adUnitIdChooseAvatar;
+  if (origin === pages.HISTORY) adUnitId = adUnitIdHistory;
 
   return (
     <BannerAd
