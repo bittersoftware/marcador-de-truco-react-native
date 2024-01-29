@@ -8,19 +8,18 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite
   },
   teamText: {
-    marginTop: 32,
+    marginTop: 12,
     fontSize: SIZES.large,
     textAlign: 'center',
     fontFamily: FONT.semiBold,
-    color: COLORS.primary,
-    backgroundColor: COLORS.lightTertiary,
+    color: COLORS.secondary,
     padding: 6,
     borderRadius: 6,
     alignSelf: 'center'
   },
   gridContainer: {
     flexDirection: 'row',
-    marginVertical: 36,
+    marginVertical: 12,
     marginHorizontal: 12,
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 6,
     ...SHADOWS.small
   },
   defaultAvatarStatus: {

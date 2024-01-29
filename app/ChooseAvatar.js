@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Image, View, Pressable, ScrollView, ToastAndroid } from 'react-native';
+import { Image, View, Pressable, ScrollView, ToastAndroid, Text } from 'react-native';
 import images from '../constants/images';
 import styles from '../styles/chooseAvatarStyle';
 import { useLocalSearchParams } from 'expo-router';
@@ -10,7 +10,7 @@ import { saveConfig } from '../src/misc/saveConfig';
 import { pages } from '../constants';
 import { banner } from '../src/ads/banner';
 
-export default NewGame = () => {
+export default ChooseAvatar = () => {
   const navigation = useRouter();
 
   const {
@@ -136,6 +136,7 @@ export default NewGame = () => {
     <View style={styles.container}>
       <PageTitle text={'Selecione Avatar'} />
       <ScrollView>
+        <Text style={styles.teamText}>{teamName}</Text>
         <View style={styles.gridContainer}>
           {avatars.map((item, idx) => (
             <Pressable
