@@ -1,6 +1,6 @@
 import * as SQLite from 'expo-sqlite';
 
-const DB_NAME = 'your_database.db';
+const DB_NAME = 'truco.db';
 
 class DatabaseUtils {
   constructor() {

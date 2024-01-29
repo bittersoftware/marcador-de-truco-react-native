@@ -5,9 +5,9 @@ import images from '../../constants/images';
 const defaults = {
   [storageKeys.teamAName]: 'Casa',
   [storageKeys.teamBName]: 'Visitante',
-  [storageKeys.teamAAvatar]: images.avatar1,
-  [storageKeys.teamBAvatar]: images.avatar2,
-  [storageKeys.gameMode]: 2,
+  [storageKeys.teamAAvatar]: images.avatar7,
+  [storageKeys.teamBAvatar]: images.avatar9,
+  [storageKeys.gameMode]: 1,
   [storageKeys.preventSleep]: true
 };
 
