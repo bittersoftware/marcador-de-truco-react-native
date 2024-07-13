@@ -2,7 +2,7 @@
   "expo": {
     "name": "Marcador de Truco",
     "slug": "marcador-de-truco",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "owner": "bittersoftware",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
