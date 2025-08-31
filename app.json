@@ -15,7 +15,8 @@
     "scheme": "i-dont-know",
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bittersoftware.marcadordetruco"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +37,10 @@
           "android": {
             "enableProguardInReleaseBuilds": true,
             "extraProguardRules": "-keep public class com.horcrux.svg.** {*;}",
-            "allowBackup": false
+            "allowBackup": false,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0"
           }
         }
       ]
